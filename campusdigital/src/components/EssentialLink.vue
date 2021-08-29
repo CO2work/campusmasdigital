@@ -1,5 +1,5 @@
 <template>
-  <q-page-container>
+  <div>
     <q-item v-if="link===''"
             clickable
             v-ripple
@@ -18,7 +18,7 @@
       <q-item-section>
         <q-item-label>{{ title }}</q-item-label>
         <q-item-label caption>
-          {{ caption }}
+          {{ caption }} ff
         </q-item-label>
       </q-item-section>
     </q-item>
@@ -46,7 +46,7 @@
     </q-item>
     <dyn-dialog v-if="showDialog" :show="showDialog" :obj="obj" @hide="showDialog=false"></dyn-dialog>
     <q-separator></q-separator>
-  </q-page-container>
+  </div>
 </template>
 
 <script>
