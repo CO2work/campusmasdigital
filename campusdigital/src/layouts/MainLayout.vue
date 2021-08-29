@@ -1,107 +1,183 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
+  <q-layout view="lHr LpR ffr">
+    <q-header class="col-auto bg-transparent" style="left: unset;">
+      <q-toolbar class="col-auto bg-blue-5">
+<!--        <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title>-->
         <q-btn
           flat
           dense
           round
-          icon="menu"
+          icon="las la-bars"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          @click="toggleLeftDrawer"
         />
 
-        <q-toolbar-title>
-          Quasar App
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      v-model="leftDrawerOpen"
+      v-model="rightDrawerOpen"
       show-if-above
+
+      :mini="miniState"
+
+      :width="400"
+      :breakpoint="600"
+
+      side="right"
+      behavior="desktop"
       bordered
-      content-class="bg-grey-1"
+      class="bg-grey-1 row"
     >
-      <q-list>
-        <q-item-label
-          header
-          class="text-grey-8"
-        >
-          Essential Links
-        </q-item-label>
-        <EssentialLink
-          v-for="link in essentialLinks"
-          :key="link.title"
-          v-bind="link"
-        />
-      </q-list>
+      <q-scroll-area class="fit">
+        <q-list>
+          <EssentialLink
+            v-for="link in essentialLinks"
+            :key="link.title"
+            :obj="link.obj"
+            :title="title"
+            v-bind="link"
+          />
+        </q-list>
+
+      </q-scroll-area>
+
+      <div class="absolute" style="bottom: 15px; left: -17px">
+        <q-btn
+          dense
+          round
+          unelevated
+          color="primary"
+          icon="las la-angle-left"
+          @click="miniState = !miniState"
+        ></q-btn>
+      </div>
     </q-drawer>
+
+    <Dialog/>
+
+    <vue-splash
+    :show="showSplash"
+    :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
+    title="Your Magnificent App Name"
+    color="#00bfa5"
+    :size="300"
+    :fixed="true"
+  />
 
     <q-page-container>
       <router-view />
     </q-page-container>
+
+<!--    <q-footer reveal class="bg-transparent text-white">-->
+<!--      <q-toolbar>-->
+<!--        <q-avatar>-->
+<!--          <img src="~assets/umsnh_escudo_svg_v1.svg" alt="Escudo UMSNH">-->
+<!--        </q-avatar>-->
+<!--        <p  class="text-overline text-white q-px-sm">-->
+<!--          <span>-->
+<!--            Universidad Michoacana de San nicolas de Hidalgo-->
+<!--          </span>-->
+<!--        </p>-->
+<!--      </q-toolbar>-->
+<!--    </q-footer>-->
+
+
+
   </q-layout>
 </template>
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
+import Dialog from 'components/Dialog.vue'
 
-const linksData = [
+const linksList = [
   {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
+    title: 'Campus Digital',
+    caption: 'UMSNH',
+    icon: 'las la-university',
+    link: './'
   },
   {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
+    title: 'Plataformas de Educación',
+    caption: 'UMSNH',
+    icon: 'las la-school',
+    link: '',
+    obj: {
+      tipo: 'plataformas',
+      title: 'Plataformas de Educación'
+    }
   },
   {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
+    title: 'Servicios Digitales',
+    caption: 'y de Información',
+    icon: 'las la-comments',
+    link: '',
+    obj: {
+      tipo: 'servicios',
+      title: 'Servicios Digitales y de Información'
+    }
   },
   {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
+    title: 'Publicaciones digitales',
+    caption: 'Revistas, libros y blogs',
+    icon: 'las la-atom',
+    link: '',
+    obj: {
+      tipo: 'publicaciones',
+      title: 'Publicaciones digitales y Revistas digitales'
+    }
   },
   {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
+    title: 'Repositorios en línea',
+    caption: 'Índices y repositorios',
+    icon: 'las la-project-diagram',
+    link: '',
+    obj: {
+      tipo: 'repositorios',
+      title: 'Repositorios en línea',
+      slidesNoAun: ['img1', 'img2']
+    }
   },
   {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
+    title: 'Cultura Digital',
+    caption: 'Cultura UMSNH',
+    icon: 'las la-broadcast-tower',
+    link: '',
+    obj: {
+      tipo: 'cultura',
+      title: 'Cultura Digital'
+    }
   },
   {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
+    title: 'ADINI - UMSNH',
+    caption: 'Agenda Digital Nicolaita',
+    icon: 'las la-vector-square',
+    link: '',
+    obj: {
+      tipo: 'adini',
+      title: 'ADINI - UMSNH'
+    }
   }
-];
+]
 
 export default {
   name: 'MainLayout',
   components: { EssentialLink },
   data () {
     return {
+      showSplash: true,
+      rightDrawerOpen: false,
+      miniState: false,
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      essentialLinks: linksList,
     }
-  }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.showSplash = false
+      console.log("aqui")
+    }, 1800)
+  },
 }
 </script>
