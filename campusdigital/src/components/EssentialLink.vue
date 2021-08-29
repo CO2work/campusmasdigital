@@ -55,30 +55,11 @@ import DynDialog from 'components/DynDialog'
 export default {
   name: 'EssentialLink',
   props: {
-    obj: {
-      type: Object,
-      required: true
-    },
-
-    title: {
-      type: String,
-      required: true
-    },
-
-    caption: {
-      type: String,
-      default: ''
-    },
-
-    link: {
-      type: String,
-      default: '#'
-    },
-
-    icon: {
-      type: String,
-      default: ''
-    }
+    obj: {type: Object, required: false},
+    title: {type: String, required: false},
+    caption: {type: String, default: ''},
+    link: {type: String, default: '#'},
+    icon: {type: String, default: ''}
   },
   components: {DynDialog},
   data() {

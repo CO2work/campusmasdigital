@@ -2,7 +2,7 @@
   <q-layout view="lHr LpR ffr">
     <q-header class="col-auto bg-transparent" style="left: unset;">
       <q-toolbar class="col-auto bg-blue-5">
-<!--        <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title>-->
+        <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
         <q-btn
           flat
           dense
@@ -57,31 +57,30 @@
     <Dialog/>
 
     <vue-splash
-    :show="showSplash"
-    :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
-    title="Your Magnificent App Name"
-    color="#00bfa5"
-    :size="300"
-    :fixed="true"
-  />
+      :show="showSplash"
+      :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
+      title="Your Magnificent App Name"
+      color="#00bfa5"
+      :size="300"
+      :fixed="true"
+    />
 
     <q-page-container>
-      <router-view />
+      <router-view/>
     </q-page-container>
 
-<!--    <q-footer reveal class="bg-transparent text-white">-->
-<!--      <q-toolbar>-->
-<!--        <q-avatar>-->
-<!--          <img src="~assets/umsnh_escudo_svg_v1.svg" alt="Escudo UMSNH">-->
-<!--        </q-avatar>-->
-<!--        <p  class="text-overline text-white q-px-sm">-->
-<!--          <span>-->
-<!--            Universidad Michoacana de San nicolas de Hidalgo-->
-<!--          </span>-->
-<!--        </p>-->
-<!--      </q-toolbar>-->
-<!--    </q-footer>-->
-
+    <!--    <q-footer reveal class="bg-transparent text-white">-->
+    <!--      <q-toolbar>-->
+    <!--        <q-avatar>-->
+    <!--          <img src="~assets/umsnh_escudo_svg_v1.svg" alt="Escudo UMSNH">-->
+    <!--        </q-avatar>-->
+    <!--        <p  class="text-overline text-white q-px-sm">-->
+    <!--          <span>-->
+    <!--            Universidad Michoacana de San nicolas de Hidalgo-->
+    <!--          </span>-->
+    <!--        </p>-->
+    <!--      </q-toolbar>-->
+    <!--    </q-footer>-->
 
 
   </q-layout>
@@ -91,89 +90,88 @@
 import EssentialLink from 'components/EssentialLink.vue'
 import Dialog from 'components/Dialog.vue'
 
-const linksList = [
-  {
-    title: 'Campus Digital',
-    caption: 'UMSNH',
-    icon: 'las la-university',
-    link: './'
-  },
-  {
-    title: 'Plataformas de Educación',
-    caption: 'UMSNH',
-    icon: 'las la-school',
-    link: '',
-    obj: {
-      tipo: 'plataformas',
-      title: 'Plataformas de Educación'
-    }
-  },
-  {
-    title: 'Servicios Digitales',
-    caption: 'y de Información',
-    icon: 'las la-comments',
-    link: '',
-    obj: {
-      tipo: 'servicios',
-      title: 'Servicios Digitales y de Información'
-    }
-  },
-  {
-    title: 'Publicaciones digitales',
-    caption: 'Revistas, libros y blogs',
-    icon: 'las la-atom',
-    link: '',
-    obj: {
-      tipo: 'publicaciones',
-      title: 'Publicaciones digitales y Revistas digitales'
-    }
-  },
-  {
-    title: 'Repositorios en línea',
-    caption: 'Índices y repositorios',
-    icon: 'las la-project-diagram',
-    link: '',
-    obj: {
-      tipo: 'repositorios',
-      title: 'Repositorios en línea',
-      slidesNoAun: ['img1', 'img2']
-    }
-  },
-  {
-    title: 'Cultura Digital',
-    caption: 'Cultura UMSNH',
-    icon: 'las la-broadcast-tower',
-    link: '',
-    obj: {
-      tipo: 'cultura',
-      title: 'Cultura Digital'
-    }
-  },
-  {
-    title: 'ADINI - UMSNH',
-    caption: 'Agenda Digital Nicolaita',
-    icon: 'las la-vector-square',
-    link: '',
-    obj: {
-      tipo: 'adini',
-      title: 'ADINI - UMSNH'
-    }
-  }
-]
-
 export default {
   name: 'MainLayout',
-  components: { EssentialLink },
-  data () {
+  components: {EssentialLink, Dialog},
+  data() {
     return {
       showSplash: true,
       rightDrawerOpen: false,
       miniState: false,
       leftDrawerOpen: false,
-      essentialLinks: linksList,
+      essentialLinks: [
+        {
+          title: 'Campus Digital',
+          caption: 'UMSNH',
+          icon: 'las la-university',
+          link: '/'
+        },
+        {
+          title: 'Plataformas de Educación',
+          caption: 'UMSNH',
+          icon: 'las la-school',
+          link: '',
+          obj: {
+            tipo: 'plataformas',
+            title: 'Plataformas de Educación'
+          }
+        },
+        {
+          title: 'Servicios Digitales',
+          caption: 'y de Información',
+          icon: 'las la-comments',
+          link: '',
+          obj: {
+            tipo: 'servicios',
+            title: 'Servicios Digitales y de Información'
+          }
+        },
+        {
+          title: 'Publicaciones digitales',
+          caption: 'Revistas, libros y blogs',
+          icon: 'las la-atom',
+          link: '',
+          obj: {
+            tipo: 'publicaciones',
+            title: 'Publicaciones digitales y Revistas digitales'
+          }
+        },
+        {
+          title: 'Repositorios en línea',
+          caption: 'Índices y repositorios',
+          icon: 'las la-project-diagram',
+          link: '',
+          obj: {
+            tipo: 'repositorios',
+            title: 'Repositorios en línea',
+            slidesNoAun: ['img1', 'img2']
+          }
+        },
+        {
+          title: 'Cultura Digital',
+          caption: 'Cultura UMSNH',
+          icon: 'las la-broadcast-tower',
+          link: '',
+          obj: {
+            tipo: 'cultura',
+            title: 'Cultura Digital'
+          }
+        },
+        {
+          title: 'ADINI - UMSNH',
+          caption: 'Agenda Digital Nicolaita',
+          icon: 'las la-vector-square',
+          link: '',
+          obj: {
+            tipo: 'adini',
+            title: 'ADINI - UMSNH'
+          }
+        }
+      ],
     }
   },
   mounted() {
+    console.log("essentialLinks", this.essentialLinks)
     setTimeout(() => {
       this.showSplash = false
       console.log("aqui")
