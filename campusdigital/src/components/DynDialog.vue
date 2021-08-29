@@ -161,14 +161,13 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 
 export default {
   name: 'Dialog',
   props: ['show', 'obj'],
-  setup () {
+  data () {
     return {
-      maximizedToggle: ref(true)
+      maximizedToggle: true
     }
   },
   computed: {

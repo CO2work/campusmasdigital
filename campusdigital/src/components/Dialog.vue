@@ -1,5 +1,4 @@
 <template>
-
   <q-dialog
     v-model="dialog"
     persistent
@@ -43,14 +42,13 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 
 export default {
   name: 'Dialog',
-  setup () {
+  data () {
     return {
-      dialog: ref(false),
-      maximizedToggle: ref(true)
+      dialog: false,
+      maximizedToggle: true
     }
   }
 }

@@ -9,7 +9,7 @@
           round
           icon="las la-bars"
           aria-label="Menu"
-          @click="toggleLeftDrawer"
+          @click="rightDrawerOpen = !rightDrawerOpen"
         />
 
       </q-toolbar>
