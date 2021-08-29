@@ -24,21 +24,18 @@
       </q-card>
       -->
 
-      <Espacio3D v-if="1===2"/>
-
     </div>
 
   </q-page>
 </template>
 
 <script>
-import Espacio3D from 'components/Espacio3D.vue'
+//import Espacio3D from 'components/Espacio3D.vue'
 
 export default {
   name: 'PageIndex',
-
   components: {
-    Espacio3D
+
   }
 }
 </script>
