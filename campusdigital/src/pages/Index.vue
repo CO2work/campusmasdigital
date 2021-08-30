@@ -49,7 +49,7 @@ export default {
   components: {},
   data() {
     return {
-      paginasPath: {}
+      paginasPath: {contenido: []}
     }
   },
   computed: {
@@ -66,16 +66,12 @@ export default {
   methods: {
     ...mapActions('campus', ['paginasIndexSet']),
     getPaginasPath(path) {
-      console.log("path", path)
-      console.log("this.paginasIndex", Object.entries(this.paginasIndex))
-      let filtradas
+      let filtradas = {contenido: []}
       Object.values(this.paginasIndex).forEach(item => {
-        console.log("item", item)
         if (item.slug === path) {
           filtradas = item
         }
       })
-      console.log(filtradas)
       return filtradas
     }
   },
