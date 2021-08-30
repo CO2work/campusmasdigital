@@ -60,7 +60,12 @@ export default {
   },
   methods: {
     ...mapActions('campus', ['paginasIndexSet']),
-  }
+  },
+  watch: {
+    '$route.path': function () {
+      console.log("path", this.$route.path)
+    }
+  },
 
 }
 </script>
