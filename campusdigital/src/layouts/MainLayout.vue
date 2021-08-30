@@ -30,8 +30,9 @@
       class="bg-grey-1 row"
     >
       <q-scroll-area class="fit">
-        <q-list>
+        <q-list v-if="1===2">
           <EssentialLink
+
             v-for="link of essentialLinks"
             :key="link.title"
             :obj="link.obj"
@@ -58,7 +59,7 @@
       style="z-index: 9999"
       :show="showSplash"
       :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
-      title="Your Magnificent App Name"
+      title="Campus Digital USMNH"
       color="#00bfa5"
       :size="300"
       :fixed="true"
@@ -103,7 +104,11 @@ export default {
           title: 'Campus Digital',
           caption: 'UMSNH',
           icon: 'las la-university',
-          link: '/'
+          link: '/',
+          obj: {
+            tipo: 'index',
+            title: 'Campus Digital'
+          }
         },
         {
           title: 'Plataformas de Educación',
@@ -168,6 +173,9 @@ export default {
         }
       ],
     }
+  },
+  beforeCreate() {
+    this.showSplash = true
   },
   mounted() {
     console.log("essentialLinks", this.essentialLinks)

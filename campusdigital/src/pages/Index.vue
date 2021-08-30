@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <div class="main fixed-top">
+    <div class="main">
 
       <!--
         <q-card class="fixed-center text-center text-white bg-transparent no-border-radius no-border no-shadow"
@@ -24,7 +24,27 @@
       </q-card>
       -->
 
-      <p>aqui deberia ir el 3D</p>
+      <p>AgendaDigitalNicolaitaFB</p>
+      <p>{{ AgendaDigitalNicolaitaFB }}</p>
+      <p></p>
+      <p>BibliotecasEnLineaFB</p>
+      <p>{{ BibliotecasEnLineaFB }}</p>
+      <p></p>
+      <p>ComunicacionDigitalFB</p>
+      <p>{{ ComunicacionDigitalFB }}</p>
+      <p></p>
+      <p>PlataformasEducativasFB</p>
+      <p>{{ PlataformasEducativasFB }}</p>
+      <p></p>
+      <p>RedesSocialesInstitucionalesFB</p>
+      <p>{{ RedesSocialesInstitucionalesFB }}</p>
+      <p></p>
+      <p>RevistasFB</p>
+      <p>{{ RevistasFB }}</p>
+      <p></p>
+      <p>ServiciosDigitalesFB</p>
+      <p>{{ ServiciosDigitalesFB }}</p>
+      <p></p>
 
     </div>
 
@@ -32,12 +52,25 @@
 </template>
 
 <script>
-//import Espacio3D from 'components/Espacio3D.vue'
+import firebaseDB from "boot/firebase"
+import firebase from "firebase";
 
 export default {
   name: 'PageIndex',
   components: {
 
+  },
+  data() {
+    return {
+      AgendaDigitalNicolaitaFB: firebaseDB.collection('AgendaDigitalNicolaita'),
+      BibliotecasEnLineaFB: firebaseDB.collection('BibliotecasEnLinea'),
+      ComunicacionDigitalFB: firebaseDB.collection('ComunicacionDigital'),
+      PlataformasEducativasFB: firebaseDB.collection('Plataformas_educativas'),
+      RedesSocialesInstitucionalesFB: firebaseDB.collection('RedesSocialesInstitucionales'),
+      RevistasFB: firebaseDB.collection('Revistas'),
+      ServiciosDigitalesFB: firebaseDB.collection('ServiciosDigitales'),
+    }
   }
+
 }
 </script>
