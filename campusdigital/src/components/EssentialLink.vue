@@ -17,8 +17,8 @@
 
       <q-item-section>
         <q-item-label>{{ link.titulo }}</q-item-label>
-        <q-item-label caption>
-          caption ff
+        <q-item-label caption v-if="link.subtitulo">
+          {{ link.subtitulo }}
         </q-item-label>
       </q-item-section>
     </q-item>
