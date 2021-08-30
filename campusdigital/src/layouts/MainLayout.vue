@@ -360,13 +360,13 @@ export default {
   },
   created() {
     this.showSplash = true
-    this.getPlataformasEducativas()
-    this.getServiciosDigitales()
-    this.getRevistas()
-    this.getBibliotecasEnLinea()
-    this.getComunicacionDigital()
-    this.getAgendaDigitalNicolaita()
-    this.getRedesSocialesInstitucionales()
+    //this.getPlataformasEducativas()
+    //this.getServiciosDigitales()
+    //this.getRevistas()
+    //this.getBibliotecasEnLinea()
+    //this.getComunicacionDigital()
+    //this.getAgendaDigitalNicolaita()
+    //this.getRedesSocialesInstitucionales()
     //this.getPaginas()
     this.getPaginasIndex()
   },
