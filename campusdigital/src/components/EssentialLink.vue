@@ -4,7 +4,7 @@
             clickable
             v-ripple
             tag="a"
-            :to="link.slug"
+            :to="'p/' + link.slug"
             exact
     >
       <q-item-section
