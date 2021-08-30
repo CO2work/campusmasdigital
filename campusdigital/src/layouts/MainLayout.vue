@@ -371,11 +371,9 @@ export default {
     this.getPaginasIndex()
   },
   mounted() {
-    console.log("essentialLinks", this.essentialLinks)
     setTimeout(() => {
       this.showSplash = false
-      console.log("aqui")
-    }, 2800)
+    }, 200)
   },
 }
 </script>

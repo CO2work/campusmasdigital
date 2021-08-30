@@ -25,7 +25,7 @@
       -->
 
       <p>Paginas index</p>
-      <p>{{ paginasIndex }}</p>
+      <p>{{ paginasPath }}</p>
 
     </div>
 
@@ -39,12 +39,10 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'PageIndex',
-  components: {
-
-  },
+  components: {},
   data() {
     return {
-
+      paginasPath: {}
     }
   },
   computed: {
@@ -60,12 +58,31 @@ export default {
   },
   methods: {
     ...mapActions('campus', ['paginasIndexSet']),
+    getPaginasPath(path) {
+      console.log("path", path)
+      console.log("this.paginasIndex", Object.entries(this.paginasIndex))
+      let filtradas
+      Object.values(this.paginasIndex).forEach(item => {
+        console.log("item", item)
+        if (item.slug === path) {
+          filtradas = item
+        }
+      })
+      console.log(filtradas)
+      return filtradas
+    }
   },
   watch: {
     '$route.path': function () {
-      console.log("path", this.$route.path)
+      let path = this.$route.path.replace('/p/', '')
+      path = path.replace('/', '')
+      this.paginasPath = this.getPaginasPath(path)
+    },
+    paginasIndex() {
+      let path = this.$route.path.replace('/p/', '')
+      path = path.replace('/', '')
+      this.paginasPath = this.getPaginasPath(path)
     }
   },
-
 }
 </script>
