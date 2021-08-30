@@ -66,9 +66,6 @@
     />
 
     <q-page-container>
-      <p>paginasIndex</p>
-      <p>{{ paginasIndex }}</p>
-      <p></p>
       <router-view/>
     </q-page-container>
 

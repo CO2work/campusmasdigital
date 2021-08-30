@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex">
     <div class="main">
 
       <!--
@@ -24,6 +24,9 @@
       </q-card>
       -->
 
+      <p>Paginas index</p>
+      <p>{{ paginasIndex }}</p>
+
     </div>
 
   </q-page>
@@ -31,6 +34,8 @@
 
 <script>
 
+
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'PageIndex',
@@ -41,6 +46,20 @@ export default {
     return {
 
     }
+  },
+  computed: {
+    ...mapGetters('campus', ['paginasIndexGet']),
+    paginasIndex: {
+      get() {
+        return this.paginasIndexGet
+      },
+      set(value) {
+        this.paginasIndexSet(value)
+      }
+    },
+  },
+  methods: {
+    ...mapActions('campus', ['paginasIndexSet']),
   }
 
 }
