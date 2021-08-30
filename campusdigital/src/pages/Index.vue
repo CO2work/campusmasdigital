@@ -24,9 +24,16 @@
       </q-card>
       -->
 
-      <p>Paginas index</p>
-      <p>{{ paginasPath }}</p>
-
+      <div class="row q-pa-lg" v-for="(item, idx) in paginasPath.contenido" :key="idx">
+        <q-card class="">
+          <q-card-section>{{ item.titulo }}</q-card-section>
+          <q-separator></q-separator>
+          <q-card-section>
+            <img :src="item.imagen">
+            <p>{{ item.enlace }}</p>
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
 
   </q-page>
