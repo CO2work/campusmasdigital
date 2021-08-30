@@ -66,6 +66,8 @@
     />
 
     <q-page-container>
+      <p>plataformas educativas</p>
+      <p>{{ plataformasEducativas }}</p>
       <router-view/>
     </q-page-container>
 
@@ -89,6 +91,8 @@
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
 import VueSplash from 'vue-splash'
+import firebaseDB from "boot/firebase"
+import firebase from "firebase";
 
 export default {
   name: 'MainLayout',
@@ -172,10 +176,24 @@ export default {
           }
         }
       ],
+      PlataformasEducativasFB: firebaseDB.collection('Plataformas_educativas'),
+      ServiciosDigitalesFB: firebaseDB.collection('ServiciosDigitales'),
+      RevistasFB: firebaseDB.collection('Revistas'),
+      BibliotecasEnLineaFB: firebaseDB.collection('BibliotecasEnLinea'),
+      ComunicacionDigitalFB: firebaseDB.collection('ComunicacionDigital'),
+      AgendaDigitalNicolaitaFB: firebaseDB.collection('AgendaDigitalNicolaita'),
+      RedesSocialesInstitucionalesFB: firebaseDB.collection('RedesSocialesInstitucionales'),
+      plataformasEducativas: []
     }
   },
-  beforeCreate() {
+  created() {
     this.showSplash = true
+    this.PlataformasEducativasFB.get().then(response => {
+      console.log("response", response)
+      response.forEach(el => {
+        this.plataformasEducativas.push(el.data())
+      })
+    })
   },
   mounted() {
     console.log("essentialLinks", this.essentialLinks)
