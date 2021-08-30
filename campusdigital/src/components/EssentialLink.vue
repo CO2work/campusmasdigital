@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-item v-if="link===''"
+    <q-item v-if="!link.enlace"
             clickable
             v-ripple
             tag="a"
@@ -16,9 +16,9 @@
       </q-item-section>
 
       <q-item-section>
-        <q-item-label>{{ title }}</q-item-label>
+        <q-item-label>{{ link.titulo }}</q-item-label>
         <q-item-label caption>
-          {{ caption }} ff
+          caption ff
         </q-item-label>
       </q-item-section>
     </q-item>
@@ -26,7 +26,7 @@
             clickable
             v-ripple
             tag="a"
-            :to="link"
+            :to="link.enlace"
             exact
     >
       <q-item-section
@@ -38,30 +38,23 @@
       </q-item-section>
 
       <q-item-section>
-        <q-item-label>{{ title }}</q-item-label>
+        <q-item-label>{{ link.titulo }}</q-item-label>
         <q-item-label caption>
-          {{ caption }}
+          caption
         </q-item-label>
       </q-item-section>
     </q-item>
-    <dyn-dialog v-if="showDialog" :show="showDialog" :obj="obj" @hide="showDialog=false"></dyn-dialog>
+
     <q-separator></q-separator>
   </div>
 </template>
 
 <script>
-import DynDialog from 'components/DynDialog'
 
 export default {
   name: 'EssentialLink',
-  props: {
-    obj: {type: Object, required: false},
-    title: {type: String, required: false},
-    caption: {type: String, default: ''},
-    link: {type: String, default: '#'},
-    icon: {type: String, default: ''}
-  },
-  components: {DynDialog},
+  props: ['link'],
+  components: {},
   data() {
     return {
       showDialog: false

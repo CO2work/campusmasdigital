@@ -30,13 +30,12 @@
       class="bg-grey-1 row"
     >
       <q-scroll-area class="fit">
-        <q-list v-if="1===2">
+        <q-list v-if="1===1">
           <EssentialLink
 
-            v-for="link of essentialLinks"
-            :key="link.title"
-            :obj="link.obj"
-            :title="title"
+            v-for="link of paginasIndex"
+            :key="link.titulo"
+            :link="link"
             v-bind="link"
           />
         </q-list>
