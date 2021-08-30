@@ -15,7 +15,7 @@
         <section>
           <div class="row justify-center">
             <div class="col-xs-12 col-sm-10 col-md-5 col-lg-4">
-              <div v-if="obj.tipo" class="text-h4 text-weight-bold text-gray-14 q-py-xl">
+              <div v-if="obj" class="text-h4 text-weight-bold text-gray-14 q-py-xl">
                 {{ obj.title }}
               </div>
               <div v-else class="text-h4 text-weight-bold text-gray-14 q-py-xl">

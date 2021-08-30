@@ -71,6 +71,9 @@ export default {
     onClick(evt) {
       console.log(evt)
     }
+  },
+  mounted() {
+    console.log()
   }
 }
 
