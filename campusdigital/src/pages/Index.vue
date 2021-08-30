@@ -24,6 +24,8 @@
       </q-card>
       -->
 
+      <p>aqui deberia ir el 3D</p>
+
     </div>
 
   </q-page>

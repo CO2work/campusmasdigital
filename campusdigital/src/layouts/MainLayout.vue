@@ -32,7 +32,7 @@
       <q-scroll-area class="fit">
         <q-list>
           <EssentialLink
-            v-for="link in essentialLinks"
+            v-for="link of essentialLinks"
             :key="link.title"
             :obj="link.obj"
             :title="title"
@@ -54,9 +54,8 @@
       </div>
     </q-drawer>
 
-    <Dialog/>
-
     <vue-splash
+      style="z-index: 9999"
       :show="showSplash"
       :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
       title="Your Magnificent App Name"
@@ -88,11 +87,11 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink.vue'
-import Dialog from 'components/Dialog.vue'
+import VueSplash from 'vue-splash'
 
 export default {
   name: 'MainLayout',
-  components: {EssentialLink, Dialog},
+  components: {EssentialLink, VueSplash},
   data() {
     return {
       showSplash: true,
@@ -175,7 +174,7 @@ export default {
     setTimeout(() => {
       this.showSplash = false
       console.log("aqui")
-    }, 1800)
+    }, 2800)
   },
 }
 </script>
