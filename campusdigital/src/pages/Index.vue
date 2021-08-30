@@ -24,36 +24,13 @@
       </q-card>
       -->
 
-      <p>AgendaDigitalNicolaitaFB</p>
-      <p>{{ AgendaDigitalNicolaitaFB }}</p>
-      <p></p>
-      <p>BibliotecasEnLineaFB</p>
-      <p>{{ BibliotecasEnLineaFB }}</p>
-      <p></p>
-      <p>ComunicacionDigitalFB</p>
-      <p>{{ ComunicacionDigitalFB }}</p>
-      <p></p>
-      <p>PlataformasEducativasFB</p>
-      <p>{{ PlataformasEducativasFB }}</p>
-      <p></p>
-      <p>RedesSocialesInstitucionalesFB</p>
-      <p>{{ RedesSocialesInstitucionalesFB }}</p>
-      <p></p>
-      <p>RevistasFB</p>
-      <p>{{ RevistasFB }}</p>
-      <p></p>
-      <p>ServiciosDigitalesFB</p>
-      <p>{{ ServiciosDigitalesFB }}</p>
-      <p></p>
-
     </div>
 
   </q-page>
 </template>
 
 <script>
-import firebaseDB from "boot/firebase"
-import firebase from "firebase";
+
 
 export default {
   name: 'PageIndex',
@@ -62,13 +39,7 @@ export default {
   },
   data() {
     return {
-      AgendaDigitalNicolaitaFB: firebaseDB.collection('AgendaDigitalNicolaita'),
-      BibliotecasEnLineaFB: firebaseDB.collection('BibliotecasEnLinea'),
-      ComunicacionDigitalFB: firebaseDB.collection('ComunicacionDigital'),
-      PlataformasEducativasFB: firebaseDB.collection('Plataformas_educativas'),
-      RedesSocialesInstitucionalesFB: firebaseDB.collection('RedesSocialesInstitucionales'),
-      RevistasFB: firebaseDB.collection('Revistas'),
-      ServiciosDigitalesFB: firebaseDB.collection('ServiciosDigitales'),
+
     }
   }
 
