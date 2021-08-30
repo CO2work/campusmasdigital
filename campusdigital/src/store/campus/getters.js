@@ -26,3 +26,11 @@ export const agendaDigitalNicolaitaGet = (state) => {
 export const redesSocialesInstitucionalesGet = (state) => {
   return state.redesSocialesInstitucionales
 }
+
+export const paginasGet = (state) => {
+  return state.paginas
+}
+
+export const paginasIndexGet = (state) => {
+  return state.paginasIndex
+}

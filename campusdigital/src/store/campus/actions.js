@@ -26,3 +26,11 @@ export const agendaDigitalNicolaitaSet = ({commit}, payload) => {
 export const redesSocialesInstitucionalesSet = ({commit}, payload) => {
   commit('redesSocialesInstitucionalesMutate', payload)
 }
+
+export const paginasSet = ({commit}, payload) => {
+  commit('paginasMutate', payload)
+}
+
+export const paginasIndexSet = ({commit}, payload) => {
+  commit('paginasIndexMutate', payload)
+}
