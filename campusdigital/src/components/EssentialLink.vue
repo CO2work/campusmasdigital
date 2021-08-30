@@ -4,7 +4,7 @@
             clickable
             v-ripple
             tag="a"
-            @click="showDialog=true"
+            :to="link.slug"
             exact
     >
       <q-item-section
