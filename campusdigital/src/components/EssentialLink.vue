@@ -8,11 +8,11 @@
             exact
     >
       <q-item-section
-        v-if="icon"
+        v-if="link.icono"
         avatar
         class="text-blue-6"
       >
-        <q-icon :name="icon" size="xl"/>
+        <q-icon :name="link.icono" size="xl"/>
       </q-item-section>
 
       <q-item-section>
@@ -34,7 +34,7 @@
         avatar
         class="text-blue-6"
       >
-        <q-icon :name="icon" size="xl"/>
+        <q-icon :name="link.icono" size="xl"/>
       </q-item-section>
 
       <q-item-section>
