@@ -7,5 +7,7 @@ export default function () {
     comunicacionDigital: [],
     agendaDigitalNicolaita: [],
     redesSocialesInstitucionales: [],
+    paginas: [],
+    paginasIndex: [],
   }
 }

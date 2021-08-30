@@ -66,26 +66,8 @@
     />
 
     <q-page-container>
-      <p>plataformas educativas</p>
-      <p>{{ plataformasEducativas }}</p>
-      <p></p>
-      <p>serviciosDigitales</p>
-      <p>{{ serviciosDigitales }}</p>
-      <p></p>
-      <p>revistas</p>
-      <p>{{ revistas }}</p>
-      <p></p>
-      <p>bibliotecasEnLinea</p>
-      <p>{{ bibliotecasEnLinea }}</p>
-      <p></p>
-      <p>comunicacionDigital </p>
-      <p>{{ comunicacionDigital }}</p>
-      <p></p>
-      <p>agendaDigitalNicolaita </p>
-      <p>{{ agendaDigitalNicolaita }}</p>
-      <p></p>
-      <p>redesSocialesInstitucionales </p>
-      <p>{{ redesSocialesInstitucionales }}</p>
+      <p>paginasIndex</p>
+      <p>{{ paginasIndex }}</p>
       <p></p>
       <router-view/>
     </q-page-container>
@@ -203,12 +185,13 @@ export default {
       ComunicacionDigitalFB: firebaseDB.collection('ComunicacionDigital'),
       AgendaDigitalNicolaitaFB: firebaseDB.collection('AgendaDigitalNicolaita'),
       RedesSocialesInstitucionalesFB: firebaseDB.collection('RedesSocialesInstitucionales'),
+      PaginasFB: firebaseDB.collection('Paginas'),
     }
   },
   computed: {
     ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
       'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
-      'redesSocialesInstitucionalesGet']),
+      'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet']),
     plataformasEducativas: {
       get() {
         return this.plataformasEducativasGet
@@ -265,11 +248,27 @@ export default {
         this.redesSocialesInstitucionalesSet(value)
       }
     },
+    paginas: {
+      get() {
+        return this.paginasGet
+      },
+      set(value) {
+        this.paginasSet(value)
+      }
+    },
+    paginasIndex: {
+      get() {
+        return this.paginasIndexGet
+      },
+      set(value) {
+        this.paginasIndexSet(value)
+      }
+    },
   },
   methods: {
     ...mapActions('campus', ['plataformasEducativasSet', 'serviciosDigitalesSet', 'revistasSet',
       'bibliotecasEnLineaSet', 'comunicacionDigitalSet', 'agendaDigitalNicolaitaSet',
-      'redesSocialesInstitucionalesSet']),
+      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet']),
     getPlataformasEducativas() {
       let plataformasEducativas = []
       this.PlataformasEducativasFB.get().then(response => {
@@ -339,7 +338,29 @@ export default {
         })
         this.redesSocialesInstitucionales = redesSocialesInstitucionales
       })
+    },
+    getPaginas() {
+      let paginas = []
+      this.PaginasFB.get().then(response => {
+        console.log("Response", response)
+        //console.log("getRedesSocialesInstitucionales", response)
+        response.forEach(el => {
+          console.log("el", el)
+          console.log("el data", el.data())
+          paginas.push(el.data())
+        })
+        this.paginas = paginas
+      })
+    },
+    getPaginasIndex() {
+      let paginasIndex = []
+      this.PaginasFB.doc('Index').get().then(response => {
+        console.log("Response", response)
+        console.log("Response data", response.data())
+        this.paginasIndex = response.data()
+      })
     }
+
   },
   created() {
     this.showSplash = true
@@ -350,6 +371,8 @@ export default {
     this.getComunicacionDigital()
     this.getAgendaDigitalNicolaita()
     this.getRedesSocialesInstitucionales()
+    //this.getPaginas()
+    this.getPaginasIndex()
   },
   mounted() {
     console.log("essentialLinks", this.essentialLinks)
