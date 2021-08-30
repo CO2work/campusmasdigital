@@ -68,6 +68,25 @@
     <q-page-container>
       <p>plataformas educativas</p>
       <p>{{ plataformasEducativas }}</p>
+      <p></p>
+      <p>serviciosDigitales</p>
+      <p>{{ serviciosDigitales }}</p>
+      <p></p>
+      <p>revistas</p>
+      <p>{{ revistas }}</p>
+      <p></p>
+      <p>bibliotecasEnLinea</p>
+      <p>{{ bibliotecasEnLinea }}</p>
+      <p></p>
+      <p>comunicacionDigital </p>
+      <p>{{ comunicacionDigital }}</p>
+      <p></p>
+      <p>agendaDigitalNicolaita </p>
+      <p>{{ agendaDigitalNicolaita }}</p>
+      <p></p>
+      <p>redesSocialesInstitucionales </p>
+      <p>{{ redesSocialesInstitucionales }}</p>
+      <p></p>
       <router-view/>
     </q-page-container>
 
@@ -93,6 +112,7 @@ import EssentialLink from 'components/EssentialLink.vue'
 import VueSplash from 'vue-splash'
 import firebaseDB from "boot/firebase"
 import firebase from "firebase";
+import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'MainLayout',
@@ -183,17 +203,153 @@ export default {
       ComunicacionDigitalFB: firebaseDB.collection('ComunicacionDigital'),
       AgendaDigitalNicolaitaFB: firebaseDB.collection('AgendaDigitalNicolaita'),
       RedesSocialesInstitucionalesFB: firebaseDB.collection('RedesSocialesInstitucionales'),
-      plataformasEducativas: []
+    }
+  },
+  computed: {
+    ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
+      'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
+      'redesSocialesInstitucionalesGet']),
+    plataformasEducativas: {
+      get() {
+        return this.plataformasEducativasGet
+      },
+      set(value) {
+        this.plataformasEducativasSet(value)
+      }
+    },
+    serviciosDigitales: {
+      get() {
+        return this.serviciosDigitalesGet
+      },
+      set(value) {
+        this.serviciosDigitalesSet(value)
+      }
+    },
+    revistas: {
+      get() {
+        return this.revistasGet
+      },
+      set(value) {
+        this.revistasSet(value)
+      }
+    },
+    bibliotecasEnLinea: {
+      get() {
+        return this.bibliotecasEnLineaGet
+      },
+      set(value) {
+        this.bibliotecasEnLineaSet(value)
+      }
+    },
+    comunicacionDigital: {
+      get() {
+        return this.comunicacionDigitalGet
+      },
+      set(value) {
+        this.comunicacionDigitalSet(value)
+      }
+    },
+    agendaDigitalNicolaita: {
+      get() {
+        return this.agendaDigitalNicolaitaGet
+      },
+      set(value) {
+        this.agendaDigitalNicolaitaSet(value)
+      }
+    },
+    redesSocialesInstitucionales: {
+      get() {
+        return this.redesSocialesInstitucionalesGet
+      },
+      set(value) {
+        this.redesSocialesInstitucionalesSet(value)
+      }
+    },
+  },
+  methods: {
+    ...mapActions('campus', ['plataformasEducativasSet', 'serviciosDigitalesSet', 'revistasSet',
+      'bibliotecasEnLineaSet', 'comunicacionDigitalSet', 'agendaDigitalNicolaitaSet',
+      'redesSocialesInstitucionalesSet']),
+    getPlataformasEducativas() {
+      let plataformasEducativas = []
+      this.PlataformasEducativasFB.get().then(response => {
+        // console.log("getPlataformasEducativas", response)
+        response.forEach(el => {
+          plataformasEducativas.push(el.data())
+        })
+        this.plataformasEducativas = plataformasEducativas
+      })
+    },
+    getServiciosDigitales() {
+      let serviciosDigitales = []
+      this.ServiciosDigitalesFB.get().then(response => {
+        //console.log("response", response)
+        response.forEach(el => {
+          serviciosDigitales.push(el.data())
+        })
+        this.serviciosDigitales = serviciosDigitales
+      })
+    },
+    getRevistas() {
+      let revistas = []
+      this.RevistasFB.get().then(response => {
+        //console.log("response", response)
+        response.forEach(el => {
+          revistas.push(el.data())
+        })
+        this.revistas = revistas
+      })
+    },
+    getBibliotecasEnLinea() {
+      let bibliotecasEnLinea = []
+      this.BibliotecasEnLineaFB.get().then(response => {
+        //console.log("response", response)
+        response.forEach(el => {
+          bibliotecasEnLinea.push(el.data())
+        })
+        this.bibliotecasEnLinea = bibliotecasEnLinea
+      })
+    },
+    getComunicacionDigital() {
+      let comunicacionDigital = []
+      this.ComunicacionDigitalFB.get().then(response => {
+        //console.log("getComunicacionDigital", response)
+        response.forEach(el => {
+          comunicacionDigital.push(el.data())
+        })
+        this.comunicacionDigital = comunicacionDigital
+      })
+    },
+    getAgendaDigitalNicolaita() {
+      let agendaDigitalNicolaita = []
+      this.AgendaDigitalNicolaitaFB.get().then(response => {
+        //console.log("getAgendaDigitalNicolaita", response)
+        response.forEach(el => {
+          agendaDigitalNicolaita.push(el.data())
+        })
+        this.agendaDigitalNicolaita = agendaDigitalNicolaita
+      })
+    },
+    getRedesSocialesInstitucionales() {
+      let redesSocialesInstitucionales = []
+      this.RedesSocialesInstitucionalesFB.get().then(response => {
+        //console.log("getRedesSocialesInstitucionales", response)
+        response.forEach(el => {
+          redesSocialesInstitucionales.push(el.data())
+        })
+        this.redesSocialesInstitucionales = redesSocialesInstitucionales
+      })
     }
   },
   created() {
     this.showSplash = true
-    this.PlataformasEducativasFB.get().then(response => {
-      console.log("response", response)
-      response.forEach(el => {
-        this.plataformasEducativas.push(el.data())
-      })
-    })
+    this.getPlataformasEducativas()
+    this.getServiciosDigitales()
+    this.getRevistas()
+    this.getBibliotecasEnLinea()
+    this.getComunicacionDigital()
+    this.getAgendaDigitalNicolaita()
+    this.getRedesSocialesInstitucionales()
   },
   mounted() {
     console.log("essentialLinks", this.essentialLinks)
