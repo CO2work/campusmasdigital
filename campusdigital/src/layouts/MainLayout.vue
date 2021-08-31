@@ -48,7 +48,7 @@
           round
           unelevated
           color="primary"
-          icon="las la-angle-left"
+          :icon="miniState ? 'las la-angle-left' : 'las la-angle-right'"
           @click="miniState = !miniState"
         ></q-btn>
       </div>
@@ -373,7 +373,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showSplash = false
-    }, 200)
+    }, 2800)
   },
 }
 </script>

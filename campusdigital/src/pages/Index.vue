@@ -89,6 +89,8 @@ export default {
       windowHalfX: window.innerWidth / 2,
       windowHalfY: window.innerHeight / 2,
       object: undefined,
+      edificio_cu: undefined,
+      teatro_jrr: undefined,
       texture: undefined,
     }
   },
@@ -169,21 +171,35 @@ export default {
       const textureLoader = new THREE.TextureLoader(manager);
       this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
 
-      loader.load('/models/male02.obj', (obj) => {
-        this.object = obj;
+      loader.load('/models/edificio_cu_v1.obj', (obj) => {
+        this.edificio_cu = obj;
       }, onProgress, onError);
-
 
 
       manager.onLoad = () => {
         console.log("on load")
-        this.object.traverse((child) => {
+
+      }
+
+      loader.load('/models/teatro_jrr_v2.obj', (obj) => {
+        this.teatro_jrr = obj;
+      }, onProgress, onError);
+
+      manager.onLoad = () => {
+        console.log("on load")
+        this.edificio_cu.traverse((child) => {
           if (child.isMesh) child.material.map = this.texture;
         });
-        this.object.position.y = -95;
-        this.scene.add(this.object);
+        this.edificio_cu.position.y = -95;
+        this.scene.add(this.edificio_cu);
+        this.teatro_jrr.traverse((child) => {
+          if (child.isMesh) child.material.map = this.texture;
+        });
+        this.teatro_jrr.position.y = -95;
+        this.teatro_jrr.position.z = -95;
+        this.scene.add(this.teatro_jrr);
       }
-      console.log("manager", manager)
+
 
       manager.onProgress = function (item, loaded, total) {
 
