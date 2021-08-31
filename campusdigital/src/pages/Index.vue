@@ -25,16 +25,41 @@
       -->
       <div ref="webgl" class="webgl"></div>
 
-      <div class="row q-pa-lg" v-for="(item, idx) in paginasPath.contenido" :key="idx">
-        <q-card class="">
-          <q-card-section>{{ item.titulo }}</q-card-section>
-          <q-separator></q-separator>
-          <q-card-section>
-            <img :src="item.imagen">
-            <p>{{ item.enlace }}</p>
+      <h4> {{ paginasPath.titulo }} </h4>
+
+      <div class="q-pa-md row items-start q-gutter-md">
+        <q-card v-for="(item, idx) in paginasPath.contenido" :key="idx" class="my-card" flat bordered>
+          <q-card-section horizontal>
+            <q-card-section class="q-pt-xs">
+              <div class="text-overline">Categoría</div>
+              <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+              <div class="text-caption text-grey">
+                {{ item.descripcion }}
+              </div>
+            </q-card-section>
+
+            <q-card-section class="col-5 flex flex-center">
+              <q-img
+                class="rounded-borders"
+                :src="item.imagen"
+              />
+            </q-card-section>
           </q-card-section>
+
+          <q-separator />
+
+          <q-card-actions>
+            <q-btn flat round icon="link" />
+            <q-btn flat>
+              Enlace
+            </q-btn>
+            <q-btn flat color="primary" type="a" :href="item.enlace" target="__blank">
+              Enlace
+            </q-btn>
+          </q-card-actions>
         </q-card>
       </div>
+
     </div>
 
   </q-page>
