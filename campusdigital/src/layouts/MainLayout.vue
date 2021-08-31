@@ -64,7 +64,7 @@
       :fixed="true"
     />
 
-    <q-page-container>
+    <q-page-container style="padding-top: 0;">
       <router-view/>
     </q-page-container>
 
