@@ -58,7 +58,7 @@
       style="z-index: 9999"
       :show="showSplash"
       :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
-      title="Campus Digital USMNH"
+      title="Campus Digital UMSNH"
       color="#00bfa5"
       :size="300"
       :fixed="true"

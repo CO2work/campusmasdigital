@@ -146,7 +146,9 @@ export default {
 
       this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
 
-      this.camera.position.z = 250;
+      this.camera.position.z = 600;
+      this.camera.position.y = 2000;
+      this.camera.position.x = 2000;
 
       // scene
 
@@ -245,6 +247,9 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
+      this.camera.position.z = Math.random() * 1000
+      this.camera.position.y = Math.random() * 1000
+      this.camera.position.x = Math.random() * 1000
     },
     paginasIndex() {
       let path = this.$route.path.replace('/p/', '')
