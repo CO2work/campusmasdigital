@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="{}" @hide="showDynDialog=false" />
+      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false" />
 
     </div>
 
