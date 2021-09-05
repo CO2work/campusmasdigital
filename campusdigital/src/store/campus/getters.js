@@ -34,3 +34,7 @@ export const paginasGet = (state) => {
 export const paginasIndexGet = (state) => {
   return state.paginasIndex
 }
+
+export const pageReadyGet = (state) => {
+  return state.pageReady
+}

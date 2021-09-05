@@ -35,3 +35,7 @@ export const paginasMutate = (state, value) => {
 export const paginasIndexMutate = (state, value) => {
   state.paginasIndex = value
 }
+
+export const pageReadyMutate = (state, value) => {
+  state.pageReady = value
+}

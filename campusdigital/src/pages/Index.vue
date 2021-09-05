@@ -23,7 +23,7 @@
 
       </q-card>
       -->
-      <Espacio3D/>
+      <Espacio3D v-if="pageReady"/>
 
       <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
 
@@ -98,7 +98,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('campus', ['paginasIndexGet']),
+    ...mapGetters('campus', ['paginasIndexGet', 'pageReadyGet']),
     paginasIndex: {
       get() {
         return this.paginasIndexGet
@@ -107,9 +107,17 @@ export default {
         this.paginasIndexSet(value)
       }
     },
+    pageReady: {
+      get() {
+        return this.pageReadyGet
+      },
+      set(value) {
+        this.pageReadySet(value)
+      }
+    },
   },
   methods: {
-    ...mapActions('campus', ['paginasIndexSet']),
+    ...mapActions('campus', ['paginasIndexSet', 'pageReadySet']),
     getPaginasPath(path) {
       let filtradas = {contenido: []}
       Object.values(this.paginasIndex).forEach(item => {

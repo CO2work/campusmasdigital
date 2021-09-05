@@ -34,3 +34,7 @@ export const paginasSet = ({commit}, payload) => {
 export const paginasIndexSet = ({commit}, payload) => {
   commit('paginasIndexMutate', payload)
 }
+
+export const pageReadySet = ({commit}, payload) => {
+  commit('pageReadyMutate', payload)
+}

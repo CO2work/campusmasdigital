@@ -186,7 +186,15 @@ export default {
   computed: {
     ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
       'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
-      'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet']),
+      'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet', 'pageReadyGet']),
+    pageReady: {
+      get() {
+        return this.pageReadyGet
+      },
+      set(value) {
+        this.pageReadySet(value)
+      }
+    },
     plataformasEducativas: {
       get() {
         return this.plataformasEducativasGet
@@ -263,7 +271,7 @@ export default {
   methods: {
     ...mapActions('campus', ['plataformasEducativasSet', 'serviciosDigitalesSet', 'revistasSet',
       'bibliotecasEnLineaSet', 'comunicacionDigitalSet', 'agendaDigitalNicolaitaSet',
-      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet']),
+      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet', 'pageReadySet']),
     getPlataformasEducativas() {
       let plataformasEducativas = []
       this.PlataformasEducativasFB.get().then(response => {
@@ -372,7 +380,8 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showSplash = false
-    }, 2800)
+      this.pageReady = true
+    }, 3300)
   },
 }
 </script>

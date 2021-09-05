@@ -137,7 +137,7 @@ export default {
       function onProgress(xhr) {
 
         if (xhr.lengthComputable) {
-          const percentComplete = xhr.loaded / xhr.total * 100;
+          let percentComplete = xhr.loaded / xhr.total * 100;
           console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
         }
       }
@@ -168,19 +168,13 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
-
       this.camera.position.z = 600;
       this.camera.position.y = 2000;
       this.camera.position.x = 2000;
       console.log(this.scene.position)
-      //this.camera.position.x = (this.mouseX - this.camera.position.x) * Math.random() * 0.1;
-      //this.camera.position.y = (-this.mouseY - this.camera.position.y) * Math.random() * 0.1;
       console.log(this.teatro_jrr.position);
       this.camera.lookAt(this.edificio_cu.position);
 
-      //this.camera.position.x += (this.mouseX - this.camera.position.x) * Math.random() * 100;
-      //this.camera.position.y += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
-      //this.camera.position.z += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
     },
   },
   created() {

@@ -9,5 +9,6 @@ export default function () {
     redesSocialesInstitucionales: [],
     paginas: [],
     paginasIndex: [],
+    pageReady: false,
   }
 }
