@@ -57,6 +57,7 @@ export default {
       this.camera.lookAt(this.scene.position);
       this.renderer.render(this.scene, this.camera);
     },
+
     onDocumentMouseMove(event) {
       this.mouseX = (event.clientX - this.windowHalfX) / 2;
       this.mouseY = (event.clientY - this.windowHalfY) / 2;
@@ -173,9 +174,18 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
+      //this.camera.position.z = Math.random() * 100
+      //this.camera.position.y = Math.random() * 1000
+      //this.camera.position.x = Math.random() * 100
+      console.log(this.scene.position)
+      //this.camera.position.x = (this.mouseX - this.camera.position.x) * Math.random() * 0.1;
+      //this.camera.position.y = (-this.mouseY - this.camera.position.y) * Math.random() * 0.1;
+      console.log(this.teatro_jrr.position);
+      this.camera.lookAt(this.edificio_cu.position);
 
-      this.camera.position.x += (this.mouseX - this.camera.position.x) * Math.random() * 30;
-      this.camera.position.z += (-this.mouseY - this.camera.position.y) * Math.random() * 30;
+      //this.camera.position.x += (this.mouseX - this.camera.position.x) * Math.random() * 100;
+      //this.camera.position.y += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
+      //this.camera.position.z += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
     },
   },
   created() {
