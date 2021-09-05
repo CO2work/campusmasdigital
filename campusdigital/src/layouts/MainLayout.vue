@@ -17,12 +17,11 @@
 
     <q-drawer
       v-model="rightDrawerOpen"
-      show-if-above
 
       :mini="miniState"
 
-      :width="400"
-      :breakpoint="600"
+      :width="290"
+      :breakpoint="375"
 
       side="right"
       behavior="desktop"

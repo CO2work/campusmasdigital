@@ -117,6 +117,10 @@ export default {
         //this.edificio_cu.rotate.z = Math.PI
         this.edificio_cu.position.y = -150;
         this.edificio_cu.position.z = -100;
+        this.edificio_cu.position.x = -70;
+
+        this.edificio_cu.rotation.y = Math.PI * .3;
+
         this.scene.add(this.edificio_cu);
       }
 
