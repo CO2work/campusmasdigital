@@ -10,6 +10,7 @@ export default function () {
     paginas: [],
     paginasIndex: [],
     pageReady: false,
-    showRightDrawer: false
+    showRightDrawer: false,
+    showDynDialog: false
   }
 }

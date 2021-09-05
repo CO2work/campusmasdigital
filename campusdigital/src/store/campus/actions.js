@@ -42,3 +42,7 @@ export const pageReadySet = ({commit}, payload) => {
 export const showRightDrawerSet = ({commit}, payload) => {
   commit('showRightDrawerMutate', payload)
 }
+
+export const showDynDialogSet = ({commit}, payload) => {
+  commit('showDynDialogMutate', payload)
+}

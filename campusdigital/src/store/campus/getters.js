@@ -42,3 +42,7 @@ export const pageReadyGet = (state) => {
 export const showRightDrawerGet = (state) => {
   return state.showRightDrawer
 }
+
+export const showDynDialogGet = (state) => {
+  return state.showDynDialog
+}

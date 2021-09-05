@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHr LpR ffr">
-    <q-header v-if="showRightDrawer" class="col-auto bg-transparent" style="left: unset;">
+    <q-header v-if="!showDynDialog" class="col-auto bg-transparent" style="left: unset;">
       <q-toolbar class="col-auto bg-blue-5">
         <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
         <q-btn
@@ -186,7 +186,7 @@ export default {
     ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
       'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
       'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet', 'pageReadyGet',
-    'showRightDrawerGet']),
+    'showRightDrawerGet', 'showDynDialogGet']),
     pageReady: {
       get() {
         return this.pageReadyGet
@@ -275,11 +275,20 @@ export default {
         this.paginasIndexSet(value)
       }
     },
+    showDynDialog: {
+      get() {
+        return this.showDynDialogGet
+      },
+      set(value) {
+        this.showDynDialogSet(value)
+      }
+    },
   },
   methods: {
     ...mapActions('campus', ['plataformasEducativasSet', 'serviciosDigitalesSet', 'revistasSet',
       'bibliotecasEnLineaSet', 'comunicacionDigitalSet', 'agendaDigitalNicolaitaSet',
-      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet', 'pageReadySet', 'showRightDrawerSet']),
+      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet', 'pageReadySet',
+      'showRightDrawerSet', 'showDynDialogSet']),
     getPlataformasEducativas() {
       let plataformasEducativas = []
       this.PlataformasEducativasFB.get().then(response => {

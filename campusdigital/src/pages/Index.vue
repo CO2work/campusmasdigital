@@ -85,7 +85,6 @@ export default {
   components: {Espacio3D, DynDialog},
   data() {
     return {
-      showDynDialog: false,
       paginasPath: {contenido: []},
       container: this.$refs.webgl,
       camera: undefined,
@@ -101,13 +100,21 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('campus', ['paginasIndexGet', 'pageReadyGet', 'showRightDrawerGet']),
+    ...mapGetters('campus', ['paginasIndexGet', 'pageReadyGet', 'showRightDrawerGet', 'showDynDialogGet']),
     paginasIndex: {
       get() {
         return this.paginasIndexGet
       },
       set(value) {
         this.paginasIndexSet(value)
+      }
+    },
+    showDynDialog: {
+      get() {
+        return this.showDynDialogGet
+      },
+      set(value) {
+        this.showDynDialogSet(value)
       }
     },
     pageReady: {
@@ -128,7 +135,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions('campus', ['paginasIndexSet', 'pageReadySet', 'showRightDrawerSet']),
+    ...mapActions('campus', ['paginasIndexSet', 'pageReadySet', 'showRightDrawerSet', 'showDynDialogSet']),
     getPaginasPath(path) {
       let filtradas = {contenido: []}
       Object.values(this.paginasIndex).forEach(item => {

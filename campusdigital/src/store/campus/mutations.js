@@ -44,3 +44,7 @@ export const showRightDrawerMutate = (state, value) => {
   state.showRightDrawer = value
 }
 
+export const showDynDialogMutate = (state, value) => {
+  state.showDynDialog = value
+}
+
