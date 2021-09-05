@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHr LpR fFf">
+  <q-layout view="lHr LpR ffr">
     <q-header v-if="!showDynDialog" class="col-auto bg-transparent" style="left: unset;">
       <q-toolbar class="col-auto bg-blue-5">
         <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
@@ -24,6 +24,7 @@
       side="right"
       bordered
       class="bg-grey-1 row"
+      behavior="desktop"
     >
       <q-scroll-area class="fit">
         <q-list v-if="1===1">

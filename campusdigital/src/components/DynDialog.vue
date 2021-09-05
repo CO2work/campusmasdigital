@@ -11,7 +11,7 @@
         <q-card-section>
 
           <q-page-sticky position="top-left" :offset="[18, 18]">
-            <q-btn fab-mini round color="black" icon="mdi-close" @click="showDialog=false"/>
+            <q-btn fab color="black" outline  icon="mdi-chevron-left" @click="showDialog=false"/>
           </q-page-sticky>
           <div class="row justify-center q-my-xl">
             <div class="column">
