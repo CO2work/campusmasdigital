@@ -22,8 +22,8 @@
 
 
                 <div class="column">
-                  <div>
-                    <h5>{{ obj.titulo }}</h5>
+                  <div class="text-center">
+                    <h1 class="text-h3">{{ obj.titulo }}</h1>
                   </div>
 
 
