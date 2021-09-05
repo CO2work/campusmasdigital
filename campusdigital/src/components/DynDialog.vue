@@ -3,21 +3,72 @@
     v-model="showDialog"
     :maximized="maximizedToggle"
     transition-show="slide-up"
-    transition-hide="slide-down"
+    transition-hide="jump-down"
+
   >
-    <div class="column dot-grid">
-      <q-card class="text-grey-10 full-height transparent">
+    <div class="column full-height dot-grid">
+      <q-card class="text-grey-10 transparent">
+        <q-card-section class="scroll">
 
-        <q-card-section>
-
-          <q-btn flat round small icon="mdi-close" @click="showDialog=false">
-          </q-btn>
-
-          <section>
-            <div class="row justify-center dot-grid q-my-xl">
-              kkkk
+          <q-page-sticky position="top-left" :offset="[18, 18]">
+            <q-btn fab-mini round color="black" icon="mdi-close" @click="showDialog=false"/>
+          </q-page-sticky>
+          <div class="row justify-center q-my-xl">
+            <div class="column">
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
+              <p> kkkk </p>
             </div>
-          </section>
+          </div>
+
         </q-card-section>
       </q-card>
     </div>
