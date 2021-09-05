@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHr LpR ffr">
+  <q-layout view="lHr LpR fFf">
     <q-header v-if="!showDynDialog" class="col-auto bg-transparent" style="left: unset;">
       <q-toolbar class="col-auto bg-blue-5">
         <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
@@ -17,14 +17,11 @@
 
     <q-drawer
       v-model="showRightDrawer"
-
       :mini="miniState"
-
       :width="290"
-      :breakpoint="375"
+      :overlay="false"
 
       side="right"
-      behavior="desktop"
       bordered
       class="bg-grey-1 row"
     >
@@ -97,7 +94,7 @@ export default {
   data() {
     return {
       showSplash: true,
-      miniState: false,
+      miniState: true,
       leftDrawerOpen: false,
       essentialLinks: [
         {
