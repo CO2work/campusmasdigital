@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex">
-    <div class="main">
+  <div>
+    <div>
 
       <!--
         <q-card class="fixed-center text-center text-white bg-transparent no-border-radius no-border no-shadow"
@@ -25,9 +25,9 @@
       -->
       <Espacio3D/>
 
-      <h4> {{ paginasPath.titulo }} </h4>
+      <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
 
-      <div class="q-pa-md row items-start q-gutter-md">
+      <div v-if="paginasPath.contenido.length" class="q-pa-md row">
         <q-card v-for="(item, idx) in paginasPath.contenido" :key="idx" class="my-card" flat bordered>
           <q-card-section horizontal>
             <q-card-section class="q-pt-xs">
@@ -62,7 +62,7 @@
 
     </div>
 
-  </q-page>
+  </div>
 </template>
 
 <script>

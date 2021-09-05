@@ -71,7 +71,7 @@ export default {
     },
     initThree() {
 
-      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 4000);
 
       this.camera.position.z = 600;
       this.camera.position.y = 2000;
@@ -113,8 +113,7 @@ export default {
         this.edificio_cu.traverse((child) => {
           if (child.isMesh) child.material.map = this.texture;
         });
-        this.edificio_cu.position.y = -150;
-        this.edificio_cu.position.z = -150;
+        this.edificio_cu.position.y = -180;
         this.scene.add(this.edificio_cu);
       }
 
@@ -162,10 +161,9 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
-
-      this.camera.position.z = 600;
-      this.camera.position.y = 2000;
-      this.camera.position.x = 2000;
+      this.camera.position.z = Math.random() * 100
+      //this.camera.position.y = Math.random() * 1000
+      this.camera.position.x = Math.random() * 100
       console.log(this.scene.position)
       //this.camera.position.x = (this.mouseX - this.camera.position.x) * Math.random() * 0.1;
       //this.camera.position.y = (-this.mouseY - this.camera.position.y) * Math.random() * 0.1;
