@@ -59,8 +59,8 @@ export default {
     },
 
     onDocumentMouseMove(event) {
-      this.mouseX = (event.clientX - this.windowHalfX) / 2;
-      this.mouseY = (event.clientY - this.windowHalfY) / 2;
+      this.mouseX = (event.clientX - this.windowHalfX) * .4;
+      this.mouseY = (event.clientY - this.windowHalfY) * .25;
     },
     onWindowResize() {
       this.windowHalfX = window.innerWidth / 2;
@@ -71,7 +71,7 @@ export default {
     },
     initThree() {
 
-      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 4000);
 
       this.camera.position.z = 600;
       this.camera.position.y = 2000;
@@ -88,6 +88,10 @@ export default {
       const pointLight = new THREE.PointLight(0xffffff, 0.8);
       this.camera.add(pointLight);
       this.scene.add(this.camera);
+
+      const axexHelper = new THREE.AxisHelper(1000)
+      this.scene.add(axexHelper)
+
 
       // manager
 
@@ -174,9 +178,9 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
-      //this.camera.position.z = Math.random() * 100
+      this.camera.position.z = Math.random() * 100
       //this.camera.position.y = Math.random() * 1000
-      //this.camera.position.x = Math.random() * 100
+      this.camera.position.x = Math.random() * 100
       console.log(this.scene.position)
       //this.camera.position.x = (this.mouseX - this.camera.position.x) * Math.random() * 0.1;
       //this.camera.position.y = (-this.mouseY - this.camera.position.y) * Math.random() * 0.1;
