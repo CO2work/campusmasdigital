@@ -1,71 +1,94 @@
 <template>
   <q-dialog
     v-model="showDialog"
-    :maximized="maximizedToggle"
+    :maximized="true"
     transition-show="slide-up"
     transition-hide="jump-down"
-
+    class="full-height"
   >
-    <div class="column full-height dot-grid">
-      <q-card class="text-grey-10 full-height transparent">
-        <q-card-section>
+    <div class="column full-height full-width dot-grid">
+      <q-card class="text-grey-10 full-height transparent scroll" flat square>
+        <q-card-section class="no-padding">
 
           <q-page-sticky position="top-left" :offset="[18, 18]">
-            <q-btn fab color="black" outline  icon="mdi-chevron-left" @click="showDialog=false"/>
+            <q-btn fab-mini color="black" outline icon="mdi-chevron-left" @click="showDialog=false"
+                   style="z-index: 999"/>
           </q-page-sticky>
-          <div class="row justify-center q-my-xl">
-            <div class="column">
-              <h5>{{ obj.titulo }}</h5>
+          <div class="row justify-center">
 
 
-              <div v-if="obj.contenido.length" class="column">
-                <div class="column" v-for="(item, idx) in obj.contenido" :key="idx">
-                  <q-card flat bordered>
-                    <q-card-section horizontal>
-                      <q-card-section class="q-pt-xs">
-                        <div class="text-overline">Categoría</div>
-                        <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
-                        <div class="text-caption text-grey">
-                          {{ item.descripcion }}
-                        </div>
-                      </q-card-section>
+            <div class="column q-pa-md full-height full-width">
+              <div class="row q-px-xl">
 
-                      <q-card-section class="col-5 flex flex-center">
-                        <q-img
-                          class="rounded-borders"
-                          :src="item.imagen"
-                        />
-                      </q-card-section>
-                    </q-card-section>
 
-                    <q-separator/>
+                <div class="column">
+                  <div>
+                    <h5>{{ obj.titulo }}</h5>
+                  </div>
 
-                    <q-card-actions>
-                      <q-btn flat round icon="link"/>
-                      <q-btn flat>
-                        Enlace
-                      </q-btn>
-                      <q-btn flat color="primary" type="a" :href="item.enlace" target="__blank">
-                        Enlace
-                      </q-btn>
-                    </q-card-actions>
-                  </q-card>
+
+                  <div v-if="obj.contenido.length" class="column">
+                    <div class="column" v-for="(item, idx) in obj.contenido" :key="idx">
+                      <q-card flat bordered class="bg-grey-2">
+                        <q-card-section horizontal>
+                          <q-card-section class="q-pt-xs">
+                            <div class="text-overline">Categoría</div>
+                            <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                            <div class="text-caption text-grey">
+                              {{ item.descripcion }}
+                            </div>
+                          </q-card-section>
+
+                          <q-card-section class="col-5 flex flex-center">
+                            <q-img
+                              class="rounded-borders"
+                              :src="item.imagen"
+                            />
+                          </q-card-section>
+                        </q-card-section>
+
+                        <q-separator/>
+
+                        <q-card-actions>
+                          <q-btn flat round icon="link"/>
+                          <q-btn flat>
+                            Enlace
+                          </q-btn>
+                          <q-btn flat color="primary" type="a" :href="item.enlace" target="__blank">
+                            Enlace
+                          </q-btn>
+                        </q-card-actions>
+                      </q-card>
+                    </div>
+                  </div>
+
+
+                  <p>jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj
+                    jjjjj
+                    jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj
+                    jjjjj
+                    jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj
+                    jjjjj
+                    jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj
+                    jjjjj
+                    jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj jjjjj </p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+                  <p>jjjjj</p>
+
+
                 </div>
+
+
               </div>
-
-
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-              <p>jjjjj</p>
-
-
             </div>
+
+
           </div>
 
         </q-card-section>
@@ -80,9 +103,7 @@ export default {
   name: 'DynDialog',
   props: ['show', 'obj'],
   data() {
-    return {
-      maximizedToggle: true
-    }
+    return {}
   },
   computed: {
     showDialog: {
