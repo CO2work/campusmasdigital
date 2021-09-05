@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHr LpR ffr">
-    <q-header class="col-auto bg-transparent" style="left: unset;">
+    <q-header v-if="showRightDrawer" class="col-auto bg-transparent" style="left: unset;">
       <q-toolbar class="col-auto bg-blue-5">
         <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
         <q-btn
@@ -9,14 +9,14 @@
           round
           icon="las la-bars"
           aria-label="Menu"
-          @click="rightDrawerOpen = !rightDrawerOpen"
+          @click="showRightDrawer = !showRightDrawer"
         />
 
       </q-toolbar>
     </q-header>
 
     <q-drawer
-      v-model="rightDrawerOpen"
+      v-model="showRightDrawer"
 
       :mini="miniState"
 
@@ -97,7 +97,6 @@ export default {
   data() {
     return {
       showSplash: true,
-      rightDrawerOpen: false,
       miniState: false,
       leftDrawerOpen: false,
       essentialLinks: [
@@ -186,13 +185,22 @@ export default {
   computed: {
     ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
       'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
-      'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet', 'pageReadyGet']),
+      'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet', 'pageReadyGet',
+    'showRightDrawerGet']),
     pageReady: {
       get() {
         return this.pageReadyGet
       },
       set(value) {
         this.pageReadySet(value)
+      }
+    },
+    showRightDrawer: {
+      get() {
+        return this.showRightDrawerGet
+      },
+      set(value) {
+        this.showRightDrawerSet(value)
       }
     },
     plataformasEducativas: {
@@ -271,7 +279,7 @@ export default {
   methods: {
     ...mapActions('campus', ['plataformasEducativasSet', 'serviciosDigitalesSet', 'revistasSet',
       'bibliotecasEnLineaSet', 'comunicacionDigitalSet', 'agendaDigitalNicolaitaSet',
-      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet', 'pageReadySet']),
+      'redesSocialesInstitucionalesSet', 'paginasSet', 'paginasIndexSet', 'pageReadySet', 'showRightDrawerSet']),
     getPlataformasEducativas() {
       let plataformasEducativas = []
       this.PlataformasEducativasFB.get().then(response => {

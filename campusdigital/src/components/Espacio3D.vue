@@ -24,7 +24,6 @@ export default {
       windowHalfY: window.innerHeight / 2,
       object: undefined,
       edificio_cu: undefined,
-      teatro_jrr: undefined,
       texture: undefined,
     }
   },
@@ -172,7 +171,6 @@ export default {
       this.camera.position.y = 2000;
       this.camera.position.x = 2000;
       console.log(this.scene.position)
-      console.log(this.teatro_jrr.position);
       this.camera.lookAt(this.edificio_cu.position);
 
     },

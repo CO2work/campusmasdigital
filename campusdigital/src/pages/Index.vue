@@ -62,6 +62,8 @@
         </div>
       </div>
 
+      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="{}" @hide="showDynDialog=false" />
+
     </div>
 
   </div>
@@ -75,13 +77,15 @@ import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 import Espacio3D from "components/Espacio3D";
+import DynDialog from "components/DynDialog";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3D},
+  components: {Espacio3D, DynDialog},
   data() {
     return {
+      showDynDialog: false,
       paginasPath: {contenido: []},
       container: this.$refs.webgl,
       camera: undefined,
@@ -93,12 +97,11 @@ export default {
       windowHalfY: window.innerHeight / 2,
       object: undefined,
       edificio_cu: undefined,
-      teatro_jrr: undefined,
       texture: undefined,
     }
   },
   computed: {
-    ...mapGetters('campus', ['paginasIndexGet', 'pageReadyGet']),
+    ...mapGetters('campus', ['paginasIndexGet', 'pageReadyGet', 'showRightDrawerGet']),
     paginasIndex: {
       get() {
         return this.paginasIndexGet
@@ -115,9 +118,17 @@ export default {
         this.pageReadySet(value)
       }
     },
+    showRightDrawer: {
+      get() {
+        return this.showRightDrawerGet
+      },
+      set(value) {
+        this.showRightDrawerSet(value)
+      }
+    },
   },
   methods: {
-    ...mapActions('campus', ['paginasIndexSet', 'pageReadySet']),
+    ...mapActions('campus', ['paginasIndexSet', 'pageReadySet', 'showRightDrawerSet']),
     getPaginasPath(path) {
       let filtradas = {contenido: []}
       Object.values(this.paginasIndex).forEach(item => {
@@ -127,18 +138,28 @@ export default {
       })
       return filtradas
     },
-
   },
   watch: {
     '$route.path': function () {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
+      if (path !== '') {
+        this.showDynDialog = true
+      }
     },
     paginasIndex() {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
+    },
+    showDynDialog() {
+      if (this.showDynDialog) {
+        this.showRightDrawer = false
+      } else {
+        this.showRightDrawer = true
+        this.$router.push('/')
+      }
     }
   },
 }

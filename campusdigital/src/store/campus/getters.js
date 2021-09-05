@@ -38,3 +38,7 @@ export const paginasIndexGet = (state) => {
 export const pageReadyGet = (state) => {
   return state.pageReady
 }
+
+export const showRightDrawerGet = (state) => {
+  return state.showRightDrawer
+}

@@ -10,5 +10,6 @@ export default function () {
     paginas: [],
     paginasIndex: [],
     pageReady: false,
+    showRightDrawer: false
   }
 }

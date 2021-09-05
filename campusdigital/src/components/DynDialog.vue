@@ -5,7 +5,7 @@
     transition-show="slide-up"
     transition-hide="slide-down"
   >
-    <q-card class="bg-grey-1 text-gray-10">
+    <q-card style="opacity: 0.4" class="bg-grey-1 text-gray-10">
 
       <q-card-section>
 
@@ -162,7 +162,7 @@
 <script>
 
 export default {
-  name: 'Dialog',
+  name: 'DynDialog',
   props: ['show', 'obj'],
   data () {
     return {

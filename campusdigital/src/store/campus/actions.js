@@ -38,3 +38,7 @@ export const paginasIndexSet = ({commit}, payload) => {
 export const pageReadySet = ({commit}, payload) => {
   commit('pageReadyMutate', payload)
 }
+
+export const showRightDrawerSet = ({commit}, payload) => {
+  commit('showRightDrawerMutate', payload)
+}

@@ -39,3 +39,8 @@ export const paginasIndexMutate = (state, value) => {
 export const pageReadyMutate = (state, value) => {
   state.pageReady = value
 }
+
+export const showRightDrawerMutate = (state, value) => {
+  state.showRightDrawer = value
+}
+
