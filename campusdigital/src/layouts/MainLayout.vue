@@ -381,7 +381,7 @@ export default {
     setTimeout(() => {
       this.showSplash = false
       this.pageReady = true
-    }, 3300)
+    }, 200)
   },
 }
 </script>
