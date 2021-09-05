@@ -80,12 +80,13 @@ export default {
       // scene
 
       this.scene = new THREE.Scene();
+      this.scene.background = new THREE.Color( '#eaeaea' );
 
 
-      const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+      const ambientLight = new THREE.AmbientLight('#cccccc', 0.7);
       this.scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight(0xffffff, 0.8);
+      const pointLight = new THREE.PointLight('#6175fc', 0.3);
       this.camera.add(pointLight);
       this.scene.add(this.camera);
 
@@ -111,10 +112,11 @@ export default {
       manager.onLoad = () => {
         console.log("on load")
         this.edificio_cu.traverse((child) => {
-          if (child.isMesh) child.material.map = this.texture;
+          //if (child.isMesh) child.material.map = this.texture;
         });
+        //this.edificio_cu.rotate.z = Math.PI
         this.edificio_cu.position.y = -150;
-        this.edificio_cu.position.z = -150;
+        this.edificio_cu.position.z = -100;
         this.scene.add(this.edificio_cu);
       }
 
