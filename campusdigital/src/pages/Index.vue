@@ -25,8 +25,8 @@
       -->
       <div v-if="pageReady">
 
-        <Singapur3D v-if="$route.path === '/sss'"/>
-        <TeatroJRR3D v-if="$route.path === '/'"/>
+        <Espacio3DGltf v-if="$route.path === '/'"/>
+        <TeatroJRR3D v-if="$route.path === '/gg'"/>
         <EdificioCU3D v-if="$route.path === '/p/revistas' || $route.path === '/p/plataformas_educativas'
           || $route.path === '/p/bibliotecas_en_linea' || $route.path === '/p/comunicacion_digital'
           || $route.path === '/p/agenda_digital_nicolaita'"/>
@@ -90,7 +90,7 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
-import Singapur3D from "components/Singapur3D";
+import Espacio3DGltf from "components/Espacio3DGltf";
 import EdificioCU3D from "components/EdificioCU3D";
 import TeatroJRR3D from "components/TeatroJRR3D";
 import DynDialog from "components/DynDialog";
@@ -98,7 +98,7 @@ import DynDialog from "components/DynDialog";
 
 export default {
   name: 'PageIndex',
-  components: {Singapur3D, EdificioCU3D, TeatroJRR3D, DynDialog},
+  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog},
   data() {
     return {
       paginasPath: {contenido: []},

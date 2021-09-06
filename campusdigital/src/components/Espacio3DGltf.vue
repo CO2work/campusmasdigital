@@ -6,17 +6,19 @@
 import {mapActions, mapGetters} from "vuex";
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
+import {KTX2Loader} from 'three/examples/jsm/loaders/KTX2Loader.js'
+import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 
 // import { RoomEnvironment } from 'three/jsm/environments/RoomEnvironment.js'
 // import { OrbitControls } from 'three/jsm/controls/OrbitControls.js'
 
-import { KTX2Loader } from 'three/jsm/loaders/KTX2Loader.js'
-import { MeshoptDecoder } from 'three/jsm/libs/meshopt_decoder.module.js'
+//import { KTX2Loader } from 'three/jsm/loaders/KTX2Loader.js'
+//import { MeshoptDecoder } from 'three/jsm/libs/meshopt_decoder.module.js'
 
 export default {
-  name: 'Espacio3D',
+  name: 'Espacio3DGltf',
   components: {},
   data() {
     return {
@@ -101,22 +103,26 @@ export default {
       const axexHelper = new THREE.AxisHelper(1000)
       this.scene.add(axexHelper)
 
+      this.renderer = new THREE.WebGLRenderer();
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+
 
       // GLTF vv   ///////////////
+      console.log("renderer", this.renderer)
       const ktx2Loader = new KTX2Loader()
-					.setTranscoderPath( 'js/libs/basis/' )
-					.detectSupport( renderer )
+        ktx2Loader.setTranscoderPath( 'js/libs/basis/' ).detectSupport( this.renderer )
 
       const loader = new GLTFLoader().setPath( '../etc/wip_assets/' )
       loader.setKTX2Loader( ktx2Loader )
       loader.setMeshoptDecoder( MeshoptDecoder )
-      loader.load( 'cu_demo_demo_v1.gltf', function ( gltf ) {
+      loader.load( '/models/cu_demo_demo_v1.gltf',  ( gltf ) => {
 
 					// coffeemat.glb was produced from the source scene using gltfpack:
 					// gltfpack -i coffeemat/scene.gltf -o coffeemat.glb -cc -tc
 					// The resulting model uses EXT_meshopt_compression (for geometry) and KHR_texture_basisu (for texture compression using ETC1S/BasisLZ)
 
-					this.gltf.scene.position.y = 8
+					gltf.scene.position.y = 8
 
         this.escena_cu_gltf = gltf;
 
@@ -170,9 +176,7 @@ export default {
 
       //
 
-      this.renderer = new THREE.WebGLRenderer();
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+
       this.$refs.webgl.appendChild(this.renderer.domElement);
 
       document.addEventListener('mousemove', this.onDocumentMouseMove);
