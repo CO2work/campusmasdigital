@@ -113,7 +113,7 @@ export default {
       const ktx2Loader = new KTX2Loader()
         ktx2Loader.setTranscoderPath( 'js/libs/basis/' ).detectSupport( this.renderer )
 
-      const loader = new GLTFLoader().setPath( '../etc/wip_assets/' )
+      const loader = new GLTFLoader()
       loader.setKTX2Loader( ktx2Loader )
       loader.setMeshoptDecoder( MeshoptDecoder )
       loader.load( '/models/cu_demo_demo_v1.gltf',  ( gltf ) => {
@@ -138,8 +138,8 @@ export default {
 
       const manager = new THREE.LoadingManager();
       // const loader = new OBJLoader(manager);
-      const textureLoader = new THREE.TextureLoader(manager);
-      this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
+      // const textureLoader = new THREE.TextureLoader(manager);
+      // this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
 
       // loader.load('/models/edificio_cu_v1.obj', (obj) => {
       //   this.edificio_cu = obj;
@@ -147,9 +147,9 @@ export default {
 
       manager.onLoad = () => {
         console.log("on load")
-        this.escena_cu_gltf.traverse((child) => {
-          if (child.isMesh) child.material.map = this.texture;
-        });
+        // this.escena_cu_gltf.traverse((child) => {
+        //   if (child.isMesh) child.material.map = this.texture;
+        // });
         this.escena_cu_gltf.position.y = 8;
         this.scene.add(this.escena_cu_gltf);
       }
