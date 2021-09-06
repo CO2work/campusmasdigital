@@ -25,6 +25,7 @@
       -->
       <Espacio3D v-if="pageReady"/>
 
+      <!--
       <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
 
       <div v-if="paginasPath.contenido.length" class="row">
@@ -61,6 +62,8 @@
           </q-card>
         </div>
       </div>
+
+      -->
 
       <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false" />
 
