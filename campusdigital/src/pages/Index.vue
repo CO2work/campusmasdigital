@@ -25,7 +25,7 @@
       -->
       <div v-if="pageReady">
 
-        <CU3D v-if="$route.path === '/'"/>
+        <CU3D v-show="$route.path === '/'"/>
         <Espacio3DGltf v-if="$route.path === '/ddd'"/>
         <TeatroJRR3D v-if="$route.path === '/gg'"/>
         <EdificioCU3D v-if="$route.path === '/p/revistas' || $route.path === '/p/plataformas_educativas'

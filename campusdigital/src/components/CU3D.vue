@@ -104,7 +104,7 @@ export default {
       const textureLoader = new THREE.TextureLoader(manager);
       this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
 
-      loader.load('/models/cu_demo_demo_v1.gltf', (gltf) => {
+      loader.load('/models/cu_demo_demo_v2.glb', (gltf) => {
         console.log("obj gltf", gltf)
         this.scene.add(gltf.scene)
         gltf.animations; // Array<THREE.AnimationClip>
