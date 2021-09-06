@@ -104,7 +104,7 @@ export default {
       const textureLoader = new THREE.TextureLoader(manager);
       this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
 
-      loader.load('/models/edificio_cu_v1.obj', (obj) => {
+      loader.load('/models/cu_simulacion_v1.obj', (obj) => {
         this.edificio_cu = obj;
       }, onProgress, onError);
 

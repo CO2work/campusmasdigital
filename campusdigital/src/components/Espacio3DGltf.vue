@@ -110,12 +110,12 @@ export default {
 
       // GLTF vv   ///////////////
       console.log("renderer", this.renderer)
-      const ktx2Loader = new KTX2Loader()
-        ktx2Loader.setTranscoderPath( 'js/libs/basis/' ).detectSupport( this.renderer )
+      // const ktx2Loader = new KTX2Loader()
+      //   ktx2Loader.setTranscoderPath( 'js/libs/basis/' ).detectSupport( this.renderer )
 
       const loader = new GLTFLoader()
-      loader.setKTX2Loader( ktx2Loader )
-      loader.setMeshoptDecoder( MeshoptDecoder )
+      // loader.setKTX2Loader( ktx2Loader )
+      // loader.setMeshoptDecoder( MeshoptDecoder )
       loader.load( '/models/cu_demo_demo_v1.gltf',  ( gltf ) => {
 
 					// coffeemat.glb was produced from the source scene using gltfpack:
