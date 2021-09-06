@@ -6,20 +6,11 @@
 import {mapActions, mapGetters} from "vuex";
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
-import {KTX2Loader} from 'three/examples/jsm/loaders/KTX2Loader.js'
-import {BasisTextureLoader} from 'three/examples/jsm/loaders/BasisTextureLoader'
-import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 
-// import { RoomEnvironment } from 'three/jsm/environments/RoomEnvironment.js'
-// import { OrbitControls } from 'three/jsm/controls/OrbitControls.js'
-
-//import { KTX2Loader } from 'three/jsm/loaders/KTX2Loader.js'
-//import { MeshoptDecoder } from 'three/jsm/libs/meshopt_decoder.module.js'
-
 export default {
-  name: 'Espacio3DGltf',
+  name: 'CU3D',
   components: {},
   data() {
     return {
@@ -32,7 +23,7 @@ export default {
       windowHalfX: window.innerWidth / 2,
       windowHalfY: window.innerHeight / 2,
       object: undefined,
-      escena_cu_gltf: undefined,
+      edificio_cu: undefined,
       texture: undefined,
     }
   },
@@ -81,57 +72,25 @@ export default {
 
       this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
 
-      // this.camera.position.z = 600;
-      // this.camera.position.y = 2000;
-      // this.camera.position.x = 2000;
-
-      this.camera.position.set(-0, 0, -5)
+      this.camera.position.z = 600;
+      this.camera.position.y = 2000;
+      this.camera.position.x = 2000;
 
       // scene
 
       this.scene = new THREE.Scene();
+      this.scene.background = new THREE.Color('#eaeaea');
 
 
-      const ambientLight = new THREE.AmbientLight(0xcccccc, 0.4);
+      const ambientLight = new THREE.AmbientLight('#cccccc', 0.7);
       this.scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight(0xffffff, 0.8);
+      const pointLight = new THREE.PointLight('#6175fc', 0.3);
       this.camera.add(pointLight);
       this.scene.add(this.camera);
 
       const axexHelper = new THREE.AxisHelper(1000)
       this.scene.add(axexHelper)
-
-      this.renderer = new THREE.WebGLRenderer();
-      this.renderer.setPixelRatio(window.devicePixelRatio);
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-      const manager = new THREE.LoadingManager();
-
-      // GLTF vv   ///////////////
-      console.log("renderer", this.renderer)
-      const ktx2Loader = new KTX2Loader()
-      ktx2Loader.setTranscoderPath('/js/libs/basis/').detectSupport(this.renderer)
-
-      const loader = new GLTFLoader()
-      const textureLoader = new THREE.TextureLoader(manager);
-      this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
-      //loader.setKTX2Loader(ktx2Loader)
-      loader.setMeshoptDecoder(MeshoptDecoder)
-      loader.load('/models/cu_demo_demo_v1.gltf', (gltf) => {
-
-        console.log("gltf", gltf)
-
-        // coffeemat.glb was produced from the source scene using gltfpack:
-        // gltfpack -i coffeemat/scene.gltf -o coffeemat.glb -cc -tc
-        // The resulting model uses EXT_meshopt_compression (for geometry) and KHR_texture_basisu (for texture compression using ETC1S/BasisLZ)
-
-        //gltf.scene.position.y = 8
-
-        this.escena_cu_gltf = gltf;
-
-      }, onProgress, onError)
-      // GLTF ^^   ///////////////
 
 
       // manager
@@ -140,22 +99,36 @@ export default {
         console.log("onError")
       }
 
+      const manager = new THREE.LoadingManager();
+      const loader = new GLTFLoader(manager);
+      const textureLoader = new THREE.TextureLoader(manager);
+      this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
 
-      // const loader = new OBJLoader(manager);
-      // const textureLoader = new THREE.TextureLoader(manager);
-      // this.texture = textureLoader.load('/textures/uv_grid_opengl.jpg');
-
-      // loader.load('/models/edificio_cu_v1.obj', (obj) => {
-      //   this.edificio_cu = obj;
-      // }, onProgress, onError);
+      loader.load('/models/cu_demo_demo_v1.gltf', (gltf) => {
+        console.log("obj gltf", gltf)
+        this.scene.add(gltf.scene)
+        gltf.animations; // Array<THREE.AnimationClip>
+        gltf.scene; // THREE.Group
+        gltf.scenes; // Array<THREE.Group>
+        gltf.cameras; // Array<THREE.Camera>
+        gltf.asset; // Object
+        // this.edificio_cu = obj;
+      }, onProgress, onError);
 
       manager.onLoad = () => {
         console.log("on load")
-        // this.escena_cu_gltf.traverse((child) => {
-        //   if (child.isMesh) child.material.map = this.texture;
-        // });
-        this.escena_cu_gltf.position.y = 8;
-        this.scene.add(this.escena_cu_gltf);
+
+        //this.edificio_cu.rotate.z = Math.PI
+        /*
+        this.edificio_cu.position.y = -150;
+        this.edificio_cu.position.z = -100;
+        this.edificio_cu.position.x = -108;
+
+        this.edificio_cu.rotation.y = Math.PI * .3;
+
+        this.scene.add(this.edificio_cu);
+
+         */
       }
 
       manager.onProgress = function (item, loaded, total) {
@@ -170,7 +143,7 @@ export default {
       function onProgress(xhr) {
 
         if (xhr.lengthComputable) {
-          const percentComplete = xhr.loaded / xhr.total * 100;
+          let percentComplete = xhr.loaded / xhr.total * 100;
           console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
         }
       }
@@ -178,7 +151,9 @@ export default {
 
       //
 
-
+      this.renderer = new THREE.WebGLRenderer();
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.$refs.webgl.appendChild(this.renderer.domElement);
 
       document.addEventListener('mousemove', this.onDocumentMouseMove);
@@ -198,17 +173,12 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
-      this.camera.position.z = Math.random() * 100
-      //this.camera.position.y = Math.random() * 1000
-      this.camera.position.x = Math.random() * 100
+      this.camera.position.z = 600;
+      this.camera.position.y = 2000;
+      this.camera.position.x = 2000;
       console.log(this.scene.position)
-      //this.camera.position.x = (this.mouseX - this.camera.position.x) * Math.random() * 0.1;
-      //this.camera.position.y = (-this.mouseY - this.camera.position.y) * Math.random() * 0.1;
-      this.camera.lookAt(this.escena_cu_gltf.position);
+      this.camera.lookAt(this.edificio_cu.position);
 
-      //this.camera.position.x += (this.mouseX - this.camera.position.x) * Math.random() * 100;
-      //this.camera.position.y += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
-      //this.camera.position.z += (-this.mouseY - this.camera.position.y) * Math.random() * 100;
     },
   },
   created() {

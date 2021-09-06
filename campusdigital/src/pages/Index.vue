@@ -25,7 +25,8 @@
       -->
       <div v-if="pageReady">
 
-        <Espacio3DGltf v-if="$route.path === '/'"/>
+        <CU3D v-if="$route.path === '/'"/>
+        <Espacio3DGltf v-if="$route.path === '/ddd'"/>
         <TeatroJRR3D v-if="$route.path === '/gg'"/>
         <EdificioCU3D v-if="$route.path === '/p/revistas' || $route.path === '/p/plataformas_educativas'
           || $route.path === '/p/bibliotecas_en_linea' || $route.path === '/p/comunicacion_digital'
@@ -92,13 +93,14 @@ import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 import Espacio3DGltf from "components/Espacio3DGltf";
 import EdificioCU3D from "components/EdificioCU3D";
+import CU3D from "components/CU3D";
 import TeatroJRR3D from "components/TeatroJRR3D";
 import DynDialog from "components/DynDialog";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog},
+  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog, CU3D},
   data() {
     return {
       paginasPath: {contenido: []},
