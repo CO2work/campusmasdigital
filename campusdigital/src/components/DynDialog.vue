@@ -78,9 +78,8 @@
         </q-card>
         -->
 
-        <q-page-sticky position="top-left" :offset="[16, 16]">
-          <q-btn fab-mini color="black" outline icon="mdi-chevron-left" @click="showDialog=false"
-                 style="z-index: 9999"/>
+        <q-page-sticky position="top-left" :offset="[16, 16]" style="z-index: 999">
+          <q-btn fab-mini color="black" outline icon="mdi-chevron-left" @click="showDialog=false"/>
         </q-page-sticky>
 
         <div class="row">
