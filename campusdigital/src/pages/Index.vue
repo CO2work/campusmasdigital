@@ -23,7 +23,7 @@
 
       </q-card>
       -->
-      <Espacio3D v-if="pageReady"/>
+      <Singapur3D v-if="pageReady"/>
 
       <!--
       <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
@@ -79,13 +79,13 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
-import Espacio3D from "components/Espacio3D";
+import Singapur3D from "components/Singapur3D";
 import DynDialog from "components/DynDialog";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3D, DynDialog},
+  components: {Singapur3D, DynDialog},
   data() {
     return {
       paginasPath: {contenido: []},
