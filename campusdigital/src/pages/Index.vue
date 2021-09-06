@@ -23,7 +23,18 @@
 
       </q-card>
       -->
-      <Espacio3D v-if="pageReady"/>
+      <div v-if="pageReady">
+
+        <Singapur3D v-if="$route.path === '/sss'"/>
+        <TeatroJRR3D v-if="$route.path === '/'"/>
+        <EdificioCU3D v-if="$route.path === '/p/revistas' || $route.path === '/p/plataformas_educativas'
+          || $route.path === '/p/bibliotecas_en_linea' || $route.path === '/p/comunicacion_digital'
+          || $route.path === '/p/agenda_digital_nicolaita'"/>
+        <TeatroJRR3D v-if="$route.path === '/p/redes_sociales_institucionales'
+          || $route.path === '/p/redes_sociales_institucionales'
+          || $route.path === '/p/servicios_digitales'
+          || $route.path === '/p/revistas'"/>
+      </div>
 
       <!--
       <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
@@ -65,7 +76,7 @@
 
       -->
 
-      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false" />
+      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
 
     </div>
 
@@ -79,14 +90,15 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
-import Espacio3D from "components/Espacio3D";
-// import Espacio3DGltf from "components/Espacio3DGltf";
+import Singapur3D from "components/Singapur3D";
+import EdificioCU3D from "components/EdificioCU3D";
+import TeatroJRR3D from "components/TeatroJRR3D";
 import DynDialog from "components/DynDialog";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3D, DynDialog},
+  components: {Singapur3D, EdificioCU3D, TeatroJRR3D, DynDialog},
   data() {
     return {
       paginasPath: {contenido: []},
@@ -152,6 +164,7 @@ export default {
   },
   watch: {
     '$route.path': function () {
+      console.log(this.$route.path)
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
@@ -173,5 +186,8 @@ export default {
       }
     }
   },
+  mounted() {
+    console.log("path", this.$route.path)
+  }
 }
 </script>
