@@ -405,7 +405,7 @@ export default {
     setTimeout(() => {
       this.showSplash = false
       this.pageReady = true
-    }, 200)
+    }, 3200)
   },
 }
 </script>
