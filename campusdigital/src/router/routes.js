@@ -10,7 +10,8 @@ const routes = [
           { path: '*', component: () => import('pages/Index.vue') }
         ]
       },
-      { path: 'index-tarjetas', component: () => import('pages/IndexTarjetas.vue') }
+      { path: 'index-tarjetas', component: () => import('pages/IndexTarjetas.vue') },
+      { path: 'imagen', component: () => import('pages/Index.vue') }
     ]
   },
 
