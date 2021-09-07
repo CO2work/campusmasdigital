@@ -100,7 +100,7 @@ export default {
       this.pmremGenerator = new THREE.PMREMGenerator(this.renderer);
 
       this.scene.background = new THREE.Color('#80dcf8');
-      this.scene.environment = this.pmremGenerator.fromScene(this.environment).texture;
+      //this.scene.environment = this.pmremGenerator.fromScene(this.environment).texture;
 
       const grid = new THREE.GridHelper(500, 10, 0xffffff, 0xffffff);
       grid.position.y = -180
@@ -116,10 +116,10 @@ export default {
       composer.addPass(ssaoPass);
       composer.render();
 
-      const ambientLight = new THREE.AmbientLight('#3a3a3a', 0.2);
+      const ambientLight = new THREE.AmbientLight('#ffffff', 0.2);
       this.scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight('#6175fc', 0.3);
+      const pointLight = new THREE.PointLight('#ffffff', 1);
       this.camera.add(pointLight);
       this.scene.add(this.camera);
 
