@@ -33,7 +33,7 @@
       </div>
 
       <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
-<!--        Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
+<!--        <q-img src="~assets/img/logo-geometry-v2.svg"></q-img>-->
       </div>
     </div>
   <!--  Backgournd-->
