@@ -116,7 +116,7 @@ export default {
       composer.addPass(ssaoPass);
       composer.render();
 
-      const ambientLight = new THREE.AmbientLight('#cccccc', 0.2);
+      const ambientLight = new THREE.AmbientLight('#3a3a3a', 0.2);
       this.scene.add(ambientLight);
 
       const pointLight = new THREE.PointLight('#6175fc', 0.3);
