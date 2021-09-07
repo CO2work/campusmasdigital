@@ -3,11 +3,9 @@
     <q-header v-if="!showDynDialog" class="col-auto bg-transparent">
       <q-toolbar class="col-auto bg-transparent">
          <q-toolbar-title class="text-primary q-ma-lg">
-           <q-btn round>
-              <q-avatar>
-                <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
-              </q-avatar>
-            </q-btn>
+            <q-avatar>
+              <img src="~assets/umsnh_escudo_svg_v2.svg" />
+            </q-avatar>
             Campus Digital UMSNH
            </q-toolbar-title>
         <q-btn
@@ -15,10 +13,11 @@
           dense
           round
           size="xl"
-          class="text-primary q-mr-sm"
-          icon="las la-bars"
+          class="text-primary q-ma-md fixed-top-right"
+          :icon="showRightDrawer ? 'las la-times' : 'las la-bars'"
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
+          style="z-index: 3001;"
         />
 
       </q-toolbar>
@@ -31,15 +30,25 @@
       overlay
 
       side="right"
-      bordered
-      class="bg-grey-1 row"
+      class="row"
+      content-class="bg-primary text-white"
       behavior="mobile"
     >
+      <q-img class="q-py-lg" src="" style="height: 150px">
+        <div class="bg-white">
+          <q-avatar size="52px" class="q-mb-sm">
+            <img src="~assets/logo_campus_v1.svg">
+          </q-avatar>
+          <div class="text-primary text-weight-bold">Campus Digital</div>
+          <div class="text-primary"> de la Universidad Michoacana de San Nicolás de Hidalgo</div>
+        </div>
+      </q-img>
+
       <q-scroll-area class="fit">
         <q-list v-if="1===1">
-           <q-item class="header">
-            <span>
-              Aperiam distinctio dolor ex laudantium nemo nulla, perferendis saepe tempore.
+           <q-item class="header bg-blue-10">
+            <span class="text-weight-light">
+              Un indice de los servicios y proyectos digitales de nuestra Universidad.
             </span>
           </q-item>
           <EssentialLink
@@ -53,16 +62,16 @@
 
       </q-scroll-area>
 
-      <div class="absolute" style="bottom: 15px; left: -17px">
-        <q-btn
-          dense
-          round
-          unelevated
-          color="primary"
-          :icon="miniState ? 'las la-angle-left' : 'las la-angle-right'"
-          @click="miniState = !miniState"
-        ></q-btn>
-      </div>
+<!--      <div class="absolute" style="bottom: 15px; left: -17px">-->
+<!--        <q-btn-->
+<!--          dense-->
+<!--          round-->
+<!--          unelevated-->
+<!--          color="primary"-->
+<!--          :icon="miniState ? 'las la-angle-left' : 'las la-angle-right'"-->
+<!--          @click="miniState = !miniState"-->
+<!--        ></q-btn>-->
+<!--      </div>-->
     </q-drawer>
 
     <vue-splash
