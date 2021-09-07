@@ -79,7 +79,7 @@
 
       -->
 
-      <DynDialog v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
+      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
 
     </div>
 
@@ -98,12 +98,12 @@ import EdificioCU3D from "components/EdificioCU3D";
 import CU3D from "components/CU3D";
 import PruebaImgBg from "components/PruebaImgBg";
 import TeatroJRR3D from "components/TeatroJRR3D";
-import DynDialog from "components/DynDialog";
+import DynDialog2 from "components/DynDialog2";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog, CU3D, PruebaImgBg},
+  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog2, CU3D, PruebaImgBg},
   data() {
     return {
       paginasPath: {contenido: []},
