@@ -8,11 +8,13 @@ import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 import {RoomEnvironment} from 'three/examples/jsm/environments/RoomEnvironment.js';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
+//import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js';
 
 import {KTX2Loader} from 'three/examples/jsm/loaders/KTX2Loader.js';
 import {MeshoptDecoder} from 'three/examples/jsm/libs/meshopt_decoder.module.js';
 
+import {EffectComposer} from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import {SSAOPass} from 'three/examples/jsm/postprocessing/SSAOPass.js';
 
 export default {
   name: 'CU3D',
@@ -97,7 +99,7 @@ export default {
       this.environment = new RoomEnvironment();
       this.pmremGenerator = new THREE.PMREMGenerator(this.renderer);
 
-      this.scene.background = new THREE.Color('#70e7ff');
+      this.scene.background = new THREE.Color('#80dcf8');
       this.scene.environment = this.pmremGenerator.fromScene(this.environment).texture;
 
       const grid = new THREE.GridHelper(500, 10, 0xffffff, 0xffffff);
@@ -106,6 +108,12 @@ export default {
       grid.material.depthWrite = false;
       grid.material.transparent = true;
       this.scene.add(grid);
+
+      const composer = new EffectComposer(this.renderer);
+
+      const ssaoPass = new SSAOPass(this.scene, this.camera, window.innerWidth, window.innerHeight);
+      ssaoPass.kernelRadius = 16;
+      composer.addPass(ssaoPass);
 
       const ambientLight = new THREE.AmbientLight('#cccccc', 0.2);
       this.scene.add(ambientLight);
@@ -134,13 +142,14 @@ export default {
 
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('cu_demo_demo_v1.gltf',  (gltf) => {
+      loader.load('cu_demo_demo_v1.gltf', (gltf) => {
 
         // coffeemat.glb was produced from the source scene using gltfpack:
         // gltfpack -i coffeemat/scene.gltf -o coffeemat.glb -cc -tc
         // The resulting model uses EXT_meshopt_compression (for geometry) and KHR_texture_basisu (for texture compression using ETC1S/BasisLZ)
 
-        gltf.scene.position.y = 8;
+        gltf.scene.position.y = -20;
+        gltf.scene.position.z = -700;
 
         this.scene.add(gltf.scene);
 
