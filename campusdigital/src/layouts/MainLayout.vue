@@ -13,8 +13,8 @@
           dense
           round
           size="xl"
-          class="text-primary q-ma-md fixed-top-right"
-          :icon="showRightDrawer ? 'las la-times' : 'las la-bars'"
+          class="text-primary q-ma-md fixed-top-right z-max"
+          icon="las la-bars"
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
           style="z-index: 3001;"
@@ -46,11 +46,19 @@
 
       <q-scroll-area class="fit">
         <q-list v-if="1===1">
-           <q-item class="header bg-blue-10">
+          <q-item class="header bg-blue-10">
             <span class="text-weight-light">
               Un indice de los servicios y proyectos digitales de nuestra Universidad.
             </span>
           </q-item>
+
+          <q-item>
+              <q-item-section>
+                <q-item-label class="text-overline">Proyectos</q-item-label>
+              </q-item-section>
+          </q-item>
+
+          <q-separator color="gray-5" />
           <EssentialLink
 
             v-for="link of paginasIndex"
@@ -58,8 +66,17 @@
             :link="link"
             v-bind="link"
           />
-        </q-list>
 
+          <q-separator color="gray-5" />
+
+          <q-item>
+              <q-item-section>
+                <q-item-label class="text-overline">Acerca del Campus</q-item-label>
+              </q-item-section>
+          </q-item>
+          <q-separator color="gray-5" />
+
+        </q-list>
       </q-scroll-area>
 
 <!--      <div class="absolute" style="bottom: 15px; left: -17px">-->
@@ -74,12 +91,13 @@
 <!--      </div>-->
     </q-drawer>
 
+    <!--https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg-->
     <vue-splash
       style="z-index: 9999"
       :show="showSplash"
-      :logo="'https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg'"
+      :logo="'https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/Temp%2Flogo_campus_v1.svg?alt=media&token=8660d9f0-033f-4ff6-8d6f-7df9674823b6'"
       title="Campus Digital UMSNH"
-      color="#00bfa5"
+      color="#33bbee"
       :size="300"
       :fixed="true"
     />
