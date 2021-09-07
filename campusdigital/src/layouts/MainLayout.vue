@@ -25,14 +25,13 @@
 
     <q-drawer
       v-model="showRightDrawer"
-      :mini="miniState"
       :width="290"
       overlay
 
       side="right"
       class="row"
       content-class="bg-primary text-white"
-      behavior="mobile"
+      behavior="desktop"
     >
       <q-img class="q-py-lg" src="" style="height: 150px">
         <div class="bg-white">
@@ -42,6 +41,17 @@
           <div class="text-primary text-weight-bold">Campus Digital</div>
           <div class="text-primary"> de la Universidad Michoacana de San Nicolás de Hidalgo</div>
         </div>
+        <q-btn
+          flat
+          dense
+          round
+          size="xl"
+          class="text-primary q-ma-md fixed-top-right z-max"
+          icon="las la-times"
+          aria-label="Menu"
+          @click="showRightDrawer = !showRightDrawer"
+          style="z-index: 3001;"
+        />
       </q-img>
 
       <q-scroll-area class="fit">
@@ -96,7 +106,7 @@
       style="z-index: 9999"
       :show="showSplash"
       :logo="'https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/Temp%2Flogo_campus_v1.svg?alt=media&token=8660d9f0-033f-4ff6-8d6f-7df9674823b6'"
-      title="Campus Digital UMSNH"
+      custom-text="<div class='text-h5 text-primary'>Campus Digital UMSNH</div>"
       color="#33bbee"
       :size="300"
       :fixed="true"
