@@ -1,12 +1,21 @@
 <template>
-  <q-layout view="lHr LpR ffr">
-    <q-header v-if="!showDynDialog" class="col-auto bg-transparent" style="left: unset;">
-      <q-toolbar class="col-auto bg-blue-5">
-        <!-- <q-toolbar-title>Campus Digital UMSNH</q-toolbar-title> -->
+  <q-layout view="hHr lpR fFr">
+    <q-header v-if="!showDynDialog" class="col-auto bg-transparent">
+      <q-toolbar class="col-auto bg-transparent">
+         <q-toolbar-title class="text-primary q-ma-lg">
+           <q-btn round>
+              <q-avatar>
+                <img src="https://cdn.quasar.dev/logo-v2/svg/logo.svg" />
+              </q-avatar>
+            </q-btn>
+            Campus Digital UMSNH
+           </q-toolbar-title>
         <q-btn
           flat
           dense
           round
+          size="xl"
+          class="text-primary q-mr-sm"
           icon="las la-bars"
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
@@ -19,15 +28,20 @@
       v-model="showRightDrawer"
       :mini="miniState"
       :width="290"
-      :overlay="false"
+      overlay
 
       side="right"
       bordered
       class="bg-grey-1 row"
-      behavior="desktop"
+      behavior="mobile"
     >
       <q-scroll-area class="fit">
         <q-list v-if="1===1">
+           <q-item class="header">
+            <span>
+              Aperiam distinctio dolor ex laudantium nemo nulla, perferendis saepe tempore.
+            </span>
+          </q-item>
           <EssentialLink
 
             v-for="link of paginasIndex"
@@ -61,22 +75,17 @@
       :fixed="true"
     />
 
-    <q-page-container style="padding-top: 0;">
+    <q-page-container style="padding-top: 0; padding-bottom: 0;">
       <router-view/>
     </q-page-container>
 
-    <!--    <q-footer reveal class="bg-transparent text-white">-->
-    <!--      <q-toolbar>-->
-    <!--        <q-avatar>-->
-    <!--          <img src="~assets/umsnh_escudo_svg_v1.svg" alt="Escudo UMSNH">-->
-    <!--        </q-avatar>-->
-    <!--        <p  class="text-overline text-white q-px-sm">-->
-    <!--          <span>-->
-    <!--            Universidad Michoacana de San nicolas de Hidalgo-->
-    <!--          </span>-->
-    <!--        </p>-->
-    <!--      </q-toolbar>-->
-    <!--    </q-footer>-->
+        <q-footer reveal class="bg-transparent">
+          <q-toolbar class="q-px-lg q-py-none">
+            <q-toolbar-title class="text-overline text-primary q-ma-none">
+                Universidad Michoacana de San Nicolás de Hidalgo
+            </q-toolbar-title>
+          </q-toolbar>
+        </q-footer>
 
 
   </q-layout>

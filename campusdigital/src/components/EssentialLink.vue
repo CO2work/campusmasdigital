@@ -10,12 +10,12 @@
       <q-item-section
         v-if="link.icono"
         avatar
-        class="text-blue-6"
+        class="text-primary"
       >
-        <q-icon :name="link.icono" size="xl"/>
+        <q-icon :name="link.icono" size="lg"/>
       </q-item-section>
 
-      <q-item-section>
+      <q-item-section class="q-py-md">
         <q-item-label>{{ link.titulo }}</q-item-label>
         <q-item-label caption v-if="link.subtitulo">
           {{ link.subtitulo }}
@@ -34,7 +34,7 @@
         avatar
         class="text-blue-6"
       >
-        <q-icon :name="link.icono" size="xl"/>
+        <q-icon :name="link.icono" size="lg"/>
       </q-item-section>
 
       <q-item-section>

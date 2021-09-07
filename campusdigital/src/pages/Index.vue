@@ -35,6 +35,8 @@
           || $route.path === '/p/redes_sociales_institucionales'
           || $route.path === '/p/servicios_digitales'
           || $route.path === '/p/revistas'"/>
+
+        <PruebaImgBg v-show="$route.path === '/imagen'"/>
       </div>
 
       <!--
@@ -94,13 +96,14 @@ import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 import Espacio3DGltf from "components/Espacio3DGltf";
 import EdificioCU3D from "components/EdificioCU3D";
 import CU3D from "components/CU3D";
+import PruebaImgBg from "components/PruebaImgBg";
 import TeatroJRR3D from "components/TeatroJRR3D";
 import DynDialog from "components/DynDialog";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog, CU3D},
+  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog, CU3D, PruebaImgBg},
   data() {
     return {
       paginasPath: {contenido: []},
