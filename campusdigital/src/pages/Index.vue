@@ -23,61 +23,11 @@
 
       </q-card>
       -->
+
       <div v-if="pageReady">
-
-        <CU3D v-show="$route.path === '/'"/>
-        <Espacio3DGltf v-if="$route.path === '/ddd'"/>
-        <TeatroJRR3D v-if="$route.path === '/gg'"/>
-        <EdificioCU3D v-if="$route.path === '/p/revistas' || $route.path === '/p/plataformas_educativas'
-          || $route.path === '/p/bibliotecas_en_linea' || $route.path === '/p/comunicacion_digital'
-          || $route.path === '/p/agenda_digital_nicolaita'"/>
-        <TeatroJRR3D v-if="$route.path === '/p/redes_sociales_institucionales'
-          || $route.path === '/p/redes_sociales_institucionales'
-          || $route.path === '/p/servicios_digitales'
-          || $route.path === '/p/revistas'"/>
-
-        <PruebaImgBg v-show="$route.path === '/imagen'"/>
+        <div ref="webgl" class="fixed-full"></div>
+        <MainHero></MainHero>
       </div>
-
-      <!--
-      <h4 v-if="paginasPath.titulo"> {{ paginasPath.titulo }} </h4>
-
-      <div v-if="paginasPath.contenido.length" class="row">
-        <div class="columnt" v-for="(item, idx) in paginasPath.contenido" :key="idx">
-          <q-card flat bordered>
-            <q-card-section horizontal>
-              <q-card-section class="q-pt-xs">
-                <div class="text-overline">Categoría</div>
-                <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
-                <div class="text-caption text-grey">
-                  {{ item.descripcion }}
-                </div>
-              </q-card-section>
-
-              <q-card-section class="col-5 flex flex-center">
-                <q-img
-                  class="rounded-borders"
-                  :src="item.imagen"
-                />
-              </q-card-section>
-            </q-card-section>
-
-            <q-separator/>
-
-            <q-card-actions>
-              <q-btn flat round icon="link"/>
-              <q-btn flat>
-                Enlace
-              </q-btn>
-              <q-btn flat color="primary" type="a" :href="item.enlace" target="__blank">
-                Enlace
-              </q-btn>
-            </q-card-actions>
-          </q-card>
-        </div>
-      </div>
-
-      -->
 
       <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
 
@@ -95,19 +45,23 @@ import {OBJLoader} from 'three/examples/jsm/loaders/OBJLoader.js'
 import {MTLLoader} from 'three/examples/jsm/loaders/MTLLoader.js'
 import Espacio3DGltf from "components/Espacio3DGltf";
 import EdificioCU3D from "components/EdificioCU3D";
-import CU3D from "components/CU3D";
+import MainHero from "components/MainHero";
 import PruebaImgBg from "components/PruebaImgBg";
 import TeatroJRR3D from "components/TeatroJRR3D";
 import DynDialog2 from "components/DynDialog2";
+import {KTX2Loader} from "three/examples/jsm/loaders/KTX2Loader";
+import {MeshoptDecoder} from "three/examples/jsm/libs/meshopt_decoder.module";
+import {EffectComposer} from "three/examples/jsm/postprocessing/EffectComposer";
+import {SSAOPass} from "three/examples/jsm/postprocessing/SSAOPass";
 
 
 export default {
   name: 'PageIndex',
-  components: {Espacio3DGltf, EdificioCU3D, TeatroJRR3D, DynDialog2, CU3D, PruebaImgBg},
+  components: {MainHero, DynDialog2},
   data() {
     return {
       paginasPath: {contenido: []},
-      container: this.$refs.webgl,
+      container: undefined,
       camera: undefined,
       scene: undefined,
       renderer: undefined,
@@ -118,6 +72,7 @@ export default {
       object: undefined,
       edificio_cu: undefined,
       texture: undefined,
+      modelCU: undefined
     }
   },
   computed: {
@@ -166,6 +121,107 @@ export default {
       })
       return filtradas
     },
+    render() {
+      this.camera.position.x += (this.mouseX - this.camera.position.x) * .05;
+      this.camera.position.y += (-this.mouseY - this.camera.position.y) * .05;
+      this.camera.lookAt(this.scene.position);
+      this.renderer.render(this.scene, this.camera);
+    },
+
+    onDocumentMouseMove(event) {
+      this.mouseX = (event.clientX - this.windowHalfX) * .4;
+      this.mouseY = (event.clientY - this.windowHalfY) * .3;
+    },
+    onWindowResize() {
+      this.windowHalfX = window.innerWidth / 2;
+      this.windowHalfY = window.innerHeight / 2;
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+    },
+    initThree() {
+      //camera
+      this.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2000);
+      this.camera.position.set(2000, 2000, 600)
+
+      // scene
+      this.scene = new THREE.Scene();
+      this.scene.background = new THREE.Color('#eaeaea');
+
+      // renderer
+      this.renderer = new THREE.WebGLRenderer({antialias: true});
+      this.renderer.setPixelRatio(window.devicePixelRatio);
+      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      this.renderer.toneMappingExposure = 1;
+      this.renderer.outputEncoding = THREE.sRGBEncoding;
+      this.$refs.webgl.appendChild(this.renderer.domElement);
+
+      this.scene.background = new THREE.Color('#80dcf8');
+
+      const grid = new THREE.GridHelper(500, 10, 0xffffff, 0xffffff);
+      grid.position.y = -180
+      grid.material.opacity = 0.5;
+      grid.material.depthWrite = false;
+      grid.material.transparent = true;
+      this.scene.add(grid);
+
+      const composer = new EffectComposer(this.renderer);
+
+      const ssaoPass = new SSAOPass(this.scene, this.camera, window.innerWidth, window.innerHeight);
+      ssaoPass.kernelRadius = 36;
+      composer.addPass(ssaoPass);
+      composer.render();
+
+      const ambientLight = new THREE.AmbientLight('#ffffff', 0.2);
+      this.scene.add(ambientLight);
+
+      const pointLight = new THREE.PointLight('#ffffff', 1);
+      this.camera.add(pointLight);
+      this.scene.add(this.camera);
+
+      const ktx2Loader = new KTX2Loader()
+      ktx2Loader.setTranscoderPath('~assets/js/libs/basis/').detectSupport(this.renderer);
+      const manager = new THREE.LoadingManager();
+      const loader = new GLTFLoader(manager).setPath('/models/gltf/')
+      loader.setKTX2Loader(ktx2Loader);
+      loader.setMeshoptDecoder(MeshoptDecoder);
+      loader.load('cu.glb', (gltf) => {
+        this.gltf = gltf
+        this.gltf.scene.position.y = 20;
+        this.intro ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
+        this.gltf.scene.position.x = -200;
+        this.gltf.scene.position.z = 200;
+        this.scene.add(this.gltf.scene);
+        this.pageReady = true
+      });
+
+      manager.onLoad = () => {
+        console.log("on load")
+      }
+      manager.onError = () => {
+        console.log("on error")
+      }
+      manager.onProgress = (item, loaded, total) => {
+        console.log("manager onProgress", item, loaded, total);
+        if (item.lengthComputable) {
+          let percentComplete = item.loaded / item.total * 100;
+          console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
+        }
+      }
+
+
+      document.addEventListener('mousemove', this.onDocumentMouseMove);
+
+      //
+
+      window.addEventListener('resize', this.onWindowResize);
+
+    },
+    animate() {
+      requestAnimationFrame(this.animate);
+      this.render();
+    },
   },
   watch: {
     '$route.path': function () {
@@ -189,10 +245,24 @@ export default {
         this.showRightDrawer = true
         this.$router.push('/')
       }
+    },
+    pageReady() {
+      if (this.pageReady) {
+        setTimeout(() => {
+          this.container = this.$refs.webgl;
+          console.log("path", this.$route.path)
+          this.initThree()
+          this.animate()
+        }, 100)
+      }
     }
   },
+  created() {
+
+  },
   mounted() {
-    console.log("path", this.$route.path)
+
+    console.log("on mounted")
   }
 }
 </script>
