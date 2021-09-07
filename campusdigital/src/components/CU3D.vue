@@ -130,7 +130,7 @@ export default {
       this.pmremGenerator = new THREE.PMREMGenerator(this.renderer);
 
 
-      this.scene.add(axexHelper)
+      //this.scene.add(axexHelper)
 
 
       const ktx2Loader = new KTX2Loader()
@@ -143,14 +143,14 @@ export default {
 
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('cu_demo_demo_v2.glb', (gltf) => {
+      loader.load('cu.glb', (gltf) => {
 
         // coffeemat.glb was produced from the source scene using gltfpack:
         // gltfpack -i coffeemat/scene.gltf -o coffeemat.glb -cc -tc
         // The resulting model uses EXT_meshopt_compression (for geometry) and KHR_texture_basisu (for texture compression using ETC1S/BasisLZ)
 
-        gltf.scene.position.y = -20;
-        gltf.scene.rotation.y = Math.PI * .75;
+        gltf.scene.position.y = 20;
+        gltf.scene.rotation.y = (Math.PI * .25)*3;
         gltf.scene.position.x = -200;
         gltf.scene.position.z = 200;
 
@@ -237,3 +237,8 @@ export default {
   }
 }
 </script>
+
+
+
+
+
