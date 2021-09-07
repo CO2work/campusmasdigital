@@ -12,7 +12,7 @@
         avatar
         class="text-white"
       >
-        <q-icon :name="link.icono" size="lg"/>
+        <q-icon :name="link.icono" size="lg" />
       </q-item-section>
 
       <q-item-section class="q-py-md">
@@ -34,7 +34,7 @@
         avatar
         class="text-white"
       >
-        <q-icon :name="link.icono" size="lg"/>
+        <q-icon :name="link.icono" size="lg" />
       </q-item-section>
 
       <q-item-section>
