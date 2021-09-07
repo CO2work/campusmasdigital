@@ -112,10 +112,11 @@ export default {
       const composer = new EffectComposer(this.renderer);
 
       const ssaoPass = new SSAOPass(this.scene, this.camera, window.innerWidth, window.innerHeight);
-      ssaoPass.kernelRadius = 16;
+      ssaoPass.kernelRadius = 36;
       composer.addPass(ssaoPass);
+      composer.render();
 
-      const ambientLight = new THREE.AmbientLight('#cccccc', 0.2);
+      const ambientLight = new THREE.AmbientLight('#3a3a3a', 0.2);
       this.scene.add(ambientLight);
 
       const pointLight = new THREE.PointLight('#6175fc', 0.3);
@@ -142,14 +143,16 @@ export default {
 
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('cu_demo_demo_v1.gltf', (gltf) => {
+      loader.load('cu_demo_demo_v2.glb', (gltf) => {
 
         // coffeemat.glb was produced from the source scene using gltfpack:
         // gltfpack -i coffeemat/scene.gltf -o coffeemat.glb -cc -tc
         // The resulting model uses EXT_meshopt_compression (for geometry) and KHR_texture_basisu (for texture compression using ETC1S/BasisLZ)
 
         gltf.scene.position.y = -20;
-        gltf.scene.position.z = -700;
+        gltf.scene.rotation.y = Math.PI * .75;
+        gltf.scene.position.x = -200;
+        gltf.scene.position.z = 200;
 
         this.scene.add(gltf.scene);
 
@@ -223,8 +226,6 @@ export default {
       this.camera.position.y = 2000;
       this.camera.position.x = 2000;
       console.log(this.scene.position)
-      this.camera.lookAt(this.edificio_cu.position);
-
     },
   },
   created() {
