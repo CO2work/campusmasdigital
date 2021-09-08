@@ -2,7 +2,7 @@
   <div style="height: 100vh;">
     <div class="full-height row wrap justify-center items-center content-center q-mx-auto"
          style="max-width: 65rem; position: relative">
-      <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
+      <div class="col-shrink col-xs-12 col-sm-8 col-md-5 self-center q-ma-lg">
         <h4 class="q-mb-lg text-primary text-weight-light">Campus Digital UMSNH</h4>
         <p class="text-body2">
           Conoce los espacios digitales de la Universidad, sus servicios digitales y navega el campus virtual
@@ -32,7 +32,7 @@
         </q-btn>
       </div>
 
-      <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
+      <div class="col-shrink col-xs-12 col-sm-8 col-md-5 self-center q-ma-lg">
         <!--        <q-img src="~assets/img/logo-geometry-v2.svg"></q-img>-->
       </div>
     </div>
