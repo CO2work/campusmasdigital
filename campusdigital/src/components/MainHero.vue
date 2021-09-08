@@ -10,6 +10,7 @@
         <q-btn size="sm"
                unelevated
                class="
+               q-mr-md
             q-pa-xs
             bg-primary
             text-white
@@ -21,13 +22,13 @@
         <q-btn size="sm"
                unelevated
                class="
-            q-mx-md
+            q-my-md
             q-pa-xs
             bg-white
             text-primary
           ">
           <span class="text-body2">Explorar</span>
-          <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
+          <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
         </q-btn>
       </div>
 

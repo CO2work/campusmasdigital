@@ -89,20 +89,38 @@
             <main>
               <article>
 
-                <div class="full-height row wrap justify-center items-center content-center q-mx-auto" style="max-width: 65rem; position: relative">
+                <div class="full-height row wrap justify-start items-center content-center q-mx-auto" style="max-width: 65rem; position: relative">
                   <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
                     <h4 class="q-mb-lg text-white text-weight-normal">{{ obj.titulo }}</h4>
                     <p class="text-body2">
+                      {{ obj.subtitulo }}
+                    </p>
+
+                    <p>
                       {{ obj.descripcion }}
                     </p>
                   </div>
 
                   <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab beatae dolor enim eos natus, vel vero! Ad consectetur doloremque ducimus, laborum neque numquam quasi qui, quibusdam quis, saepe veniam voluptatum!
-                    </p>
+                    <q-img :src="obj.imagen"></q-img>
+                  </div>
+
+                  <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
+                    <q-btn size="sm"
+                       :to="obj.enlace"
+                       unelevated
+                       class="
+                        q-mx-md
+                        q-pa-xs
+                        text-white
+                        bg-blue-7
+                      ">
+                      <span class="text-body2">Ver proyectos</span>
+                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>
+                    </q-btn>
                   </div>
                 </div>
+
               </article>
               <div v-if="obj.contenido.length">
                 <article v-for="(item, idx) in obj.contenido" :key="idx">
