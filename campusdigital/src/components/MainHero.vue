@@ -39,11 +39,10 @@
       :maximized="true"
       transition-show="slide-up"
       transition-hide="jump-down"
-      class="full-height"
     >
-      <div class="column full-height full-width dot-grid bg-white">
+      <div class="column full-height full-width bg-white">
 
-        <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
+        <q-page-sticky position="top-left" :offset="[16, 16]" style="margin-top: -70px">
           <q-btn fab-mini color="primary" icon="las la-angle-left" @click="showConocerMas=false"/>
         </q-page-sticky>
 
@@ -143,7 +142,6 @@
 
 <script>
 import {mapActions, mapGetters} from "vuex";
-import gsap from 'gsap'
 
 export default {
   name: 'MainHero',

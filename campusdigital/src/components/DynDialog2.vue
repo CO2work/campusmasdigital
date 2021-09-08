@@ -128,7 +128,7 @@
                 </div>
 
               </article>
-              <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
+              <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto" style="max-width: 65rem;">
                 <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card self-stretch" flat bordered>
                   <q-img
                     :src="item.imagen"
