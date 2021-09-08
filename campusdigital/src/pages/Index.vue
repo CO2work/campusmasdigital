@@ -188,7 +188,7 @@ export default {
       loader.setMeshoptDecoder(MeshoptDecoder);
       loader.load('cu.glb', (gltf) => {
         this.gltf = gltf
-        this.gltf.scene.position.y = 20;
+        this.gltf.scene.position.y = -40;
         this.$route.path === '/' ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
         this.gltf.scene.position.x = -200;
         this.gltf.scene.position.z = 200;
