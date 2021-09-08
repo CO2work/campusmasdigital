@@ -9,7 +9,7 @@
       transition-hide="jump-down"
       class="full-height"
     >
-      <div class="column full-height full-width dot-grid">
+      <div class="column full-height full-width dot-grid bg-white">
 
         <!--
         <q-card class="text-grey-10 full-height transparent scroll" flat square>
@@ -86,49 +86,80 @@
         <div class="row">
           <div class="col">
 
-            <main>
+            <main class="q-pb-xl">
               <article>
+                <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
+                  <q-img :src="obj.imagen" class="full-height full-width"></q-img>
+                </div>
 
                 <div class="full-height row wrap justify-start items-center content-center q-mx-auto" style="max-width: 65rem; position: relative">
-                  <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
-                    <h4 class="q-mb-lg text-white text-weight-normal">{{ obj.titulo }}</h4>
-                    <p class="text-body2">
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
+                    <h4 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ obj.titulo }}</h4>
+                    <p class="text-h6 text-blue-2">
                       {{ obj.subtitulo }}
                     </p>
 
-                    <p>
+                    <p class="text-h6 text-blue-grey-9 text-weight-light">
                       {{ obj.descripcion }}
                     </p>
                   </div>
 
-                  <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
-                    <q-img :src="obj.imagen"></q-img>
-                  </div>
 
-                  <div class="col-shrink col-xs-6 col-sm-6 col-md-5 col-xl-3 self-center q-ma-lg">
-                    <q-btn size="sm"
-                       :to="obj.enlace"
-                       unelevated
-                       class="
-                        q-mx-md
-                        q-pa-xs
-                        text-white
-                        bg-blue-7
-                      ">
-                      <span class="text-body2">Ver proyectos</span>
-                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>
-                    </q-btn>
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
+<!--                    <q-btn size="sm"-->
+<!--                       :to="obj.enlace"-->
+<!--                       unelevated-->
+<!--                       class="-->
+<!--                        q-mx-md-->
+<!--                        q-pa-xs-->
+<!--                        text-white-->
+<!--                        bg-blue-7-->
+<!--                      ">-->
+<!--                      <span class="text-body2">Ver proyectos</span>-->
+<!--                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>-->
+<!--                    </q-btn>-->
                   </div>
                 </div>
 
               </article>
-              <div v-if="obj.contenido.length">
-                <article v-for="(item, idx) in obj.contenido" :key="idx">
-                  <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
-                  <div class="text-caption text-grey">
-                    {{ item.descripcion }}
-                  </div>
-                </article>
+              <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
+                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card" flat bordered>
+                  <q-img
+                    :src="item.imagen"
+                  />
+                  <q-card-section>
+                    <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                    <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
+                    <div class="text-caption text-grey q-my-md">
+                      {{ item.descripcion }}
+                    </div>
+                  </q-card-section>
+
+                  <q-card-actions>
+                    <q-btn flat color="dark" label="Share" />
+                    <q-btn flat color="primary" label="Book" />
+
+                    <q-space />
+
+                    <q-btn
+                      color="grey"
+                      round
+                      flat
+                      dense
+                      :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                      @click="expanded = !expanded"
+                    />
+                  </q-card-actions>
+
+                  <q-slide-transition>
+                    <div v-show="expanded">
+                      <q-separator />
+                      <q-card-section class="text-subitle2">
+                        {{ item.descripcion_extra }}
+                      </q-card-section>
+                    </div>
+                  </q-slide-transition>
+                </q-card>
               </div>
             </main>
 
@@ -172,7 +203,7 @@ const blocksObserver = new IntersectionObserver(
       animateVisible(target, intersectionRatio, isIntersecting);
     });
   },
-  {threshold: 0.5}
+  {threshold: 0.1}
 );
 
 for (const block of blocks) {
@@ -184,7 +215,9 @@ export default {
   name: 'DynDialog',
   props: ['show', 'obj'],
   data() {
-    return {}
+    return {
+      expanded: false,
+    }
   },
   computed: {
     showDialog: {
@@ -210,20 +243,21 @@ export default {
 }
 
 .dot-grid {
-  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAAH6ji2bAAAAAXNSR0IArs4c6QAAANNJREFUOBG9UkEOwjAMG3BB8P+/ckLUXW2ZzJs6CVFpSuLaTlJtWabPBcwr6Ug6AgDJc0Tkt/b1IwYBj/2SPpAAeIzoxLWRWvtVBTcNN4D7u/qQqIW8d8q5Bld5DxLqikl/2Fqs4eA1col9mUr6qkGECrPyuVEnrMHrSe7Cpp9HCtruxVPENHjC1Cy5C5teRnaW8B0NimnkaQSTRKLdM428CqLBfSheLfLvpAnjLK/zaxOa1Bh5aeUqPFX/xTCuEsaMvArOPvYsr89Rm4Th9nk/f8MPzzwK0MfabhcAAAAASUVORK5CYII=);
+  /*background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAAH6ji2bAAAAAXNSR0IArs4c6QAAANNJREFUOBG9UkEOwjAMG3BB8P+/ckLUXW2ZzJs6CVFpSuLaTlJtWabPBcwr6Ug6AgDJc0Tkt/b1IwYBj/2SPpAAeIzoxLWRWvtVBTcNN4D7u/qQqIW8d8q5Bld5DxLqikl/2Fqs4eA1col9mUr6qkGECrPyuVEnrMHrSe7Cpp9HCtruxVPENHjC1Cy5C5teRnaW8B0NimnkaQSTRKLdM428CqLBfSheLfLvpAnjLK/zaxOa1Bh5aeUqPFX/xTCuEsaMvArOPvYsr89Rm4Th9nk/f8MPzzwK0MfabhcAAAAASUVORK5CYII=);*/
   background-size: 20px 20px;
 }
 
 main {
-  scroll-snap-type: y mandatory;
+  /*scroll-snap-type: y mandatory;*/
   position: relative;
   max-height: 100vh;
   overflow-y: auto;
   z-index: 0;
+  transition: all ease-in-out;
 }
 
 article {
-  height: 100vh;
+  /*height: 100vh;*/
 
   display: flex;
   flex-flow: column nowrap;
@@ -231,22 +265,27 @@ article {
   align-items: center;
 
   scroll-snap-align: start;
+  scroll-padding-top: 5vh;
 }
 
 article:nth-of-type(1) {
-  background-color: rgba(0, 82, 178, 0.5);
+  /*height: 100vh;*/
+
+
+  background-color: rgba(245, 245, 245, 1);
+  /*mix-blend-mode: darken;*/
 }
 
 article:nth-of-type(2) {
-  background-color: rgba(255, 164, 0, 0.5);
+  background-color: rgba(220, 220, 220, 1);
 }
 
 article:nth-of-type(3) {
-  background-color: rgba(144, 195, 255, 0.5);
+  /*background-color: rgba(144, 195, 255, 0.5);*/
 }
 
 article:nth-of-type(4) {
-  background-color: rgba(255, 173, 25, 1);
+  /*background-color: rgba(255, 173, 25, 1);*/
 }
 
 h2,
@@ -259,6 +298,11 @@ h3, a {
 
 h3 {
   font: 400 2em/1.5 sans-serif;
+}
+
+.my-card {
+  width: 100%;
+  max-width: 350px;
 }
 
 </style>
