@@ -26,7 +26,7 @@
 
       <div v-if="pageReady">
         <div ref="webgl" class="fixed-full"></div>
-        <MainHero></MainHero>
+        <MainHero v-if="$route.path==='/'"/>
       </div>
 
       <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
@@ -225,7 +225,7 @@ export default {
   },
   watch: {
     '$route.path': function () {
-      console.log(this.$route.path)
+      console.log("this.$route.path", this.$route.path)
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
