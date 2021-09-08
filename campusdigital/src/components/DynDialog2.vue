@@ -92,10 +92,10 @@
                   <q-img :src="obj.imagen" class="full-height full-width"></q-img>
                 </div>
 
-                <div class="full-height row wrap justify-start items-center content-center q-mx-auto" style="max-width: 65rem; position: relative">
+                <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position" style="max-width: 65rem;">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
                     <h4 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ obj.titulo }}</h4>
-                    <p class="text-h6 text-blue-2">
+                    <p class="text-h6 text-blue-9">
                       {{ obj.subtitulo }}
                     </p>
 
@@ -118,12 +118,18 @@
 <!--                      <span class="text-body2">Ver proyectos</span>-->
 <!--                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>-->
 <!--                    </q-btn>-->
+                    <div class="q-pa-md" v-if="obj.video">
+                      <q-video
+                        :ratio="16/9"
+                        :src="'https://www.youtube.com/embed/'+obj.video+'?rel=0'"
+                      />
+                    </div>
                   </div>
                 </div>
 
               </article>
               <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
-                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card" flat bordered>
+                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card self-stretch" flat bordered>
                   <q-img
                     :src="item.imagen"
                   />
@@ -135,9 +141,8 @@
                     </div>
                   </q-card-section>
 
-                  <q-card-actions>
-                    <q-btn flat color="dark" label="Share" />
-                    <q-btn flat color="primary" label="Book" />
+                  <q-card-actions v-if="item.enlace">
+                    <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary" />
 
                     <q-space />
 
