@@ -9,24 +9,17 @@
         </p>
         <q-btn size="sm"
                unelevated
-               class="
-               q-mr-md
-            q-pa-xs
-            bg-primary
-            text-white
-          ">
+               no-wrap
+               class="q-mr-md q-pa-xs bg-primary text-white">
           <span class="text-body2">Conocer más</span>
           <q-icon name="las la-arrow-down" size="md" class="q-pl-md"/>
         </q-btn>
 
         <q-btn size="sm"
+               @click="showRightDrawer=true"
                unelevated
-               class="
-            q-my-md
-            q-pa-xs
-            bg-white
-            text-primary
-          ">
+               no-wrap
+               class="q-my-md q-pa-xs bg-white text-primary no-wrap">
           <span class="text-body2">Explorar</span>
           <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
         </q-btn>
@@ -40,10 +33,33 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: 'MainHero',
   components: {},
-  props: ['intro'],
+  computed: {
+    ...mapGetters('campus', ['showRightDrawerGet']),
+    pageReady: {
+      get() {
+        return this.pageReadyGet
+      },
+      set(value) {
+        this.pageReadySet(value)
+      }
+    },
+    showRightDrawer: {
+      get() {
+        return this.showRightDrawerGet
+      },
+      set(value) {
+        this.showRightDrawerSet(value)
+      }
+    },
+  },
+  methods: {
+    ...mapActions('campus', ['showRightDrawerSet']),
+  },
   data() {
     return {}
   },

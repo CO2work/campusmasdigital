@@ -51,7 +51,6 @@
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
           style="z-index: 3001;"
-          @keyup.esc="showRightDrawer = false"
         />
       </q-img>
 
@@ -71,7 +70,6 @@
 
           <q-separator color="gray-5" />
           <EssentialLink
-
             v-for="link of paginasIndex"
             :key="link.titulo"
             :link="link"
