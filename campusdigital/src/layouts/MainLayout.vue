@@ -6,7 +6,7 @@
             <q-avatar>
               <img src="~assets/umsnh_escudo_svg_v2.svg" />
             </q-avatar>
-            Campus Digital UMSNH
+<!--            Campus Digital UMSNH-->
            </q-toolbar-title>
         <q-btn
           flat
@@ -33,25 +33,25 @@
       content-class="bg-primary text-white"
       behavior="desktop"
     >
-      <q-img class="q-py-lg" src="" style="height: 150px">
+      <q-btn
+        dense
+        round
+        color="primary"
+        size="md"
+        class="q-ma-lg fixed-top-right z-max"
+        icon="las la-times"
+        aria-label="Menu"
+        @click="showRightDrawer = !showRightDrawer"
+        style="z-index: 3001;"
+      />
+      <q-img class="full-width bg-white" src="" style="height: 150px">
         <div class="bg-white">
           <q-avatar size="52px" class="q-mb-sm">
             <img src="~assets/logo_campus_v1.svg">
           </q-avatar>
           <div class="text-primary text-weight-bold">Campus Digital</div>
-          <div class="text-primary"> de la Universidad Michoacana de San Nicolás de Hidalgo</div>
+          <div class="text-primary">UMSNH</div>
         </div>
-        <q-btn
-          dense
-          round
-          color="primary"
-          size="md"
-          class="q-ma-lg fixed-top-right z-max"
-          icon="las la-times"
-          aria-label="Menu"
-          @click="showRightDrawer = !showRightDrawer"
-          style="z-index: 3001;"
-        />
       </q-img>
 
       <q-scroll-area class="fit">
@@ -105,7 +105,6 @@
       style="z-index: 9999"
       :show="showSplash"
       :logo="'https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/Temp%2Flogo_campus_v1.svg?alt=media&token=8660d9f0-033f-4ff6-8d6f-7df9674823b6'"
-      custom-text="<div class='text-h5 text-primary'>Campus Digital UMSNH</div>"
       color="#33bbee"
       :size="300"
       :fixed="true"
@@ -117,8 +116,8 @@
 
         <q-footer reveal class="bg-transparent">
           <q-toolbar class="q-px-lg q-py-none">
-            <q-toolbar-title class="text-overline text-primary q-ma-none">
-                Universidad Michoacana de San Nicolás de Hidalgo
+            <q-toolbar-title class="text-overline text-primary q-ma-none" style="line-height: 1.4;">
+                Universidad Michoacana <wbr>de San Nicolás de Hidalgo
             </q-toolbar-title>
           </q-toolbar>
         </q-footer>
