@@ -129,8 +129,8 @@ export default {
     },
 
     onDocumentMouseMove(event) {
-      this.mouseX = (event.clientX - this.windowHalfX) * .4;
-      this.mouseY = (event.clientY - this.windowHalfY) * .3;
+      this.mouseX = (event.clientX - this.windowHalfX) * .08;
+      this.mouseY = (event.clientY - this.windowHalfY) * .05;
     },
     onWindowResize() {
       this.windowHalfX = window.innerWidth / 2;
