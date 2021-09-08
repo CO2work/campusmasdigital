@@ -42,11 +42,11 @@
           <div class="text-primary"> de la Universidad Michoacana de San Nicolás de Hidalgo</div>
         </div>
         <q-btn
-          flat
           dense
           round
-          size="xl"
-          class="text-primary q-ma-md fixed-top-right z-max"
+          color="primary"
+          size="md"
+          class="q-ma-lg fixed-top-right z-max"
           icon="las la-times"
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
