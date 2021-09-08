@@ -115,7 +115,7 @@ module.exports = function (/* ctx */) {
       manifest: {
         name: `Campus Digital UMSNH`,
         short_name: `Campus Digital UMSNH`,
-        description: `A Quasar Framework app`,
+        description: `Campus Digital UMSNH`,
         display: 'standalone',
         orientation: 'portrait',
         background_color: '#ffffff',
