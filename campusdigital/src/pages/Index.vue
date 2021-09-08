@@ -189,7 +189,7 @@ export default {
       loader.load('cu.glb', (gltf) => {
         this.gltf = gltf
         this.gltf.scene.position.y = 20;
-        this.intro ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
+        this.$route.path === '/' ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
         this.gltf.scene.position.x = -200;
         this.gltf.scene.position.z = 200;
         this.scene.add(this.gltf.scene);
@@ -231,6 +231,12 @@ export default {
       this.paginasPath = this.getPaginasPath(path)
       if (path !== '') {
         this.showDynDialog = true
+      }
+      this.camera.position.set(2000, 2000, 600)
+      if (this.$route.path === '/') {
+        this.gltf.scene.rotation.y = (Math.PI * .25) * 3
+      } else {
+         this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2)
       }
     },
     paginasIndex() {
