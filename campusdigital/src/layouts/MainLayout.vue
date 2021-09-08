@@ -51,6 +51,7 @@
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
           style="z-index: 3001;"
+          @keyup.esc="showRightDrawer = false"
         />
       </q-img>
 
@@ -417,7 +418,6 @@ export default {
       })
     },
     getPaginasIndex() {
-      let paginasIndex = []
       this.PaginasFB.doc('Index').get().then(response => {
         console.log("Response", response)
         console.log("Response data", response.data())

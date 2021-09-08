@@ -200,8 +200,13 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
+      console.log("this.$router.history", )
       if (path !== '') {
         this.showDynDialog = true
+      } else {
+        if (this.$router.history) {
+          this.showRightDrawer = true
+        }
       }
       this.camera.position.set(2000, 2000, 600)
       if (this.$route.path === '/') {
@@ -228,6 +233,9 @@ export default {
         setTimeout(() => {
           this.container = this.$refs.webgl;
           console.log("path", this.$route.path)
+          if (this.$route.path !== '/') {
+            this.showDynDialog = true
+          }
           this.initThree()
           this.animate()
         }, 100)
