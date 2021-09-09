@@ -37,8 +37,6 @@
             <!--        <q-img src="~assets/img/logo-geometry-v2.svg"></q-img>-->
           </div>
     </div>
-
-
     <q-dialog
       v-model="showConocerMas"
       :maximized="true"

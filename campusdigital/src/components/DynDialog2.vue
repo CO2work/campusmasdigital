@@ -252,12 +252,6 @@
 <script>
 import gsap from 'gsap'
 
-
-const nextMorphStep = {
-  card1: 'card2',
-  card2: 'card1'
-}
-
 export default {
   name: 'DynDialog',
   props: ['show', 'obj'],
@@ -291,7 +285,6 @@ export default {
       this.cardMaximizedIdx = idx
       this.maximizedItem = item
       this.showMaximizedItem = true
-
 
       setTimeout(() => {
         //this.cardMaximizedIdx = idx
