@@ -3,10 +3,10 @@
     <div>
       <div v-if="pageReady">
         <div ref="webgl" class="fixed-full"></div>
-        <MainHero v-if="$route.path==='/'"/>
+        <MainHero v-if="!showDynDialog"/>
       </div>
 
-      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath"/>
+      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
 
     </div>
 
@@ -199,24 +199,34 @@ export default {
   },
   watch: {
     '$route.path': function () {
-      console.log("this.$route.path", this.$route.path)
-      let path = this.$route.path.replace('/p/', '')
-      path = path.replace('/', '')
-      this.paginasPath = this.getPaginasPath(path)
-      console.log("this.$router.history", )
-      if (path !== '') {
-        this.showDynDialog = true
-      } else {
-        if (this.$router.history) {
-          this.showRightDrawer = true
+        console.log("this.$route.path", this.$route.path)
+        let path = this.$route.path.replace('/p/', '')
+        path = path.replace('/', '')
+        this.paginasPath = this.getPaginasPath(path)
+        console.log("paginasPath", this.paginasPath)
+        if (path !== '') {
+          setTimeout(() => {
+            this.showDynDialog = false
+            setTimeout(() => {
+              this.showDynDialog = true
+            }, 100)
+          }, 100)
+
+
+          console.log("path !== ''")
+        } else {
+          console.log("else")
+          if (this.$router.history) {
+            console.log("this.$router.history")
+            this.showRightDrawer = true
+          }
         }
-      }
-      this.camera.position.set(2000, 2000, 600)
-      if (this.$route.path === '/') {
-        this.gltf.scene.rotation.y = (Math.PI * .25) * 3
-      } else {
-         this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2)
-      }
+        this.camera.position.set(2000, 2000, 600)
+        if (this.$route.path === '/') {
+          this.gltf.scene.rotation.y = (Math.PI * .25) * 3
+        } else {
+          this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2)
+        }
     },
     paginasIndex() {
       let path = this.$route.path.replace('/p/', '')
@@ -228,7 +238,7 @@ export default {
         this.showRightDrawer = false
       } else {
         this.showRightDrawer = true
-        this.$router.push('/')
+        //this.$router.push('/')
       }
     },
     pageReady() {

@@ -36,7 +36,7 @@
                 <div v-if="maximizedItem" class="column full-height full-width dot-grid bg-white">
 
                   <q-page-sticky position="top-left" :offset="[16, 16]">
-                    <q-btn fab-mini color="primary" icon="mdi-close" @click="showDialog=false"/>
+                    <q-btn fab-mini color="primary" icon="mdi-close" @click="showMaximizedItem=false"/>
                   </q-page-sticky>
 
                   <div class="row">
@@ -260,7 +260,7 @@ export default {
       },
       set(value) {
         if (!value) {
-          //this.$emit('hide')
+          this.$emit('hide')
         }
         return value
       }
