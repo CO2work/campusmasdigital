@@ -52,38 +52,44 @@
                       <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
                         <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
                       </q-page-sticky>
+                      <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
                        <q-img
                         :src="maximizedItem.imagen"
+                        class="full-height full-width"
                       />
-                      <div class="row">
-                        <div class="text-h5 q-mt-sm q-mb-xs">{{ maximizedItem.titulo }}</div>
-                        <div class="text-uppercase text-small text-orange-9">{{ maximizedItem.subtitulo }}</div>
-                        <div class="text-caption text-grey q-my-md">
-                          {{ maximizedItem.descripcion }}
-                        </div>
                       </div>
-                      <div v-if="maximizedItem.enlace" class="row">
-                        <q-btn size="md" :to="maximizedItem.enlace" color="light" label="Enlace"
-                               class="text-white bg-primary"/>
+                      <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position"
+                           style="max-width: 65rem;">
+                        <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
+                          <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ maximizedItem.titulo }}</h3>
+                          <p class="text-h4 text-blue-9">
+                            {{ maximizedItem.subtitulo }}
+                          </p>
 
-                        <q-space/>
+                          <p class="text-h6 text-blue-grey-9 text-weight-light">
+                            {{ maximizedItem.descripcion }}
+                          </p>
 
-                        <q-btn
-                          color="grey"
-                          round
-                          flat
-                          dense
-                        />
-                      </div>
-                      <q-slide-transition>
-                        <div v-show="expanded">
-                          <q-separator/>
-                          <q-card-section class="text-subitle2">
+                          <p  v-if="maximizedItem.descripcion_extra" class="text-h6 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion_extra }}
-                          </q-card-section>
+                          </p>
                         </div>
-                      </q-slide-transition>
 
+
+                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                          <div class="q-pa-md" v-if="maximizedItem.video">
+                            <q-video
+                              :ratio="16/9"
+                              :src="'https://www.youtube.com/embed/'+obj.video+'?rel=0'"
+                            />
+                          </div>
+                        </div>
+
+                        <div v-if="maximizedItem.enlace" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                          <q-btn size="md" :to="maximizedItem.enlace" color="light" label="Enlace"
+                               class="text-white bg-primary"/>
+                        </div>
+                      </div>
 
                       <!--
 
