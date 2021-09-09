@@ -85,50 +85,11 @@
           <q-btn fab-mini color="primary" icon="las la-angle-left" @click="showDialog=false"/>
         </q-page-sticky>
 
-        <q-card
-          v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
-          v-morph:card2:mygroup:300="morphGroupModel">
-          <q-img
-            :src="cardMaximizedItem.imagen"
-          />
-          <q-page-sticky position="top-left" class="z-top" :offset="[16, 70]">
-            <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
-          </q-page-sticky>
-          <q-card-section>
-            <div class="text-h5 q-mt-sm q-mb-xs">{{ cardMaximizedItem.titulo }}</div>
-            <div class="text-uppercase text-small text-orange-9">{{ cardMaximizedItem.subtitulo }}</div>
-            <div class="text-caption text-grey q-my-md">
-              {{ cardMaximizedItem.descripcion }}
-            </div>
-          </q-card-section>
-          <q-card-actions v-if="cardMaximizedItem.enlace">
-            <q-btn size="md" :to="cardMaximizedItem.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
-
-            <q-space/>
-
-            <q-btn
-              color="grey"
-              round
-              flat
-              dense
-            />
-          </q-card-actions>
-          <q-slide-transition>
-            <div v-show="expanded">
-              <q-separator/>
-              <q-card-section class="text-subitle2">
-                {{ cardMaximizedItem.descripcion_extra }}
-              </q-card-section>
-            </div>
-          </q-slide-transition>
-        </q-card>
-
-
         <div class="row">
           <div class="col">
 
             <main class="q-pb-xl">
-              <article>
+              <article v-if="showDialogHero">
                 <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
                   <q-img :src="obj.imagen" class="full-height full-width"></q-img>
                 </div>
@@ -170,6 +131,45 @@
                 </div>
 
               </article>
+
+              <q-card
+            v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
+            v-morph:card2:mygroup:300="morphGroupModel">
+            <q-img
+              :src="cardMaximizedItem.imagen"
+            />
+            <q-page-sticky position="top-left" class="z-top" :offset="[16, 70]">
+              <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
+            </q-page-sticky>
+            <q-card-section>
+              <div class="text-h5 q-mt-sm q-mb-xs">{{ cardMaximizedItem.titulo }}</div>
+              <div class="text-uppercase text-small text-orange-9">{{ cardMaximizedItem.subtitulo }}</div>
+              <div class="text-caption text-grey q-my-md">
+                {{ cardMaximizedItem.descripcion }}
+              </div>
+            </q-card-section>
+            <q-card-actions v-if="cardMaximizedItem.enlace">
+              <q-btn size="md" :to="cardMaximizedItem.enlace" color="light" label="Enlace"
+                     class="text-white bg-primary"/>
+
+              <q-space/>
+
+              <q-btn
+                color="grey"
+                round
+                flat
+                dense
+              />
+            </q-card-actions>
+            <q-slide-transition>
+              <div v-show="expanded">
+                <q-separator/>
+                <q-card-section class="text-subitle2">
+                  {{ cardMaximizedItem.descripcion_extra }}
+                </q-card-section>
+              </div>
+            </q-slide-transition>
+          </q-card>
 
               <div v-if="obj.contenido.length"
                    class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto"
@@ -311,6 +311,7 @@ export default {
       cardMaximizedIdx: -1,
       cardMaximizedItem: undefined,
       morphGroupModel: 'card1',
+      showDialogHero: true,
     }
   },
   computed: {
@@ -329,9 +330,14 @@ export default {
   methods: {
     maximizeCard(idx, item) {
       console.log("print maximize", idx, item)
-      this.cardMaximizedIdx = idx
+
+
+      setTimeout(() => {
+        this.cardMaximizedIdx = idx
       this.cardMaximizedItem = item
 
+        this.showDialogHero = false
+      }, 250)
       setTimeout(() => {
         this.morphGroupModel = nextMorphStep[this.morphGroupModel]
       }, 300)
@@ -339,6 +345,7 @@ export default {
 
     closeCard() {
       this.morphGroupModel = nextMorphStep[this.morphGroupModel]
+      this.showDialogHero = true
       setTimeout(() => {
         this.cardMaximizedIdx = -1
         this.cardMaximizedItem = undefined
