@@ -7,9 +7,9 @@
             <q-img src="~assets/logo_campus_v1.svg"
                    class=""
                    style="width :62px; height: auto"/>
-            <h4 class="q-ma-none q-mb-lg text-primary text-weight-light">
+            <div class="text-h4 q-ma-none q-mb-lg text-primary text-uppercase text-weight-bold">
               Campus Digital UMSNH
-            </h4>
+            </div>
             <p class="text-body2">
               Conoce los espacios digitales de la Universidad, sus servicios digitales y navega el campus virtual
             </p>

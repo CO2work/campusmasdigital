@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col">
 
-            <main class="q-pb-xl">
+            <main>
               <q-card
                 v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
                 v-morph:card2:mygroup:300="morphGroupModel">
@@ -167,6 +167,34 @@
                     </q-slide-transition>
                   </q-card>
 
+                </div>
+              </div>
+              <div class="full-width">
+                <div class="q-mt-xl bg-primary q-py-xl q-pa-md row items-start q-gutter-md row wrap justify-center">
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
+                    <p class="text-h6 text-white text-weight-light">
+                      Debitis explicabo ipsum officia!
+                    </p>
+                    <p class="text-body2 text-blue-4">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem, unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam sed totam?
+                    </p>
+                  </div>
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
+                    <q-btn size="sm"
+                           unelevated
+                           no-wrap
+                           class="q-pa-xs q-mr-lg q-mb-xl bg-white text-primary no-wrap">
+                      <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
+                      <span class="text-body2">Proyecto anterior </span>
+                    </q-btn>
+                    <q-btn size="sm"
+                           unelevated
+                           no-wrap
+                           class="q-pa-xs  q-mb-xl bg-white text-primary no-wrap">
+                      <span class="text-body2">Proyecto siguiente</span>
+                      <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
+                    </q-btn>
+                  </div>
                 </div>
               </div>
             </main>

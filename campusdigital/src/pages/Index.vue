@@ -93,15 +93,15 @@ export default {
       return filtradas
     },
     render() {
-      this.camera.position.x += (this.mouseX - this.camera.position.x) * .05;
-      this.camera.position.y += (-this.mouseY - this.camera.position.y) * .05;
+      this.camera.position.x += (this.mouseX - this.camera.position.x) * .025;
+      this.camera.position.y += (-this.mouseY - this.camera.position.y) * .025;
       this.camera.lookAt(this.scene.position);
       this.renderer.render(this.scene, this.camera);
     },
 
     onDocumentMouseMove(event) {
       this.mouseX = (event.clientX - this.windowHalfX) * .08;
-      this.mouseY = (event.clientY - this.windowHalfY) * .05;
+      this.mouseY = (event.clientY - this.windowHalfY) * .09;
     },
     onWindowResize() {
       this.windowHalfX = window.innerWidth / 2;
@@ -128,11 +128,12 @@ export default {
       this.renderer.outputEncoding = THREE.sRGBEncoding;
       this.$refs.webgl.appendChild(this.renderer.domElement);
 
-      this.scene.background = new THREE.Color('#80dcf8');
+      this.scene.background = new THREE.Color('#2484e8');
 
-      const grid = new THREE.GridHelper(500, 10, 0xffffff, 0xffffff);
-      grid.position.y = -180
-      grid.material.opacity = 0.5;
+      const grid = new THREE.GridHelper(2500, 150, 0xbbeeff, 0x324C5E);
+      grid.position.y = 0
+      grid.rotation.x = .65;
+      grid.material.opacity = 0.25;
       grid.material.depthWrite = false;
       grid.material.transparent = true;
       this.scene.add(grid);
@@ -157,14 +158,16 @@ export default {
       const loader = new GLTFLoader(manager).setPath('/models/gltf/')
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('cu.glb', (gltf) => {
+      loader.load('color_cu.glb', (gltf) => {
         this.gltf = gltf
-        this.gltf.scene.position.y = -40;
+        this.gltf.scene.position.y = 0;
         this.$route.path === '/' ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
-        this.gltf.scene.position.x = -200;
-        this.gltf.scene.position.z = 200;
+        this.gltf.scene.position.x = 0;
+        this.gltf.scene.position.z = 0;
         this.scene.add(this.gltf.scene);
         this.pageReady = true
+
+        this.gltf.scene.rotation.x = .65;
       });
 
       manager.onLoad = () => {

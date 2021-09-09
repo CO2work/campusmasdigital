@@ -86,23 +86,32 @@
               </q-item-section>
           </q-item>
           <q-separator color="gray-5" />
+          <q-item
+            clickable
+            v-ripple
+            tag="a"
+            @click="showConocerMas=false"
+            exact
+            >
+            <q-item-section
+              avatar
+              class="text-white"
+              >
+              <q-icon name="las la-plus" size="lg" />
+            </q-item-section>
+
+            <q-item-section class="q-py-md">
+              <q-item-label>Conocer más</q-item-label>
+              <q-item-label caption class="text-weight-light text-blue-3">
+                Información de este sitio
+              </q-item-label>
+            </q-item-section>
+          </q-item>
 
         </q-list>
       </q-scroll-area>
-
-<!--      <div class="absolute" style="bottom: 15px; left: -17px">-->
-<!--        <q-btn-->
-<!--          dense-->
-<!--          round-->
-<!--          unelevated-->
-<!--          color="primary"-->
-<!--          :icon="miniState ? 'las la-angle-left' : 'las la-angle-right'"-->
-<!--          @click="miniState = !miniState"-->
-<!--        ></q-btn>-->
-<!--      </div>-->
     </q-drawer>
 
-    <!--https://upload.wikimedia.org/wikipedia/commons/1/14/Logo_de_la_UMSNH.svg-->
     <vue-splash
       style="z-index: 9999"
       :show="showSplash"
@@ -110,9 +119,10 @@
       color="#33bbee"
       :size="300"
       :fixed="true"
+      class="dot-grid"
     />
 
-    <q-page-container style="padding-top: 0; padding-bottom: 0;">
+    <q-page-container style="padding-top: 0; padding-bottom: 0;" class="dot-grid">
       <router-view/>
     </q-page-container>
 
@@ -441,7 +451,7 @@ export default {
     setTimeout(() => {
       this.showSplash = false
       this.pageReady = true
-    }, 3200)
+    }, 3400)
   },
 }
 </script>
