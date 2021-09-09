@@ -139,12 +139,13 @@
                   <q-card class="my-card self-stretch" flat bordered
                           v-if="cardMaximizedIdx === idx"
                           v-morph:card1:mygroup:300="morphGroupModel"
-                          @click="maximizeCard(idx, item)">
+                          >
                     <q-img
                       :src="item.imagen"
+                      @click.stop="maximizeCard(idx, item)"
                     />
                     <q-card-section>
-                      <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div @click.stop="maximizeCard(idx, item)" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
                       <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
                       <div class="text-caption text-grey q-my-md">
                         {{ item.descripcion }}
@@ -173,19 +174,20 @@
                   </q-card>
                   <q-card class="my-card self-stretch" flat bordered
                           v-else
-                          @click.stop="maximizeCard(idx, item)">
+                          >
                     <q-img
+                      @click.stop="maximizeCard(idx, item)"
                       :src="item.imagen"
                     />
                     <q-card-section>
-                      <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div @click.stop="maximizeCard(idx, item)" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
                       <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
                       <div class="text-caption text-grey q-my-md">
                         {{ item.descripcion }}
                       </div>
                     </q-card-section>
                     <q-card-actions v-if="item.enlace">
-                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
+                      <q-btn type="a" target="_blank" size="md" :href="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
 
                       <q-space/>
 
