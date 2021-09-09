@@ -12,7 +12,7 @@
 
       <div class="column full-height full-width dot-grid bg-white">
 
-        <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
+        <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]" >
           <q-btn fab-mini color="primary" icon="las la-angle-left" @click="showDialog=false"/>
         </q-page-sticky>
 
@@ -35,7 +35,7 @@
               >
                 <div v-if="maximizedItem" class="column full-height full-width dot-grid bg-white">
 
-                  <q-page-sticky position="top-left" :offset="[16, 22]">
+                  <q-page-sticky position="top-left" :offset="[16, 16]">
                     <q-btn fab-mini color="primary" icon="mdi-close" @click="showDialog=false"/>
                   </q-page-sticky>
 
@@ -49,7 +49,7 @@
                       -->
 
 
-                      <q-page-sticky position="top-left" class="z-top" :offset="[16, 70]">
+                      <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
                         <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
                       </q-page-sticky>
                        <q-img
@@ -285,18 +285,6 @@ export default {
       this.cardMaximizedIdx = idx
       this.maximizedItem = item
       this.showMaximizedItem = true
-
-      setTimeout(() => {
-        //this.cardMaximizedIdx = idx
-        //this.maximizedItem = item
-      }, 100)
-      setTimeout(() => {
-        //this.morphGroupModel = nextMorphStep[this.morphGroupModel]
-      }, 300)
-      setTimeout(() => {
-        //this.showDialogHero = false
-        //this.showContentCards = false
-      }, 600)
     },
 
     closeCard() {
