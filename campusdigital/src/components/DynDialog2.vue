@@ -191,14 +191,14 @@
                            :to="anterior"
                            class="q-pa-xs q-mr-lg q-mb-xl bg-white text-primary no-wrap">
                       <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
-                      <span class="text-body2">Proyecto anterior </span>
+                      <span class="text-body2">{{ titulo_anterior }}</span>
                     </q-btn>
                     <q-btn size="sm"
                            unelevated
                            no-wrap
                            :to="siguiente"
                            class="q-pa-xs  q-mb-xl bg-white text-primary no-wrap">
-                      <span class="text-body2">Proyecto siguiente</span>
+                      <span class="text-body2">{{ titulo_siguiente }}</span>
                       <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
                     </q-btn>
                   </div>
@@ -232,7 +232,9 @@ export default {
       showMaximizedItem: false,
       showContentCards: true,
       anterior: '/',
-      siguiente: '/'
+      siguiente: '/',
+      titulo_anterior: '/',
+      titulo_siguiente: '/',
     }
   },
   computed: {
@@ -251,7 +253,7 @@ export default {
       },
       set(value) {
         if (!value) {
-          this.$emit('hide')
+          //this.$emit('hide')
         }
         return value
       }
@@ -276,8 +278,32 @@ export default {
     console.log("obj", this.obj)
     console.log("paginasIndex", Object.values(this.paginasIndex))
     const arrPaginas = Object.values(this.paginasIndex)
-    this.siguiente = '/p/' + arrPaginas[arrPaginas.indexOf(this.obj)+1].slug
 
+    let siguiente = arrPaginas.indexOf(this.obj)+1
+    siguiente + 1 > arrPaginas.length - 1 ? siguiente = 0 : siguiente = arrPaginas.indexOf(this.obj) + 1
+    this.siguiente = '/p/' + arrPaginas[siguiente].slug
+    this.titulo_siguiente = arrPaginas[siguiente].titulo
+
+    let anterior = arrPaginas.indexOf(this.obj) - 1
+    anterior < 0 ? anterior = arrPaginas.length - 1 : anterior = arrPaginas.indexOf(this.obj) - 1
+    this.anterior = '/p/' + arrPaginas[anterior].slug
+    this.titulo_anterior = arrPaginas[anterior].titulo
+  },
+  updated() {
+    console.log("aqui")
+    console.log("obj", this.obj)
+    console.log("paginasIndex", Object.values(this.paginasIndex))
+    const arrPaginas = Object.values(this.paginasIndex)
+
+    let siguiente = arrPaginas.indexOf(this.obj)+1
+    siguiente + 1 > arrPaginas.length - 1 ? siguiente = 0 : siguiente = arrPaginas.indexOf(this.obj) + 1
+    this.siguiente = '/p/' + arrPaginas[siguiente].slug
+    this.titulo_siguiente = arrPaginas[siguiente].titulo
+
+    let anterior = arrPaginas.indexOf(this.obj) - 1
+    anterior < 0 ? anterior = arrPaginas.length - 1 : anterior = arrPaginas.indexOf(this.obj) - 1
+    this.anterior = '/p/' + arrPaginas[anterior].slug
+    this.titulo_anterior = arrPaginas[anterior].titulo
   }
 }
 </script>

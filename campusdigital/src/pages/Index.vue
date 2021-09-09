@@ -6,7 +6,7 @@
         <MainHero v-if="$route.path==='/'"/>
       </div>
 
-      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
+      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath"/>
 
     </div>
 
