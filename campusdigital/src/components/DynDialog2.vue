@@ -10,7 +10,6 @@
       class="full-height"
     >
 
-
       <div class="column full-height full-width dot-grid bg-white">
 
         <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
@@ -25,20 +24,20 @@
                 v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
                 v-morph:card2:mygroup:300="morphGroupModel">
                 <q-img
-                  :src="cardMaximizedItem.imagen"
+                  :src="maximizedItem.imagen"
                 />
                 <q-page-sticky position="top-left" class="z-top" :offset="[16, 70]">
                   <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
                 </q-page-sticky>
                 <q-card-section>
-                  <div class="text-h5 q-mt-sm q-mb-xs">{{ cardMaximizedItem.titulo }}</div>
-                  <div class="text-uppercase text-small text-orange-9">{{ cardMaximizedItem.subtitulo }}</div>
+                  <div class="text-h5 q-mt-sm q-mb-xs">{{ maximizedItem.titulo }}</div>
+                  <div class="text-uppercase text-small text-orange-9">{{ maximizedItem.subtitulo }}</div>
                   <div class="text-caption text-grey q-my-md">
-                    {{ cardMaximizedItem.descripcion }}
+                    {{ maximizedItem.descripcion }}
                   </div>
                 </q-card-section>
-                <q-card-actions v-if="cardMaximizedItem.enlace">
-                  <q-btn size="md" :to="cardMaximizedItem.enlace" color="light" label="Enlace"
+                <q-card-actions v-if="maximizedItem.enlace">
+                  <q-btn size="md" :to="maximizedItem.enlace" color="light" label="Enlace"
                          class="text-white bg-primary"/>
 
                   <q-space/>
@@ -54,11 +53,41 @@
                   <div v-show="expanded">
                     <q-separator/>
                     <q-card-section class="text-subitle2">
-                      {{ cardMaximizedItem.descripcion_extra }}
+                      {{ maximizedItem.descripcion_extra }}
                     </q-card-section>
                   </div>
                 </q-slide-transition>
               </q-card>
+
+              <q-dialog
+                v-model="showMaximizedItem"
+                :maximized="true"
+                transition-show="slide-up"
+                transition-hide="jump-down"
+                class="full-height"
+              >
+                <div class="column full-height full-width dot-grid bg-white">
+
+                  <q-page-sticky position="top-left" :offset="[16, 22]">
+                    <q-btn fab-mini color="primary" icon="mdi-close" @click="showDialog=false"/>
+                  </q-page-sticky>
+
+                  <div class="row">
+                    <div class="col">
+
+                      <!--
+
+                      CONTENIDO AQUI
+
+                      -->
+
+                    </div>
+                  </div>
+                </div>
+
+
+              </q-dialog>
+
 
               <article v-if="showDialogHero">
                 <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
@@ -176,7 +205,9 @@
                       Debitis explicabo ipsum officia!
                     </p>
                     <p class="text-body2 text-blue-4">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem, unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam sed totam?
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem,
+                      unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam
+                      sed totam?
                     </p>
                   </div>
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
@@ -224,9 +255,10 @@ export default {
     return {
       expanded: false,
       cardMaximizedIdx: -1,
-      cardMaximizedItem: undefined,
+      maximizedItem: undefined,
       morphGroupModel: 'card1',
       showDialogHero: true,
+      showMaximizedItem: false,
       showContentCards: true,
     }
   },
@@ -246,22 +278,22 @@ export default {
   methods: {
     maximizeCard(idx, item) {
       console.log("print maximize", idx, item)
+      this.cardMaximizedIdx = idx
+      this.maximizedItem = item
+      this.showMaximizedItem = true
 
 
       setTimeout(() => {
-        this.cardMaximizedIdx = idx
-        this.cardMaximizedItem = item
+        //this.cardMaximizedIdx = idx
+        //this.maximizedItem = item
       }, 100)
-
       setTimeout(() => {
-        this.morphGroupModel = nextMorphStep[this.morphGroupModel]
+        //this.morphGroupModel = nextMorphStep[this.morphGroupModel]
       }, 300)
-
       setTimeout(() => {
-        this.showDialogHero = false
-        this.showContentCards = false
+        //this.showDialogHero = false
+        //this.showContentCards = false
       }, 600)
-
     },
 
     closeCard() {
@@ -270,9 +302,8 @@ export default {
       this.showDialogHero = true
       setTimeout(() => {
         this.cardMaximizedIdx = -1
-        this.cardMaximizedItem = undefined
+        this.maximizedItem = undefined
       }, 300)
-
     }
   }
 }
