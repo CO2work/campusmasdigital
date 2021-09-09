@@ -188,6 +188,7 @@
                     <q-btn size="sm"
                            unelevated
                            no-wrap
+                           :to="anterior"
                            class="q-pa-xs q-mr-lg q-mb-xl bg-white text-primary no-wrap">
                       <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
                       <span class="text-body2">Proyecto anterior </span>
@@ -195,6 +196,7 @@
                     <q-btn size="sm"
                            unelevated
                            no-wrap
+                           :to="siguiente"
                            class="q-pa-xs  q-mb-xl bg-white text-primary no-wrap">
                       <span class="text-body2">Proyecto siguiente</span>
                       <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
@@ -215,6 +217,7 @@
 
 <script>
 import gsap from 'gsap'
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'DynDialog',
@@ -228,9 +231,20 @@ export default {
       showDialogHero: true,
       showMaximizedItem: false,
       showContentCards: true,
+      anterior: '/',
+      siguiente: '/'
     }
   },
   computed: {
+    ...mapGetters('campus', ['paginasIndexGet']),
+    paginasIndex: {
+      get() {
+        return this.paginasIndexGet
+      },
+      set(value) {
+        this.paginasIndexSet(value)
+      }
+    },
     showDialog: {
       get() {
         return this.show
@@ -244,6 +258,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('campus', ['paginasIndexSet']),
     maximizeCard(idx, item) {
       console.log("print maximize", idx, item)
       this.cardMaximizedIdx = idx
@@ -255,6 +270,14 @@ export default {
       this.showMaximizedItem = false
       this.maximizedItem = undefined
     }
+  },
+  created() {
+    console.log("aqui")
+    console.log("obj", this.obj)
+    console.log("paginasIndex", Object.values(this.paginasIndex))
+    const arrPaginas = Object.values(this.paginasIndex)
+    this.siguiente = '/p/' + arrPaginas[arrPaginas.indexOf(this.obj)+1].slug
+
   }
 }
 </script>
