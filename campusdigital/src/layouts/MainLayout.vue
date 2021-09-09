@@ -34,27 +34,29 @@
       behavior="desktop"
     >
       <q-btn
+        flat
         dense
         round
-        color="primary"
-        size="md"
-        class="q-ma-lg fixed-top-right z-max"
+        color="blue-5"
+        size="xl"
+        class="q-ma-md fixed-top-right z-max"
         icon="las la-times"
         aria-label="Menu"
         @click="showRightDrawer = !showRightDrawer"
         style="z-index: 3001;"
       />
-      <q-img class="full-width bg-white" src="" style="height: 150px">
-        <div class="bg-white">
-          <q-avatar size="52px" class="q-mb-sm">
-            <img src="~assets/logo_campus_v1.svg">
-          </q-avatar>
-          <div class="text-primary text-weight-bold">Campus Digital</div>
-          <div class="text-primary">UMSNH</div>
-        </div>
-      </q-img>
+
 
       <q-scroll-area class="fit">
+        <q-img class="full-width bg-white" src="" style="height: 135px">
+          <div class="bg-white">
+            <q-avatar size="52px" class="q-mb-sm">
+              <img src="~assets/logo_campus_v1.svg">
+            </q-avatar>
+            <div class="text-primary text-weight-bold">Campus Digital</div>
+            <div class="text-primary">UMSNH</div>
+          </div>
+        </q-img>
         <q-list v-if="1===1">
           <q-item class="header bg-blue-10">
             <span class="text-weight-light">

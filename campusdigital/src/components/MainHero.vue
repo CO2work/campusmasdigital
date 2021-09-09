@@ -4,7 +4,12 @@
          style="max-width: 65rem; position: relative">
 
           <div class="col-shrink col-xs-12 col-sm-8 col-md-5 self-center q-ma-lg">
-            <h4 class="q-mb-lg text-primary text-weight-light">Campus Digital UMSNH</h4>
+            <q-img src="~assets/logo_campus_v1.svg"
+                   class=""
+                   style="width :62px; height: auto"/>
+            <h4 class="q-ma-none q-mb-lg text-primary text-weight-light">
+              Campus Digital UMSNH
+            </h4>
             <p class="text-body2">
               Conoce los espacios digitales de la Universidad, sus servicios digitales y navega el campus virtual
             </p>
@@ -119,8 +124,6 @@
                   </div>
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
                     <q-btn size="sm"
-                           v-show="!showRightDrawer"
-                           @click="showRightDrawer=true"
                            unelevated
                            no-wrap
                            class="q-pa-xs bg-white text-primary no-wrap">

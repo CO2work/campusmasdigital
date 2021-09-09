@@ -129,39 +129,46 @@
 
               </article>
               <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto" style="max-width: 65rem;">
-                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card self-stretch" flat bordered>
-                  <q-img
-                    :src="item.imagen"
-                  />
-                  <q-card-section>
-                    <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
-                    <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
-                    <div class="text-caption text-grey q-my-md">
-                      {{ item.descripcion }}
+                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card self-stretch column justify-between" flat bordered>
+                  <q-card-section class="q-pa-none overflow-hidden">
+                    <div class="overflow-hidden" style="height: 220px;">
+                      <q-img
+                        class="full-width full-height"
+                        :src="item.imagen"
+                      />
+                    </div>
+                    <div class="q-pa-md">
+                      <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
+                      <div class="text-caption text-grey q-my-md">
+                        {{ item.descripcion }}
+                      </div>
                     </div>
                   </q-card-section>
 
-                  <q-card-actions v-if="item.enlace">
-                    <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary" />
+                  <q-card-section class="q-pa-md">
+                    <q-card-actions v-if="item.enlace" class="self-end">
+                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary" />
 
-                    <q-space />
+                      <q-space />
 
-                    <q-btn
-                      color="grey"
-                      round
-                      flat
-                      dense
-                    />
-                  </q-card-actions>
+                      <q-btn
+                        color="grey"
+                        round
+                        flat
+                        dense
+                      />
+                    </q-card-actions>
 
-                  <q-slide-transition>
-                    <div v-show="expanded">
-                      <q-separator />
-                      <q-card-section class="text-subitle2">
-                        {{ item.descripcion_extra }}
-                      </q-card-section>
-                    </div>
-                  </q-slide-transition>
+                    <q-slide-transition>
+                      <div v-show="expanded">
+                        <q-separator />
+                        <q-card-section class="text-subitle2">
+                          {{ item.descripcion_extra }}
+                        </q-card-section>
+                      </div>
+                    </q-slide-transition>
+                  </q-card-section>
                 </q-card>
               </div>
             </main>
