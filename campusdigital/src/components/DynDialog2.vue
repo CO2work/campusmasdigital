@@ -9,6 +9,8 @@
       transition-hide="jump-down"
       class="full-height"
     >
+
+
       <div class="column full-height full-width dot-grid bg-white">
 
         <!--
@@ -83,6 +85,45 @@
           <q-btn fab-mini color="primary" icon="las la-angle-left" @click="showDialog=false"/>
         </q-page-sticky>
 
+        <q-card
+          v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
+          v-morph:card2:mygroup:300="morphGroupModel">
+          <q-img
+            :src="cardMaximizedItem.imagen"
+          />
+          <q-page-sticky position="top-left" class="z-top" :offset="[16, 70]">
+            <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
+          </q-page-sticky>
+          <q-card-section>
+            <div class="text-h5 q-mt-sm q-mb-xs">{{ cardMaximizedItem.titulo }}</div>
+            <div class="text-uppercase text-small text-orange-9">{{ cardMaximizedItem.subtitulo }}</div>
+            <div class="text-caption text-grey q-my-md">
+              {{ cardMaximizedItem.descripcion }}
+            </div>
+          </q-card-section>
+          <q-card-actions v-if="cardMaximizedItem.enlace">
+            <q-btn size="md" :to="cardMaximizedItem.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
+
+            <q-space/>
+
+            <q-btn
+              color="grey"
+              round
+              flat
+              dense
+            />
+          </q-card-actions>
+          <q-slide-transition>
+            <div v-show="expanded">
+              <q-separator/>
+              <q-card-section class="text-subitle2">
+                {{ cardMaximizedItem.descripcion_extra }}
+              </q-card-section>
+            </div>
+          </q-slide-transition>
+        </q-card>
+
+
         <div class="row">
           <div class="col">
 
@@ -92,7 +133,8 @@
                   <q-img :src="obj.imagen" class="full-height full-width"></q-img>
                 </div>
 
-                <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position" style="max-width: 65rem;">
+                <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position"
+                     style="max-width: 65rem;">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
                     <h4 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ obj.titulo }}</h4>
                     <p class="text-h6 text-blue-9">
@@ -106,18 +148,18 @@
 
 
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
-<!--                    <q-btn size="sm"-->
-<!--                       :to="obj.enlace"-->
-<!--                       unelevated-->
-<!--                       class="-->
-<!--                        q-mx-md-->
-<!--                        q-pa-xs-->
-<!--                        text-white-->
-<!--                        bg-blue-7-->
-<!--                      ">-->
-<!--                      <span class="text-body2">Ver proyectos</span>-->
-<!--                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>-->
-<!--                    </q-btn>-->
+                    <!--                    <q-btn size="sm"-->
+                    <!--                       :to="obj.enlace"-->
+                    <!--                       unelevated-->
+                    <!--                       class="-->
+                    <!--                        q-mx-md-->
+                    <!--                        q-pa-xs-->
+                    <!--                        text-white-->
+                    <!--                        bg-blue-7-->
+                    <!--                      ">-->
+                    <!--                      <span class="text-body2">Ver proyectos</span>-->
+                    <!--                      <q-icon name="las la-plus" size="md" class="q-pl-md"/>-->
+                    <!--                    </q-btn>-->
                     <div class="q-pa-md" v-if="obj.video">
                       <q-video
                         :ratio="16/9"
@@ -128,29 +170,29 @@
                 </div>
 
               </article>
-              <div v-if="obj.contenido.length" class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto" style="max-width: 65rem;">
-                <q-card v-for="(item, idx) in obj.contenido" :key="idx" class="my-card self-stretch column justify-between" flat bordered>
-                  <q-card-section class="q-pa-none overflow-hidden">
-                    <div class="overflow-hidden" style="height: 220px;">
-                      <q-img
-                        class="full-width full-height"
-                        :src="item.imagen"
-                      />
-                    </div>
-                    <div class="q-pa-md">
+
+              <div v-if="obj.contenido.length"
+                   class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto"
+                   style="max-width: 65rem;">
+                <div v-for="(item, idx) in obj.contenido" :key="idx">
+                  <q-card class="my-card self-stretch" flat bordered
+                          v-if="cardMaximizedIdx === idx"
+                          v-morph:card1:mygroup:300="morphGroupModel"
+                          @click="maximizeCard(idx, item)">
+                    <q-img
+                      :src="item.imagen"
+                    />
+                    <q-card-section>
                       <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
                       <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
                       <div class="text-caption text-grey q-my-md">
                         {{ item.descripcion }}
                       </div>
-                    </div>
-                  </q-card-section>
+                    </q-card-section>
+                    <q-card-actions v-if="item.enlace">
+                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
 
-                  <q-card-section class="q-pa-md">
-                    <q-card-actions v-if="item.enlace" class="self-end">
-                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary" />
-
-                      <q-space />
+                      <q-space/>
 
                       <q-btn
                         color="grey"
@@ -159,17 +201,51 @@
                         dense
                       />
                     </q-card-actions>
-
                     <q-slide-transition>
                       <div v-show="expanded">
-                        <q-separator />
+                        <q-separator/>
                         <q-card-section class="text-subitle2">
                           {{ item.descripcion_extra }}
                         </q-card-section>
                       </div>
                     </q-slide-transition>
-                  </q-card-section>
-                </q-card>
+                  </q-card>
+                  <q-card class="my-card self-stretch" flat bordered
+                          v-else
+                          @click.stop="maximizeCard(idx, item)">
+                    <q-img
+                      :src="item.imagen"
+                    />
+                    <q-card-section>
+                      <div class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
+                      <div class="text-caption text-grey q-my-md">
+                        {{ item.descripcion }}
+                      </div>
+                    </q-card-section>
+                    <q-card-actions v-if="item.enlace">
+                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
+
+                      <q-space/>
+
+                      <q-btn
+                        color="grey"
+                        round
+                        flat
+                        dense
+                      />
+                    </q-card-actions>
+                    <q-slide-transition>
+                      <div v-show="expanded">
+                        <q-separator/>
+                        <q-card-section class="text-subitle2">
+                          {{ item.descripcion_extra }}
+                        </q-card-section>
+                      </div>
+                    </q-slide-transition>
+                  </q-card>
+
+                </div>
               </div>
             </main>
 
@@ -221,12 +297,20 @@ for (const block of blocks) {
   console.log("block", block)
 }
 
+const nextMorphStep = {
+  card1: 'card2',
+  card2: 'card1'
+}
+
 export default {
   name: 'DynDialog',
   props: ['show', 'obj'],
   data() {
     return {
       expanded: false,
+      cardMaximizedIdx: -1,
+      cardMaximizedItem: undefined,
+      morphGroupModel: 'card1',
     }
   },
   computed: {
@@ -240,6 +324,26 @@ export default {
         }
         return value
       }
+    }
+  },
+  methods: {
+    maximizeCard(idx, item) {
+      console.log("print maximize", idx, item)
+      this.cardMaximizedIdx = idx
+      this.cardMaximizedItem = item
+
+      setTimeout(() => {
+        this.morphGroupModel = nextMorphStep[this.morphGroupModel]
+      }, 300)
+    },
+
+    closeCard() {
+      this.morphGroupModel = nextMorphStep[this.morphGroupModel]
+      setTimeout(() => {
+        this.cardMaximizedIdx = -1
+        this.cardMaximizedItem = undefined
+      }, 300)
+
     }
   }
 }
