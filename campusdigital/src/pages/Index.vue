@@ -6,7 +6,7 @@
         <MainHero v-if="!showDynDialog"/>
       </div>
 
-      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog=false"/>
+      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog = false"/>
 
     </div>
 
@@ -91,6 +91,10 @@ export default {
         }
       })
       return filtradas
+    },
+    hideDynDialog() {
+      console.log("hideee")
+      this.showDynDialog = false
     },
     render() {
       this.camera.position.x += (this.mouseX - this.camera.position.x) * .025;
@@ -199,34 +203,30 @@ export default {
   },
   watch: {
     '$route.path': function () {
-        console.log("this.$route.path", this.$route.path)
-        let path = this.$route.path.replace('/p/', '')
-        path = path.replace('/', '')
-        this.paginasPath = this.getPaginasPath(path)
-        console.log("paginasPath", this.paginasPath)
-        if (path !== '') {
+      console.log("this.$route.path", this.$route.path)
+      let path = this.$route.path.replace('/p/', '')
+      path = path.replace('/', '')
+      this.paginasPath = this.getPaginasPath(path)
+      console.log("paginasPath", this.paginasPath)
+      if (path !== '') {
+        setTimeout(() => {
+          this.showDynDialog = false
           setTimeout(() => {
-            this.showDynDialog = false
-            setTimeout(() => {
-              this.showDynDialog = true
-            }, 100)
+            this.showDynDialog = true
           }, 100)
-
-
-          console.log("path !== ''")
-        } else {
-          console.log("else")
-          if (this.$router.history) {
-            console.log("this.$router.history")
-            this.showRightDrawer = true
-          }
+        }, 100)
+      } else {
+        if (this.$router.history) {
+          //this.showDynDialog = false
+          this.showRightDrawer = true
         }
-        this.camera.position.set(2000, 2000, 600)
-        if (this.$route.path === '/') {
-          this.gltf.scene.rotation.y = (Math.PI * .25) * 3
-        } else {
-          this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2)
-        }
+      }
+      this.camera.position.set(2000, 2000, 600)
+      if (this.$route.path === '/') {
+        this.gltf.scene.rotation.y = (Math.PI * .25) * 3
+      } else {
+        this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2)
+      }
     },
     paginasIndex() {
       let path = this.$route.path.replace('/p/', '')
