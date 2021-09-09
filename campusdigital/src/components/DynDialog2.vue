@@ -136,51 +136,14 @@
                    class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto"
                    style="max-width: 65rem;">
                 <div v-for="(item, idx) in obj.contenido" :key="idx">
-                  <q-card class="my-card self-stretch" flat bordered
-                          v-if="cardMaximizedIdx === idx"
-                          v-morph:card1:mygroup:300="morphGroupModel"
-                          >
-                    <q-img
-                      :src="item.imagen"
-                      @click.stop="maximizeCard(idx, item)"
-                    />
-                    <q-card-section>
-                      <div @click.stop="maximizeCard(idx, item)" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
-                      <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
-                      <div class="text-caption text-grey q-my-md">
-                        {{ item.descripcion }}
-                      </div>
-                    </q-card-section>
-                    <q-card-actions v-if="item.enlace">
-                      <q-btn size="md" :to="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
-
-                      <q-space/>
-
-                      <q-btn
-                        color="grey"
-                        round
-                        flat
-                        dense
-                      />
-                    </q-card-actions>
-                    <q-slide-transition>
-                      <div v-show="expanded">
-                        <q-separator/>
-                        <q-card-section class="text-subitle2">
-                          {{ item.descripcion_extra }}
-                        </q-card-section>
-                      </div>
-                    </q-slide-transition>
-                  </q-card>
-                  <q-card class="my-card self-stretch" flat bordered
-                          v-else
-                          >
+                  <q-card class="my-card self-stretch" flat bordered>
                     <q-img
                       @click.stop="maximizeCard(idx, item)"
+                      style="cursor: zoom-in"
                       :src="item.imagen"
                     />
                     <q-card-section>
-                      <div @click.stop="maximizeCard(idx, item)" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div @click.stop="maximizeCard(idx, item)"  style="cursor: zoom-in" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
                       <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
                       <div class="text-caption text-grey q-my-md">
                         {{ item.descripcion }}
