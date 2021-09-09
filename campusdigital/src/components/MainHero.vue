@@ -69,7 +69,7 @@
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Qué es el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
-                    Es un espacio dedicado a toda la comunidad Nicolaita, donde pueden encontrarse recursos, contenidos y servicios digitales en las áreas académicas, de investigación, difusión cultural y extensión universitaria, con recursos electrónicos como revistas, tesis, recorridos virtuales culturales, exposiciones, entre otros.
+                    Este es un espacio para ti, ya sea que formes parte de la comunidad nicolaita o que te interese conocer más sobre la Universidad. Aquí podrás encontrar recursos, contenidos y servicios digitales de todas las áreas académicas, de investigación, difusión cultural y extensión universitaria. Aprovecha nuestras revistas y libros digitales, recorridos virtuales culturales y exposiciones, haz trámites en línea y mucho más.
                   </p>
                 </div>
                 <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-4 self-center q-px-lg q-py-sm">
@@ -85,7 +85,7 @@
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Para qué es el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aperiam aspernatur atque doloribus enim, iure labore nisi porro quasi sed tempore, veritatis? Amet at consequatur consequuntur deleniti natus odio, placeat.
+                    El Campus Digital está diseñado para complementar tu educación con todas las herramientas y recursos digitales que la Universidad pone a tu disposición. En él podrás aprender, compartir y conectar con las distintas áreas de nuestra institución de manera fácil y rápida, todo en un mismo lugar.
                   </p>
                 </div>
               </div>
@@ -105,7 +105,7 @@
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Como es el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
-                    Beatae error eveniet hic recusandae! Ab aut, dolore odit porro quae recusandae rem rerum sed unde. Accusamus beatae impedit quibusdam quisquam suscipit.
+                    Accede sin necesidad de registro a un campus digital moderno, sencillo y fácil de navegar que agiliza la comunicación y promueve un modelo de enseñanza-aprendizaje innovador y de calidad.  Es una herramienta que está a la vanguardia de los procesos educativos y la evolución tecnológica
                   </p>
                 </div>
               </div>
