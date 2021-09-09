@@ -63,8 +63,7 @@
                         </div>
                       </div>
                       <div v-if="maximizedItem.enlace" class="row">
-                        <q-btn size="md" :to="maximizedItem.enlace" color="light" label="Enlace"
-                               class="text-white bg-primary"/>
+                        <q-btn type="a" target="_blank" size="md" :href="maximizedItem.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
 
                         <q-space/>
 
