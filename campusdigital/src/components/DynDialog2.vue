@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <q-dialog
       v-model="showDialog"
       :maximized="true"
@@ -196,6 +194,7 @@
                            unelevated
                            no-wrap
                            :to="anterior"
+                           @click="changedialog=true"
                            class="q-pa-xs q-mr-lg q-mb-xl bg-white text-primary no-wrap">
                       <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
                       <span class="text-body2">{{ titulo_anterior }}</span>
@@ -204,6 +203,7 @@
                            unelevated
                            no-wrap
                            :to="siguiente"
+                           @click="changedialog=true"
                            class="q-pa-xs  q-mb-xl bg-white text-primary no-wrap">
                       <span class="text-body2">{{ titulo_siguiente }}</span>
                       <q-icon name="las la-arrow-right" size="md" class="q-pl-md"/>
@@ -234,7 +234,6 @@ export default {
       expanded: false,
       cardMaximizedIdx: -1,
       maximizedItem: undefined,
-      morphGroupModel: 'card1',
       showDialogHero: true,
       showMaximizedItem: false,
       showContentCards: true,
@@ -242,6 +241,7 @@ export default {
       siguiente: '/',
       titulo_anterior: '/',
       titulo_siguiente: '/',
+      changedialog: false
     }
   },
   computed: {
@@ -260,7 +260,11 @@ export default {
       },
       set(value) {
         if (!value) {
-          this.$emit('hide')
+          if (this.changedialog) {
+            this.$emit('changedialog')
+          } else {
+            this.$emit('hide')
+          }
         }
         return value
       }
@@ -281,9 +285,6 @@ export default {
     }
   },
   created() {
-    console.log("aqui")
-    console.log("obj", this.obj)
-    console.log("paginasIndex", Object.values(this.paginasIndex))
     const arrPaginas = Object.values(this.paginasIndex)
 
     let siguiente = arrPaginas.indexOf(this.obj)+1
@@ -297,9 +298,7 @@ export default {
     this.titulo_anterior = arrPaginas[anterior].titulo
   },
   updated() {
-    console.log("aqui")
-    console.log("obj", this.obj)
-    console.log("paginasIndex", Object.values(this.paginasIndex))
+    console.log("updated")
     const arrPaginas = Object.values(this.paginasIndex)
 
     let siguiente = arrPaginas.indexOf(this.obj)+1

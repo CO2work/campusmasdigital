@@ -6,7 +6,9 @@
         <MainHero v-if="!showDynDialog"/>
       </div>
 
-      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath" @hide="showDynDialog = false"/>
+      <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath"
+                  @hide="hideDynDialog()"
+      @changedialog="changeDynDialog()"/>
 
     </div>
 
@@ -93,8 +95,13 @@ export default {
       return filtradas
     },
     hideDynDialog() {
-      console.log("hideee")
+      console.log("hideDynDialog")
       this.showDynDialog = false
+      this.$router.push('/')
+    },
+    changeDynDialog() {
+      this.showDynDialog = false
+      console.log("changeDynDialog")
     },
     render() {
       this.camera.position.x += (this.mouseX - this.camera.position.x) * .025;
@@ -207,19 +214,18 @@ export default {
       let path = this.$route.path.replace('/p/', '')
       path = path.replace('/', '')
       this.paginasPath = this.getPaginasPath(path)
-      console.log("paginasPath", this.paginasPath)
+      console.log("path", path)
+      console.log("this.paginasPath", this.paginasPath)
+
       if (path !== '') {
         setTimeout(() => {
-          this.showDynDialog = false
+          //this.showDynDialog = false
           setTimeout(() => {
             this.showDynDialog = true
           }, 100)
         }, 100)
       } else {
-        if (this.$router.history) {
-          //this.showDynDialog = false
-          this.showRightDrawer = true
-        }
+        console.log("probando")
       }
       this.camera.position.set(2000, 2000, 600)
       if (this.$route.path === '/') {
@@ -238,7 +244,6 @@ export default {
         this.showRightDrawer = false
       } else {
         this.showRightDrawer = true
-        //this.$router.push('/')
       }
     },
     pageReady() {
