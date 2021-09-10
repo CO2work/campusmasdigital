@@ -53,20 +53,6 @@
 export default {
   name: 'EssentialLink',
   props: ['link'],
-  components: {},
-  data() {
-    return {
-      showDialog: false
-    }
-  },
-  methods: {
-    onClick(evt) {
-      console.log(evt)
-    }
-  },
-  mounted() {
-    console.log()
-  }
 }
 
 </script>

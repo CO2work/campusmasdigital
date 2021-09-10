@@ -2,12 +2,12 @@
   <q-layout view="hHr lpR fFr">
     <q-header v-if="!showDynDialog" class="col-auto bg-transparent">
       <q-toolbar class="col-auto bg-transparent">
-         <q-toolbar-title class="text-primary q-ma-lg">
-            <q-avatar>
-              <img src="~assets/umsnh_escudo_svg_v2.svg" />
-            </q-avatar>
-<!--            Campus Digital UMSNH-->
-           </q-toolbar-title>
+        <q-toolbar-title class="text-primary q-ma-lg">
+          <q-avatar>
+            <img src="~assets/umsnh_escudo_svg_v2.svg"/>
+          </q-avatar>
+          <!-- Campus Digital UMSNH -->
+        </q-toolbar-title>
         <q-btn
           flat
           dense
@@ -46,7 +46,6 @@
         style="z-index: 3001;"
       />
 
-
       <q-scroll-area class="fit">
         <q-img class="full-width bg-white" src="" style="height: 135px">
           <div class="bg-white">
@@ -65,12 +64,12 @@
           </q-item>
 
           <q-item>
-              <q-item-section>
-                <q-item-label class="text-overline">Proyectos</q-item-label>
-              </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-overline">Proyectos</q-item-label>
+            </q-item-section>
           </q-item>
 
-          <q-separator color="gray-5" />
+          <q-separator color="gray-5"/>
           <EssentialLink
             v-for="link of paginasIndex"
             :key="link.titulo"
@@ -78,26 +77,26 @@
             v-bind="link"
           />
 
-          <q-separator color="gray-5" />
+          <q-separator color="gray-5"/>
 
           <q-item>
-              <q-item-section>
-                <q-item-label class="text-overline">Acerca del Campus</q-item-label>
-              </q-item-section>
+            <q-item-section>
+              <q-item-label class="text-overline">Acerca del Campus</q-item-label>
+            </q-item-section>
           </q-item>
-          <q-separator color="gray-5" />
+          <q-separator color="gray-5"/>
           <q-item
             clickable
             v-ripple
             tag="a"
             @click="showConocerMas=false"
             exact
-            >
+          >
             <q-item-section
               avatar
               class="text-white"
-              >
-              <q-icon name="las la-plus" size="lg" />
+            >
+              <q-icon name="las la-plus" size="lg"/>
             </q-item-section>
 
             <q-item-section class="q-py-md">
@@ -126,13 +125,15 @@
       <router-view/>
     </q-page-container>
 
-        <q-footer reveal class="bg-transparent">
-          <q-toolbar class="q-px-lg q-py-none">
-            <q-toolbar-title class="text-overline text-primary q-ma-none" style="line-height: 1.4;">
-                Universidad Michoacana <wbr>de San Nicolás de Hidalgo
-            </q-toolbar-title>
-          </q-toolbar>
-        </q-footer>
+    <q-footer reveal class="bg-transparent">
+      <q-toolbar class="q-px-lg q-py-none">
+        <q-toolbar-title class="text-overline text-primary q-ma-none" style="line-height: 1.4;">
+          Universidad Michoacana
+          <wbr>
+          de San Nicolás de Hidalgo
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-footer>
 
 
   </q-layout>
@@ -240,7 +241,7 @@ export default {
     ...mapGetters('campus', ['plataformasEducativasGet', 'serviciosDigitalesGet', 'revistasGet',
       'bibliotecasEnLineaGet', 'comunicacionDigitalGet', 'agendaDigitalNicolaitaGet',
       'redesSocialesInstitucionalesGet', 'paginasGet', 'paginasIndexGet', 'pageReadyGet',
-    'showRightDrawerGet', 'showDynDialogGet']),
+      'showRightDrawerGet', 'showDynDialogGet']),
     pageReady: {
       get() {
         return this.pageReadyGet
@@ -428,9 +429,28 @@ export default {
     },
     getPaginasIndex() {
       this.PaginasFB.doc('Index').get().then(response => {
-        console.log("Response", response)
         console.log("Response data", response.data())
+
+
         this.paginasIndex = response.data()
+
+      }).then(() => {
+        Object.entries(this.paginasIndex).forEach((pagina, idx) => {
+
+          if (this.paginasIndex[pagina[0]].contenido && this.paginasIndex[pagina[0]].contenido.length) {
+
+            this.paginasIndex[pagina[0]].contenido.forEach(contenido => {
+              if (contenido.enlace) {
+                fetch(contenido.enlace, {
+                  method: 'HEAD',
+                  cache: 'no-cache',
+                }).then(response => {
+                  //console.log("response", response)
+                })
+              }
+            })
+          }
+        })
       })
     }
 
