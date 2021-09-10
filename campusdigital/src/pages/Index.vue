@@ -243,7 +243,10 @@ export default {
       if (this.showDynDialog) {
         this.showRightDrawer = false
       } else {
-        this.showRightDrawer = true
+        if (this.$q.screen.width > 765) {
+         this.showRightDrawer = true
+      }
+
       }
     },
     pageReady() {
