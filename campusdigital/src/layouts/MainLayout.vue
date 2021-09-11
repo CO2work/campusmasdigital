@@ -441,12 +441,14 @@ export default {
 
             this.paginasIndex[pagina[0]].contenido.forEach(contenido => {
               if (contenido.enlace) {
+                /*
                 fetch(contenido.enlace, {
                   method: 'HEAD',
                   cache: 'no-cache',
                 }).then(response => {
                   //console.log("response", response)
                 })
+                */
               }
             })
           }

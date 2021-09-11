@@ -8,7 +8,7 @@
 
       <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath"
                   @hide="hideDynDialog()"
-      @changedialog="changeDynDialog()"/>
+                  @changedialog="changeDynDialog()"/>
 
     </div>
 
@@ -38,6 +38,7 @@ export default {
       camera: undefined,
       scene: undefined,
       renderer: undefined,
+      raycaster: undefined,
       mouseX: 0,
       mouseY: 0,
       windowHalfX: window.innerWidth / 2,
@@ -108,6 +109,14 @@ export default {
       this.camera.position.y += (-this.mouseY - this.camera.position.y) * .025;
       this.camera.lookAt(this.scene.position);
       this.renderer.render(this.scene, this.camera);
+    },
+
+    onDocumentMouseClick(event) {
+      console.log("clic", event)
+      //this.mouseX = (event.clientX - this.windowHalfX) * .08;
+      //this.mouseY = (event.clientY - this.windowHalfY) * .09;
+      this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
     },
 
     onDocumentMouseMove(event) {
@@ -197,6 +206,7 @@ export default {
 
 
       document.addEventListener('mousemove', this.onDocumentMouseMove);
+      document.addEventListener('click', this.onDocumentMouseClick);
 
       //
 
@@ -244,8 +254,8 @@ export default {
         this.showRightDrawer = false
       } else {
         if (this.$q.screen.width > 765) {
-         this.showRightDrawer = true
-      }
+          this.showRightDrawer = true
+        }
 
       }
     },
@@ -257,18 +267,14 @@ export default {
           if (this.$route.path !== '/') {
             this.showDynDialog = true
           }
-          this.initThree()
-          this.animate()
+
         }, 100)
       }
     }
   },
   created() {
-
-  },
-  mounted() {
-
-    console.log("on mounted")
+    this.initThree()
+    this.animate()
   }
 }
 </script>
