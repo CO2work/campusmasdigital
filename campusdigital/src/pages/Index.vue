@@ -124,9 +124,13 @@ export default {
       console.log("intersects", this.intersects)
       // this.intersects[this.intersects.length - 1].object.material.color.set( 0xff0000 );
       this.intersects.forEach(el => {
-        console.log("el", el.object.name)
-        el.object.material.color.set( 0xff0000 );
+        //console.log("el", el.object.name)
+        //el.object.material.color.set( 0xff0000 );
       })
+      if (this.intersects.length > 0) {
+        console.log("intersects", this.intersects)
+      this.intersects[3].object.material.color.set(0xff0000)
+      }
     },
 
     onDocumentMouseMove(event) {
@@ -168,7 +172,7 @@ export default {
 
       const grid = new THREE.GridHelper(2500, 150, 0xbbeeff, 0x324C5E);
       grid.position.y = 0
-      grid.rotation.x = .65;
+      //grid.rotation.x = .65;
       grid.material.opacity = 0.25;
       grid.material.depthWrite = false;
       grid.material.transparent = true;
@@ -194,19 +198,30 @@ export default {
       const loader = new GLTFLoader(manager).setPath('/models/gltf/')
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('color_cu_v2.glb', (gltf) => {
+      loader.load('color_cu_v3.glb', (gltf) => {
         this.gltf = gltf
         this.gltf.scene.position.y = 0;
         this.$route.path === '/' ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
         this.gltf.scene.position.x = 0;
         this.gltf.scene.position.z = 0;
         this.scene.add(this.gltf.scene);
+
+/*
+        this.gltf.scene.children.forEach(el => {
+          //if (el.type === 'Mesh')
+          console.log("el", el)
+          this.scene.add(el)
+        })
+
+ */
+
         this.pageReady = true
 
         this.gltf.scene.rotation.x = .65;
-        console.log("gltf", this.gltf.scene)
+        console.log("gltf", this.gltf.scene.children)
 
-        this.intersects = this.raycaster.intersectObjects(this.gltf.scene.children);
+        console.log("scene", this.scene.children[3].children)
+        this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children);
       });
 
       manager.onLoad = () => {
@@ -293,6 +308,18 @@ export default {
         }, 100)
       }
     },
-  }
+  },
+  mounted() {
+      if (this.pageReady) {
+        setTimeout(() => {
+          this.container = this.$refs.webgl;
+          console.log("path", this.$route.path)
+          setTimeout(() => {
+            this.initThree()
+            this.animate()
+          }, 100)
+        }, 100)
+      }
+    }
 }
 </script>
