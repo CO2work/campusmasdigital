@@ -125,7 +125,7 @@ export default {
       // this.intersects[this.intersects.length - 1].object.material.color.set( 0xff0000 );
       this.intersects.forEach(el => {
         console.log("el", el.object.name)
-        //el.object.material.color.set( 0xff0000 );
+        el.object.material.color.set( 0xff0000 );
       })
     },
 
