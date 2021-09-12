@@ -194,7 +194,7 @@ export default {
       const loader = new GLTFLoader(manager).setPath('/models/gltf/')
       loader.setKTX2Loader(ktx2Loader);
       loader.setMeshoptDecoder(MeshoptDecoder);
-      loader.load('color_cu.glb', (gltf) => {
+      loader.load('color_cu_v2.glb', (gltf) => {
         this.gltf = gltf
         this.gltf.scene.position.y = 0;
         this.$route.path === '/' ? this.gltf.scene.rotation.y = (Math.PI * .25) * 3 : this.gltf.scene.rotation.y = (Math.PI * Math.random() * 2);
