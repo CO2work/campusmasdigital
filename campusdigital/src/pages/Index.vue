@@ -39,6 +39,8 @@ export default {
       scene: undefined,
       renderer: undefined,
       raycaster: undefined,
+      intersects: undefined,
+      mouse: undefined,
       mouseX: 0,
       mouseY: 0,
       windowHalfX: window.innerWidth / 2,
@@ -115,8 +117,16 @@ export default {
       console.log("clic", event)
       //this.mouseX = (event.clientX - this.windowHalfX) * .08;
       //this.mouseY = (event.clientY - this.windowHalfY) * .09;
-      this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      //this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+      //this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      this.mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
+      console.log("intersects", this.intersects)
+      // this.intersects[this.intersects.length - 1].object.material.color.set( 0xff0000 );
+      this.intersects.forEach(el => {
+        console.log("el", el.object.name)
+        //el.object.material.color.set( 0xff0000 );
+      })
     },
 
     onDocumentMouseMove(event) {
@@ -141,14 +151,20 @@ export default {
 
       // renderer
       this.renderer = new THREE.WebGLRenderer({antialias: true});
+      this.$refs.webgl.appendChild(this.renderer.domElement);
+
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1;
       this.renderer.outputEncoding = THREE.sRGBEncoding;
-      this.$refs.webgl.appendChild(this.renderer.domElement);
 
-      this.scene.background = new THREE.Color('#2484e8');
+      this.raycaster = new THREE.Raycaster()
+      this.mouse = new THREE.Vector2()
+
+      this.raycaster.setFromCamera(this.mouse, this.camera)
+
+      this.scene.background = new THREE.Color('#2484e8')
 
       const grid = new THREE.GridHelper(2500, 150, 0xbbeeff, 0x324C5E);
       grid.position.y = 0
@@ -188,6 +204,9 @@ export default {
         this.pageReady = true
 
         this.gltf.scene.rotation.x = .65;
+        console.log("gltf", this.gltf.scene)
+
+        this.intersects = this.raycaster.intersectObjects(this.gltf.scene.children);
       });
 
       manager.onLoad = () => {
@@ -267,14 +286,13 @@ export default {
           if (this.$route.path !== '/') {
             this.showDynDialog = true
           }
-
+          setTimeout(() => {
+            this.initThree()
+            this.animate()
+          }, 100)
         }, 100)
       }
-    }
-  },
-  created() {
-    this.initThree()
-    this.animate()
+    },
   }
 }
 </script>
