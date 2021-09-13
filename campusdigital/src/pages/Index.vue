@@ -33,6 +33,7 @@ export default {
   components: {MainHero, DynDialog2},
   data() {
     return {
+      init3: false,
       paginasPath: {contenido: []},
       container: undefined,
       camera: undefined,
@@ -248,10 +249,7 @@ export default {
           console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
         }
       }
-
-
-
-
+      this.init3 = true
     },
     animate() {
       requestAnimationFrame(this.animate);
@@ -308,26 +306,32 @@ export default {
             this.showDynDialog = true
           }
           setTimeout(() => {
-            this.initThree()
-            this.animate()
+            if (!this.init3) {
+              this.initThree()
+              this.animate()
+            }
           }, 100)
         }, 100)
       }
     },
   },
   created() {
-    document.addEventListener('mousemove', this.onDocumentMouseMove);
-      document.addEventListener('click', this.onDocumentMouseClick);
-      window.addEventListener('resize', this.onWindowResize);
   },
   mounted() {
     if (this.pageReady) {
       setTimeout(() => {
+        this.mouse = new THREE.Vector2()
+        document.addEventListener('mousemove', this.onDocumentMouseMove);
+        document.addEventListener('click', this.onDocumentMouseClick);
+        window.addEventListener('resize', this.onWindowResize);
+
         this.container = this.$refs.webgl;
         console.log("path", this.$route.path)
         setTimeout(() => {
-          this.initThree()
-          this.animate()
+          if (!this.init3) {
+            this.initThree()
+            this.animate()
+          }
         }, 100)
       }, 100)
     }
