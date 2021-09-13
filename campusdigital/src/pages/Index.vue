@@ -116,20 +116,20 @@ export default {
       this.camera.updateMatrixWorld();
 
       this.raycaster.setFromCamera(this.mouse, this.camera)
-      this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children)
+      if (this.scene.children[3]) {
+        this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children)
+        console.log("qq", this.intersects[0].object.name)
 
         if (this.intersects.length > 0) {
-          console.log("intersects", this.intersects)
-
+          if (this.intersects[0].object.name.includes('EdificioCU')) {
           if (this.INTERSECTED !== this.intersects[0].object) {
 
             if (this.INTERSECTED) {
-              console.log("INTER", this.INTERSECTED)
+              console.log(this.INTERSECTED)
               this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
             }
 
             this.INTERSECTED = this.intersects[0].object;
-            console.log("this.INTERSECTED", this.INTERSECTED)
             this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
             this.INTERSECTED.material.emissive.setHex(0xff0000);
 
@@ -142,9 +142,10 @@ export default {
             this.INTERSECTED = undefined;
 
           }
-
+        }
         }
 
+      }
       this.renderer.render(this.scene, this.camera);
     },
 
@@ -177,18 +178,17 @@ export default {
       this.scene.background = new THREE.Color('#eaeaea');
 
       // renderer
-      this.renderer = new THREE.WebGLRenderer({antialias: true});
-      this.$refs.webgl.appendChild(this.renderer.domElement);
-
+      this.renderer = new THREE.WebGLRenderer();
       this.renderer.setPixelRatio(window.devicePixelRatio);
       this.renderer.setSize(window.innerWidth, window.innerHeight);
       this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
       this.renderer.toneMappingExposure = 1;
       this.renderer.outputEncoding = THREE.sRGBEncoding;
 
+      this.$refs.webgl.appendChild(this.renderer.domElement);
+
       this.raycaster = new THREE.Raycaster()
       this.mouse = new THREE.Vector2()
-
 
 
       this.scene.background = new THREE.Color('#2484e8')
@@ -245,11 +245,9 @@ export default {
         this.gltf.scene.rotation.x = .65;
         console.log("gltf", this.gltf.scene.children)
 
-        //console.log("scene", this.scene.children[3].children)
+        console.log("scene", this.scene.children[3].children)
 
-        this.camera.updateMatrixWorld();
-
-
+        //this.camera.updateMatrixWorld();
 
 
       });
