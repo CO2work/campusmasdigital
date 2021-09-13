@@ -43,6 +43,7 @@ export default {
       mouse: undefined,
       mouseX: 0,
       mouseY: 0,
+      INTERSECTED: null,
       windowHalfX: window.innerWidth / 2,
       windowHalfY: window.innerHeight / 2,
       object: undefined,
@@ -120,17 +121,9 @@ export default {
       //this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       //this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      this.mouse.y = (event.clientY / window.innerHeight) * 2 + 1;
-      console.log("intersects", this.intersects)
-      // this.intersects[this.intersects.length - 1].object.material.color.set( 0xff0000 );
-      this.intersects.forEach(el => {
-        //console.log("el", el.object.name)
-        //el.object.material.color.set( 0xff0000 );
-      })
-      if (this.intersects.length > 0) {
-        console.log("intersects", this.intersects)
-      this.intersects[3].object.material.color.set(0xff0000)
-      }
+      this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+      console.log("mouse", this.mouse)
     },
 
     onDocumentMouseMove(event) {
@@ -185,10 +178,10 @@ export default {
       composer.addPass(ssaoPass);
       composer.render();
 
-      const ambientLight = new THREE.AmbientLight('#ffffff', 0.2);
+      const ambientLight = new THREE.AmbientLight('#ffffff', 0.4);
       this.scene.add(ambientLight);
 
-      const pointLight = new THREE.PointLight('#ffffff', 1);
+      const pointLight = new THREE.PointLight('#ffffff', 0.5);
       this.camera.add(pointLight);
       this.scene.add(this.camera);
 
@@ -206,14 +199,15 @@ export default {
         this.gltf.scene.position.z = 0;
         this.scene.add(this.gltf.scene);
 
-/*
-        this.gltf.scene.children.forEach(el => {
-          //if (el.type === 'Mesh')
-          console.log("el", el)
-          this.scene.add(el)
-        })
+        /*
+                this.gltf.scene.children.forEach(el => {
+                  //if (el.type === 'Mesh')
+                  console.log("el", el)
+                  this.scene.add(el)
+                })
 
- */
+         */
+
 
         this.pageReady = true
 
@@ -222,6 +216,25 @@ export default {
 
         console.log("scene", this.scene.children[3].children)
         this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children);
+        if (this.intersects.length > 0) {
+
+          if (this.INTERSECTED != this.intersects[0].object) {
+
+            if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+
+            this.INTERSECTED = this.intersects[0].object;
+            this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+            this.INTERSECTED.material.emissive.setHex(0xff0000);
+
+          }
+
+        } else {
+
+          if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+
+          this.INTERSECTED = null;
+
+        }
       });
 
       manager.onLoad = () => {
@@ -310,16 +323,16 @@ export default {
     },
   },
   mounted() {
-      if (this.pageReady) {
+    if (this.pageReady) {
+      setTimeout(() => {
+        this.container = this.$refs.webgl;
+        console.log("path", this.$route.path)
         setTimeout(() => {
-          this.container = this.$refs.webgl;
-          console.log("path", this.$route.path)
-          setTimeout(() => {
-            this.initThree()
-            this.animate()
-          }, 100)
+          this.initThree()
+          this.animate()
         }, 100)
-      }
+      }, 100)
     }
+  }
 }
 </script>

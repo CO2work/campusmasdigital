@@ -429,30 +429,16 @@ export default {
     },
     getPaginasIndex() {
       this.PaginasFB.doc('Index').get().then(response => {
-        console.log("Response data", response.data())
+        //console.log("Response data", response.data())
 
-
-        this.paginasIndex = response.data()
-
-      }).then(() => {
-        Object.entries(this.paginasIndex).forEach((pagina, idx) => {
-
-          if (this.paginasIndex[pagina[0]].contenido && this.paginasIndex[pagina[0]].contenido.length) {
-
-            this.paginasIndex[pagina[0]].contenido.forEach(contenido => {
-              if (contenido.enlace) {
-                /*
-                fetch(contenido.enlace, {
-                  method: 'HEAD',
-                  cache: 'no-cache',
-                }).then(response => {
-                  //console.log("response", response)
-                })
-                */
-              }
-            })
-          }
+        let paginas = Object.values(response.data())
+        paginas.sort((a, b) => {
+          return a.orden - b.orden
         })
+
+        this.paginasIndex = paginas
+
+        console.log("this.paginasIndex", this.paginasIndex)
       })
     }
 
