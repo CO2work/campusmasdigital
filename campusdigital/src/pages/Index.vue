@@ -43,7 +43,7 @@ export default {
       mouse: undefined,
       mouseX: 0,
       mouseY: 0,
-      INTERSECTED: null,
+      INTERSECTED: undefined,
       windowHalfX: window.innerWidth / 2,
       windowHalfY: window.innerHeight / 2,
       object: undefined,
@@ -116,13 +116,8 @@ export default {
 
     onDocumentMouseClick(event) {
       console.log("clic", event)
-      //this.mouseX = (event.clientX - this.windowHalfX) * .08;
-      //this.mouseY = (event.clientY - this.windowHalfY) * .09;
-      //this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      //this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
       console.log("mouse", this.mouse)
     },
 
@@ -165,7 +160,7 @@ export default {
 
       const grid = new THREE.GridHelper(2500, 150, 0xbbeeff, 0x324C5E);
       grid.position.y = 0
-      //grid.rotation.x = .65;
+      grid.rotation.x = .65;
       grid.material.opacity = 0.25;
       grid.material.depthWrite = false;
       grid.material.transparent = true;
@@ -205,7 +200,6 @@ export default {
                   console.log("el", el)
                   this.scene.add(el)
                 })
-
          */
 
 
@@ -216,13 +210,17 @@ export default {
 
         console.log("scene", this.scene.children[3].children)
         this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children);
+
         if (this.intersects.length > 0) {
 
           if (this.INTERSECTED != this.intersects[0].object) {
 
-            if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+            if (this.INTERSECTED) {
+              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+            }
 
             this.INTERSECTED = this.intersects[0].object;
+            console.log("this.INTERSECTED", this.INTERSECTED)
             this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
             this.INTERSECTED.material.emissive.setHex(0xff0000);
 
@@ -232,7 +230,7 @@ export default {
 
           if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
 
-          this.INTERSECTED = null;
+          this.INTERSECTED = undefined;
 
         }
       });
@@ -252,12 +250,7 @@ export default {
       }
 
 
-      document.addEventListener('mousemove', this.onDocumentMouseMove);
-      document.addEventListener('click', this.onDocumentMouseClick);
 
-      //
-
-      window.addEventListener('resize', this.onWindowResize);
 
     },
     animate() {
@@ -321,6 +314,11 @@ export default {
         }, 100)
       }
     },
+  },
+  created() {
+    document.addEventListener('mousemove', this.onDocumentMouseMove);
+      document.addEventListener('click', this.onDocumentMouseClick);
+      window.addEventListener('resize', this.onWindowResize);
   },
   mounted() {
     if (this.pageReady) {
