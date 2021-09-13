@@ -121,7 +121,7 @@ export default {
       //this.mouseX = (event.clientX / window.innerWidth) * 2 - 1;
       //this.mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
       this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
       console.log("mouse", this.mouse)
     },
