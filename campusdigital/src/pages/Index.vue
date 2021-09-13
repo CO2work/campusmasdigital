@@ -4,11 +4,11 @@
       <div v-if="pageReady">
         <div ref="webgl" class="fixed-full"></div>
         <MainHero v-if="!showDynDialog"/>
-      </div>
-
       <DynDialog2 v-if="showDynDialog" :show="showDynDialog" :obj="paginasPath"
                   @hide="hideDynDialog()"
                   @changedialog="changeDynDialog()"/>
+
+      </div>
 
     </div>
 

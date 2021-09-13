@@ -3,7 +3,7 @@
     <q-header v-if="!showDynDialog" class="col-auto bg-transparent">
       <q-toolbar class="col-auto bg-transparent">
         <q-toolbar-title class="text-primary q-ma-lg">
-          <q-avatar>
+          <q-avatar class="md-hide lg-hide xl-hide">
             <img src="~assets/umsnh_escudo_svg_v2.svg"/>
           </q-avatar>
           <!-- Campus Digital UMSNH -->
@@ -17,7 +17,6 @@
           icon="las la-bars"
           aria-label="Menu"
           @click="showRightDrawer = !showRightDrawer"
-          style="z-index: 3001;"
         />
 
       </q-toolbar>
@@ -29,8 +28,8 @@
       overlay
 
       side="right"
-      class="row"
-      content-class="bg-primary text-white"
+      class="row z-max"
+      content-class="bg-primary text-white z-max"
       behavior="desktop"
     >
       <q-btn
@@ -43,7 +42,6 @@
         icon="las la-times"
         aria-label="Menu"
         @click="showRightDrawer = !showRightDrawer"
-        style="z-index: 3001;"
       />
 
       <q-scroll-area class="fit">
@@ -62,14 +60,6 @@
               Un indice de los servicios y proyectos digitales de nuestra Universidad.
             </span>
           </q-item>
-
-          <q-item>
-            <q-item-section>
-              <q-item-label class="text-overline">Proyectos</q-item-label>
-            </q-item-section>
-          </q-item>
-
-          <q-separator color="gray-5"/>
           <EssentialLink
             v-for="link of paginasIndex"
             :key="link.titulo"
