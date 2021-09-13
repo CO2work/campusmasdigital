@@ -112,10 +112,44 @@ export default {
       this.camera.position.x += (this.mouseX - this.camera.position.x) * .025;
       this.camera.position.y += (-this.mouseY - this.camera.position.y) * .025;
       this.camera.lookAt(this.scene.position);
+
+      this.camera.updateMatrixWorld();
+
+      this.raycaster.setFromCamera(this.mouse, this.camera)
+      this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children)
+
+        if (this.intersects.length > 0) {
+          console.log("intersects", this.intersects)
+
+          if (this.INTERSECTED !== this.intersects[0].object) {
+
+            if (this.INTERSECTED) {
+              console.log("INTER", this.INTERSECTED)
+              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+            }
+
+            this.INTERSECTED = this.intersects[0].object;
+            console.log("this.INTERSECTED", this.INTERSECTED)
+            this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+            this.INTERSECTED.material.emissive.setHex(0xff0000);
+
+          } else {
+
+            if (this.INTERSECTED) {
+              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+            }
+
+            this.INTERSECTED = undefined;
+
+          }
+
+        }
+
       this.renderer.render(this.scene, this.camera);
     },
 
     onDocumentMouseClick(event) {
+
       console.log("clic", event)
       this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -155,7 +189,7 @@ export default {
       this.raycaster = new THREE.Raycaster()
       this.mouse = new THREE.Vector2()
 
-      this.raycaster.setFromCamera(this.mouse, this.camera)
+
 
       this.scene.background = new THREE.Color('#2484e8')
 
@@ -204,36 +238,20 @@ export default {
          */
 
 
-        this.pageReady = true
+        document.addEventListener('mousemove', this.onDocumentMouseMove);
+        document.addEventListener('click', this.onDocumentMouseClick);
+        window.addEventListener('resize', this.onWindowResize);
 
         this.gltf.scene.rotation.x = .65;
         console.log("gltf", this.gltf.scene.children)
 
-        console.log("scene", this.scene.children[3].children)
-        this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children);
+        //console.log("scene", this.scene.children[3].children)
 
-        if (this.intersects.length > 0) {
+        this.camera.updateMatrixWorld();
 
-          if (this.INTERSECTED != this.intersects[0].object) {
 
-            if (this.INTERSECTED) {
-              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-            }
 
-            this.INTERSECTED = this.intersects[0].object;
-            console.log("this.INTERSECTED", this.INTERSECTED)
-            this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-            this.INTERSECTED.material.emissive.setHex(0xff0000);
 
-          }
-
-        } else {
-
-          if (this.INTERSECTED) this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-
-          this.INTERSECTED = undefined;
-
-        }
       });
 
       manager.onLoad = () => {
@@ -249,7 +267,6 @@ export default {
           console.log('model ' + Math.round(percentComplete, 2) + '% downloaded');
         }
       }
-      this.init3 = true
     },
     animate() {
       requestAnimationFrame(this.animate);
@@ -306,35 +323,14 @@ export default {
             this.showDynDialog = true
           }
           setTimeout(() => {
-            if (!this.init3) {
-              this.initThree()
-              this.animate()
-            }
+
+            this.initThree()
+            this.animate()
+
           }, 100)
         }, 100)
       }
     },
   },
-  created() {
-  },
-  mounted() {
-    if (this.pageReady) {
-      setTimeout(() => {
-        this.mouse = new THREE.Vector2()
-        document.addEventListener('mousemove', this.onDocumentMouseMove);
-        document.addEventListener('click', this.onDocumentMouseClick);
-        window.addEventListener('resize', this.onWindowResize);
-
-        this.container = this.$refs.webgl;
-        console.log("path", this.$route.path)
-        setTimeout(() => {
-          if (!this.init3) {
-            this.initThree()
-            this.animate()
-          }
-        }, 100)
-      }, 100)
-    }
-  }
 }
 </script>
