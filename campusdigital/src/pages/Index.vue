@@ -116,33 +116,33 @@ export default {
       this.camera.updateMatrixWorld();
 
       this.raycaster.setFromCamera(this.mouse, this.camera)
-      if (this.scene.children[3]) {
+      if (this.scene.children[3]===1) {
         this.intersects = this.raycaster.intersectObjects(this.scene.children[3].children)
         console.log("qq", this.intersects[0].object.name)
 
         if (this.intersects.length > 0) {
           if (this.intersects[0].object.name.includes('EdificioCU')) {
-          if (this.INTERSECTED !== this.intersects[0].object) {
+            if (this.INTERSECTED !== this.intersects[0].object) {
 
-            if (this.INTERSECTED) {
-              console.log(this.INTERSECTED)
-              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+              if (this.INTERSECTED) {
+                console.log(this.INTERSECTED)
+                this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+              }
+
+              this.INTERSECTED = this.intersects[0].object;
+              this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
+              this.INTERSECTED.material.emissive.setHex(0x0000ff);
+
+            } else {
+
+              if (this.INTERSECTED) {
+                this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
+              }
+
+              this.INTERSECTED = undefined;
+
             }
-
-            this.INTERSECTED = this.intersects[0].object;
-            this.INTERSECTED.currentHex = this.INTERSECTED.material.emissive.getHex();
-            this.INTERSECTED.material.emissive.setHex(0xff0000);
-
-          } else {
-
-            if (this.INTERSECTED) {
-              this.INTERSECTED.material.emissive.setHex(this.INTERSECTED.currentHex);
-            }
-
-            this.INTERSECTED = undefined;
-
           }
-        }
         }
 
       }
@@ -154,12 +154,15 @@ export default {
       console.log("clic", event)
       this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      console.log("mouse", this.mouse)
+      //console.log("mouse", this.mouse)
     },
 
     onDocumentMouseMove(event) {
       this.mouseX = (event.clientX - this.windowHalfX) * .08;
       this.mouseY = (event.clientY - this.windowHalfY) * .09;
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      //console.log("mouse", this.mouse)
     },
     onWindowResize() {
       this.windowHalfX = window.innerWidth / 2;

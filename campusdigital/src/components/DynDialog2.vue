@@ -10,7 +10,7 @@
 
       <div class="column full-height full-width dot-grid bg-white">
 
-        <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]" >
+        <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
           <q-btn fab-mini color="primary" icon="las la-angle-left" @click="showDialog=false"/>
         </q-page-sticky>
 
@@ -18,11 +18,11 @@
           <div class="col">
 
             <main>
-<!--              <q-card-->
-<!--                v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered-->
-<!--              >-->
+              <!--              <q-card-->
+              <!--                v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered-->
+              <!--              >-->
 
-<!--              </q-card>-->
+              <!--              </q-card>-->
 
               <q-dialog
                 v-model="showMaximizedItem"
@@ -51,15 +51,17 @@
                         <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
                       </q-page-sticky>
                       <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
-                       <q-img
-                        :src="maximizedItem.imagen"
-                        class="full-height full-width"
-                      />
+                        <q-img
+                          :src="maximizedItem.imagen"
+                          class="full-height full-width"
+                        />
                       </div>
                       <div class="full-height row wrap justify-start relative-position"
                            style="max-width: 65rem;">
                         <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
-                          <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ maximizedItem.titulo }}</h3>
+                          <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{
+                              maximizedItem.titulo
+                            }}</h3>
                           <p class="text-h4 text-blue-9">
                             {{ maximizedItem.subtitulo }}
                           </p>
@@ -68,7 +70,7 @@
                             {{ maximizedItem.descripcion }}
                           </p>
 
-                          <p  v-if="maximizedItem.descripcion_extra" class="text-h6 text-blue-grey-9 text-weight-light">
+                          <p v-if="maximizedItem.descripcion_extra" class="text-h6 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion_extra }}
                           </p>
                         </div>
@@ -84,8 +86,9 @@
                         </div>
 
                         <div v-if="maximizedItem.enlace" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
-                          <q-btn type="a" target="_blank" size="md" :href="maximizedItem.enlace" color="light" label="Enlace"
-                               class="text-white bg-primary"/>
+                          <q-btn type="a" target="_blank" size="md" :href="maximizedItem.enlace" color="light"
+                                 label="Enlace"
+                                 class="text-white bg-primary"/>
                         </div>
                       </div>
 
@@ -139,7 +142,7 @@
                    v-show="showContentCards"
                    class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto"
                    style="max-width: 65rem;">
-                <div v-for="(item, idx) in obj.contenido" :key="idx">
+                <div v-for="(item, idx) in getCards()" :key="idx">
                   <q-card class="my-card self-stretch" flat bordered>
                     <q-img
                       @click.stop="maximizeCard(idx, item)"
@@ -147,14 +150,17 @@
                       :src="item.imagen"
                     />
                     <q-card-section>
-                      <div @click.stop="maximizeCard(idx, item)"  style="cursor: zoom-in" class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}</div>
+                      <div @click.stop="maximizeCard(idx, item)" style="cursor: zoom-in"
+                           class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}
+                      </div>
                       <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
                       <div class="text-caption text-grey q-my-md">
                         {{ item.descripcion }}
                       </div>
                     </q-card-section>
                     <q-card-actions v-if="item.enlace">
-                      <q-btn type="a" target="_blank" size="md" :href="item.enlace" color="light" label="Enlace" class="text-white bg-primary"/>
+                      <q-btn type="a" target="_blank" size="md" :href="item.enlace" color="light" label="Enlace"
+                             class="text-white bg-primary"/>
 
                       <q-space/>
 
@@ -180,14 +186,14 @@
               <div class="full-width">
                 <div class="q-mt-xl bg-primary q-py-xl q-pa-md row items-start q-gutter-md row wrap justify-center">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
-<!--                    <p class="text-h6 text-white text-weight-light">-->
-<!--                      Debitis explicabo ipsum officia!-->
-<!--                    </p>-->
-<!--                    <p class="text-body2 text-blue-4">-->
-<!--                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem,-->
-<!--                      unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam-->
-<!--                      sed totam?-->
-<!--                    </p>-->
+                    <!--                    <p class="text-h6 text-white text-weight-light">-->
+                    <!--                      Debitis explicabo ipsum officia!-->
+                    <!--                    </p>-->
+                    <!--                    <p class="text-body2 text-blue-4">-->
+                    <!--                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem,-->
+                    <!--                      unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam-->
+                    <!--                      sed totam?-->
+                    <!--                    </p>-->
                   </div>
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
                     <q-btn size="sm"
@@ -278,7 +284,15 @@ export default {
       this.maximizedItem = item
       this.showMaximizedItem = true
     },
-
+    getCards() {
+      console.log("contenido", this.obj.contenido)
+      let cards = Object.values(this.obj.contenido)
+      cards.sort((a, b) => {
+        return a.orden - b.orden
+      })
+      console.log("cards", cards)
+      return cards
+    },
     closeCard() {
       this.showMaximizedItem = false
       this.maximizedItem = undefined
@@ -287,7 +301,7 @@ export default {
   created() {
     const arrPaginas = Object.values(this.paginasIndex)
 
-    let siguiente = arrPaginas.indexOf(this.obj)+1
+    let siguiente = arrPaginas.indexOf(this.obj) + 1
     siguiente + 1 > arrPaginas.length - 1 ? siguiente = 0 : siguiente = arrPaginas.indexOf(this.obj) + 1
     this.siguiente = '/p/' + arrPaginas[siguiente].slug
     this.titulo_siguiente = arrPaginas[siguiente].titulo
@@ -301,7 +315,7 @@ export default {
     console.log("updated")
     const arrPaginas = Object.values(this.paginasIndex)
 
-    let siguiente = arrPaginas.indexOf(this.obj)+1
+    let siguiente = arrPaginas.indexOf(this.obj) + 1
     siguiente + 1 > arrPaginas.length - 1 ? siguiente = 0 : siguiente = arrPaginas.indexOf(this.obj) + 1
     this.siguiente = '/p/' + arrPaginas[siguiente].slug
     this.titulo_siguiente = arrPaginas[siguiente].titulo
