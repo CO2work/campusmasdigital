@@ -69,33 +69,33 @@
 
           <q-separator color="gray-5"/>
 
-          <q-item>
-            <q-item-section>
-              <q-item-label class="text-overline">Acerca del Campus</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-separator color="gray-5"/>
-          <q-item
-            clickable
-            v-ripple
-            tag="a"
-            @click="showConocerMas=false"
-            exact
-          >
-            <q-item-section
-              avatar
-              class="text-white"
-            >
-              <q-icon name="las la-plus" size="lg"/>
-            </q-item-section>
+<!--          <q-item>-->
+<!--            <q-item-section>-->
+<!--              <q-item-label class="text-overline">Acerca del Campus</q-item-label>-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
+<!--          <q-separator color="gray-5"/>-->
+<!--          <q-item-->
+<!--            clickable-->
+<!--            v-ripple-->
+<!--            tag="a"-->
+<!--            @click="showConocerMas=true"-->
+<!--            exact-->
+<!--          >-->
+<!--            <q-item-section-->
+<!--              avatar-->
+<!--              class="text-white"-->
+<!--            >-->
+<!--              <q-icon name="las la-plus" size="lg"/>-->
+<!--            </q-item-section>-->
 
-            <q-item-section class="q-py-md">
-              <q-item-label>Conocer más</q-item-label>
-              <q-item-label caption class="text-weight-light text-blue-3">
-                Información de este sitio
-              </q-item-label>
-            </q-item-section>
-          </q-item>
+<!--            <q-item-section class="q-py-md">-->
+<!--              <q-item-label>Conocer más</q-item-label>-->
+<!--              <q-item-label caption class="text-weight-light text-blue-3">-->
+<!--                Información de este sitio-->
+<!--              </q-item-label>-->
+<!--            </q-item-section>-->
+<!--          </q-item>-->
 
         </q-list>
       </q-scroll-area>

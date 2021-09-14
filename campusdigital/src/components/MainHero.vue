@@ -95,7 +95,7 @@
               <div class="full-width q-my-xl">
                 <q-parallax height="300">
                   <template v-slot:media>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_25.jpg?alt=media&token=bcaeb805-61b4-4066-a85f-9dcf35f6d62e">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_Facultad_de_Arquitectura.jpg?alt=media&token=1cabbe6e-1d57-43f8-820a-ee36a42a3549">
                   </template>
                 </q-parallax>
 
@@ -104,7 +104,7 @@
 
               <div class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
                 <div class="order-md-last col-shrink col-xs-12 col-sm-10 col-md-4 self-center q-px-lg q-py-sm">
-                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_Facultad_de_Arquitectura.jpg?alt=media&token=1cabbe6e-1d57-43f8-820a-ee36a42a3549"></q-img>
+                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_25.jpg?alt=media&token=bcaeb805-61b4-4066-a85f-9dcf35f6d62e"></q-img>
                 </div>
                 <div class="order-md-first col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Como es el Campus Digital?</h5>
@@ -116,7 +116,7 @@
               </div>
 
               <div class="full-width bg-primary ">
-                <div class="q-mt-xl q-pt-xl q-pa-md row items-start row wrap justify--start q-mx-auto" style="max-width: 65rem;">
+                <div class="q-mt-xl q-pt-xl q-pa-md row items-start row wrap justify-start q-mx-auto" style="max-width: 65rem;">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-6 self-center q-px-lg q-py-sm">
                     <div class="text-white q-gutter-lg">
                       <p class="text-h6 text-white text-weight-light">
@@ -127,7 +127,7 @@
                           dense
                           type="a"
                           target="_blank"
-                          href="#"
+                          href="https://www.facebook.com/UMSNHoficial/"
                           size="lg"
                           icon="lab la-facebook-f"
                         /><q-btn
@@ -135,7 +135,7 @@
                           dense
                           type="a"
                           target="_blank"
-                          href="#"
+                          href="https://twitter.com/UMSNHOficial"
                           size="lg"
                           icon="lab la-twitter"
                         /><q-btn
@@ -143,7 +143,7 @@
                           dense
                           type="a"
                           target="_blank"
-                          href="#"
+                          href="https://www.instagram.com/umsnhoficial/"
                           size="lg"
                           icon="lab la-instagram"
                         />

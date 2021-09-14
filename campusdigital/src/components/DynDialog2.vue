@@ -18,11 +18,11 @@
           <div class="col">
 
             <main>
-              <q-card
-                v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered
-              >
+<!--              <q-card-->
+<!--                v-if="cardMaximizedIdx > -1" class="full-height full-width" flat bordered-->
+<!--              >-->
 
-              </q-card>
+<!--              </q-card>-->
 
               <q-dialog
                 v-model="showMaximizedItem"
@@ -56,7 +56,7 @@
                         class="full-height full-width"
                       />
                       </div>
-                      <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position"
+                      <div class="full-height row wrap justify-start relative-position"
                            style="max-width: 65rem;">
                         <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
                           <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ maximizedItem.titulo }}</h3>
@@ -108,7 +108,7 @@
                   <q-img :src="obj.imagen" class="full-height full-width"></q-img>
                 </div>
 
-                <div class="full-height row wrap justify-start items-center content-center q-mx-auto relative-position"
+                <div class="full-height row wrap justify-start relative-position"
                      style="max-width: 65rem;">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
                     <h4 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ obj.titulo }}</h4>
@@ -180,14 +180,14 @@
               <div class="full-width">
                 <div class="q-mt-xl bg-primary q-py-xl q-pa-md row items-start q-gutter-md row wrap justify-center">
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
-                    <p class="text-h6 text-white text-weight-light">
-                      Debitis explicabo ipsum officia!
-                    </p>
-                    <p class="text-body2 text-blue-4">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem,
-                      unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam
-                      sed totam?
-                    </p>
+<!--                    <p class="text-h6 text-white text-weight-light">-->
+<!--                      Debitis explicabo ipsum officia!-->
+<!--                    </p>-->
+<!--                    <p class="text-body2 text-blue-4">-->
+<!--                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias est in numquam officiis quidem,-->
+<!--                      unde? Accusamus cum eaque expedita iusto similique unde voluptatem? Deserunt dolore iure quisquam-->
+<!--                      sed totam?-->
+<!--                    </p>-->
                   </div>
                   <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
                     <q-btn size="sm"
