@@ -5,7 +5,7 @@
 
           <div class="col-shrink col-xs-12 col-sm-8 col-md-5 self-center q-ma-lg">
             <q-img src="~assets/logo_campus_v1.svg"
-                   class=""
+                   class="q-my-md"
                    style="width :62px; height: auto"/>
             <div class="text-h4 q-ma-none q-mb-lg text-primary text-uppercase text-weight-bold">
               Campus Digital

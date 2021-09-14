@@ -47,10 +47,8 @@
       <q-scroll-area class="fit">
         <q-img class="full-width bg-white" src="" style="height: 135px">
           <div class="bg-white">
-            <q-avatar size="52px" class="q-mb-sm">
-              <img src="~assets/logo_campus_v1.svg">
-            </q-avatar>
-            <div class="text-primary text-weight-bold">Campus Digital</div>
+            <q-img style="width: 52px;" class="q-mb-sm" src="~assets/logo_campus_v1.svg" />
+            <div class="text-primary text-weight-bold">CAMPUS DIGITAL</div>
             <div class="text-primary">UMSNH</div>
           </div>
         </q-img>

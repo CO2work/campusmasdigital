@@ -56,7 +56,7 @@
                           class="full-height full-width"
                         />
                       </div>
-                      <div class="full-height row wrap justify-start relative-position"
+                      <div class="row wrap justify-start relative-position q-mx-auto"
                            style="max-width: 65rem;">
                         <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
                           <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{
@@ -69,20 +69,21 @@
                           <p class="text-h6 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion }}
                           </p>
-
-                          <p v-if="maximizedItem.descripcion_extra" class="text-h6 text-blue-grey-9 text-weight-light">
-                            {{ maximizedItem.descripcion_extra }}
-                          </p>
                         </div>
 
-
-                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
-                          <div class="q-pa-md" v-if="maximizedItem.video">
+                        <div v-if="maximizedItem.video" class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-ma-lg">
+                          <div class="q-pa-md">
                             <q-video
                               :ratio="16/9"
                               :src="'https://www.youtube.com/embed/'+obj.video+'?rel=0'"
                             />
                           </div>
+                        </div>
+
+                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                          <p v-if="maximizedItem.descripcion_extra" class="text-body2 text-blue-grey-9 text-weight-light">
+                            {{ maximizedItem.descripcion_extra }}
+                          </p>
                         </div>
 
                         <div v-if="maximizedItem.enlace" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
@@ -140,10 +141,15 @@
 
               <div v-if="obj.contenido.length"
                    v-show="showContentCards"
-                   class="q-pa-md row items-start q-gutter-md row wrap justify-evenly q-mx-auto"
+                   class="q-pa-md row items-start q-gutter-lg row wrap justify-center q-mx-auto"
                    style="max-width: 65rem;">
-                <div v-for="(item, idx) in getCards()" :key="idx">
-                  <q-card class="my-card self-stretch" flat bordered>
+                  <q-card v-for="(item, idx) in getCards()" :key="idx" class="my-card self-stretch" flat bordered>
+
+                    <q-btn class="absolute-top-right z-top q-ma-sm text-grey-5"
+                           size="sm"
+                           round
+                           dense
+                           fab-mini color="white" icon="las la-plus" @click.stop="maximizeCard(idx, item)" />
                     <q-img
                       @click.stop="maximizeCard(idx, item)"
                       style="cursor: zoom-in"
@@ -181,7 +187,6 @@
                     </q-slide-transition>
                   </q-card>
 
-                </div>
               </div>
               <div class="full-width">
                 <div class="q-mt-xl bg-primary q-py-xl q-pa-md row items-start q-gutter-md row wrap justify-center">
@@ -202,7 +207,7 @@
                            :to="anterior"
                            @click="changedialog=true"
                            class="q-pa-xs q-mr-lg q-mb-xl bg-white text-primary no-wrap">
-                      <q-icon name="las la-arrow-left" size="md" class="q-pl-md"/>
+                      <q-icon name="las la-arrow-left" size="md" class="q-pr-md"/>
                       <span class="text-body2">{{ titulo_anterior }}</span>
                     </q-btn>
                     <q-btn size="sm"
