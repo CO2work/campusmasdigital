@@ -55,7 +55,7 @@
         <q-list v-if="1===1">
           <q-item class="header bg-blue-10">
             <span class="text-weight-light">
-              Un indice de los servicios y proyectos digitales de nuestra Universidad.
+              Catálogo de actividades y servicios digitales
             </span>
           </q-item>
           <EssentialLink
@@ -113,15 +113,15 @@
       <router-view/>
     </q-page-container>
 
-    <q-footer reveal class="bg-transparent">
-      <q-toolbar class="q-px-lg q-py-none">
-        <q-toolbar-title class="text-overline text-primary q-ma-none" style="line-height: 1.4;">
-          Universidad Michoacana
-          <wbr>
-          de San Nicolás de Hidalgo
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
+<!--    <q-footer reveal class="bg-transparent">-->
+<!--      <q-toolbar class="q-px-lg q-py-none">-->
+<!--        <q-toolbar-title class="text-overline text-primary q-ma-none" style="line-height: 1.4;">-->
+<!--          Universidad Michoacana-->
+<!--          <wbr>-->
+<!--          de San Nicolás de Hidalgo-->
+<!--        </q-toolbar-title>-->
+<!--      </q-toolbar>-->
+<!--    </q-footer>-->
 
 
   </q-layout>

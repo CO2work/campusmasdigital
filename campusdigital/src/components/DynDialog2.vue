@@ -31,7 +31,7 @@
                 transition-hide="jump-down"
                 class="full-height"
               >
-                <div v-if="maximizedItem" class="column full-height full-width dot-grid bg-white">
+                <div v-if="maximizedItem" class="column full-height full-width dot-grid bg-white micro-hero">
 
                   <q-page-sticky position="top-left" :offset="[16, 16]">
                     <q-btn fab-mini color="primary" icon="mdi-close" @click="showMaximizedItem=false"/>
@@ -50,23 +50,28 @@
                       <q-page-sticky position="top-left" class="z-top" :offset="[16, 16]">
                         <q-btn fab-mini color="primary" icon="mdi-close" @click="closeCard()"/>
                       </q-page-sticky>
-                      <div class="dialog-hero" style="height: 35vh; width: 100%; overflow: hidden;">
-                        <q-img
-                          :src="maximizedItem.imagen"
-                          class="full-height full-width"
-                        />
-                      </div>
                       <div class="row wrap justify-start relative-position q-mx-auto"
                            style="max-width: 65rem;">
                         <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
-                          <h3 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{
-                              maximizedItem.titulo
-                            }}</h3>
-                          <p class="text-h4 text-blue-9">
-                            {{ maximizedItem.subtitulo }}
-                          </p>
+                          <q-img
+                            v-if="maximizedItem.imagen"
+                            :src="maximizedItem.imagen"
+                            class="full-height full-width"
+                          />
+                        </div>
 
-                          <p class="text-h6 text-blue-grey-9 text-weight-light">
+                        <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
+
+                          <h2 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">
+                            {{ maximizedItem.titulo }}
+                          </h2>
+                          <h3 class="text-h4 text-blue-9">
+                            {{ maximizedItem.subtitulo }}
+                          </h3>
+                        </div>
+
+                        <div v-if="maximizedItem.descripcion" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                          <p class="text-body2 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion }}
                           </p>
                         </div>
@@ -84,6 +89,51 @@
                           <p v-if="maximizedItem.descripcion_extra" class="text-body2 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion_extra }}
                           </p>
+                        </div>
+
+                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-my-lg full-width">
+                          <q-carousel
+
+                            swipeable
+                            animated
+                            v-model="slide"
+                            :autoplay="autoplay"
+                            ref="carousel"
+                            infinite
+                            transition-prev="slide-right"
+                            transition-next="slide-left"
+                          >
+                            <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
+                            <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
+                            <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
+                            <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+
+                            <template v-slot:control>
+                              <q-carousel-control
+                                position="top-right"
+                                :offset="[18, 18]"
+                                class="text-white rounded-borders"
+                                style="background: rgba(0, 0, 0, .3); padding: 4px 8px;"
+                              >
+                                <q-toggle dense dark color="orange" v-model="autoplay" label="Auto Play" />
+                              </q-carousel-control>
+
+                              <q-carousel-control
+                                position="bottom-right"
+                                :offset="[18, 18]"
+                                class="q-gutter-xs"
+                              >
+                                <q-btn
+                                  push round dense color="orange" text-color="black" icon="arrow_left"
+                                  @click="$refs.carousel.previous()"
+                                />
+                                <q-btn
+                                  push round dense color="orange" text-color="black" icon="arrow_right"
+                                  @click="$refs.carousel.next()"
+                                />
+                              </q-carousel-control>
+                            </template>
+                          </q-carousel>
                         </div>
 
                         <div v-if="maximizedItem.enlace" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
@@ -143,7 +193,7 @@
                    v-show="showContentCards"
                    class="q-pa-md row items-start q-gutter-lg row wrap justify-center q-mx-auto"
                    style="max-width: 65rem;">
-                  <q-card v-for="(item, idx) in getCards()" :key="idx" class="my-card self-stretch" flat bordered>
+                  <q-card v-for="(item, idx) in getCards()" :key="idx" class="my-card self-stretch q-pb-xl" flat bordered>
 
                     <q-btn class="absolute-top-right z-top q-ma-sm text-grey-5"
                            size="sm"
@@ -164,9 +214,13 @@
                         {{ item.descripcion }}
                       </div>
                     </q-card-section>
-                    <q-card-actions v-if="item.enlace">
-                      <q-btn type="a" target="_blank" size="md" :href="item.enlace" color="light" label="Enlace"
-                             class="text-white bg-primary"/>
+                    <q-card-actions class="absolute-bottom bg-grey-2 q-pa-md">
+                      <q-btn @click.stop="maximizeCard(idx, item)" size="md" color="light" label="Ver más"
+                             class="text-white text-weight-light bg-primary"/>
+                      <q-btn v-if="item.enlace" type="a" target="_blank" size="md" :href="item.enlace" color="grey-7" label="Abrir enlace"
+                             outline
+                             icon-right="las la-external-link-square-alt"
+                             class=""/>
 
                       <q-space/>
 
@@ -175,6 +229,8 @@
                         round
                         flat
                         dense
+                        :icon="idx ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                        @click="idx = !idx"
                       />
                     </q-card-actions>
                     <q-slide-transition>
@@ -252,7 +308,10 @@ export default {
       siguiente: '/',
       titulo_anterior: '/',
       titulo_siguiente: '/',
-      changedialog: false
+      changedialog: false,
+
+      slide: 1,
+      autoplay: true,
     }
   },
   computed: {
@@ -338,6 +397,22 @@ export default {
   border: 1px solid rgb(232, 232, 232);
   border-radius: 5px;
   box-shadow: #cecece 0 0 20px;
+}
+
+.micro-hero {
+  position: relative;
+  padding-top: 2rem;
+}
+
+.micro-hero:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 2rem;
+  width: 100%;
+  background: blue;
 }
 
 .dot-grid {

@@ -15,7 +15,7 @@
               de San Nicolás de Hidalgo</small></span>
             </div>
             <p class="text-body2">
-              Conoce los espacios digitales de la Universidad, sus servicios digitales y navega el campus virtual
+              Conoce las actividades y servicios digitales que ofrece la UMSNH
             </p>
             <q-btn size="sm"
                    unelevated
@@ -66,24 +66,24 @@
                 </div>
               </div>
 
-              <div class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
-                <div class="order-lg-first col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
+              <div class="q-py-md row items-start q-gutter-md row wrap justify-end q-mx-auto">
+                <div class="order-lg-first col-shrink col-xs-12 col-md-4 self-center q-px-lg q-py-sm q-mx-none">
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Qué es el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
                     Este es un espacio para ti, ya sea que formes parte de la comunidad nicolaita o que te interese conocer más sobre la Universidad. Aquí podrás encontrar recursos, contenidos y servicios digitales de todas las áreas académicas, de investigación, difusión cultural y extensión universitaria. Aprovecha nuestras revistas y libros digitales, recorridos virtuales culturales y exposiciones, haz trámites en línea y mucho más.
                   </p>
                 </div>
-                <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-4 self-center q-px-lg q-py-sm">
+                <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-6 self-center q-py-sm">
                   <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_17.jpg?alt=media&token=226d0863-da15-4cd7-af42-2084be09de00"></q-img>
                 </div>
               </div>
 
-              <div class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
-                <div class="order-md-last col-shrink col-xs-12 col-sm-10 col-md-4 self-center q-px-lg q-py-sm">
+              <div class="q-py-md row items-start q-gutter-md row wrap justify-start q-mx-auto">
+                <div class="order-md-last col-shrink col-xs-12 col-md-6 self-center q-ml-none q-py-sm">
                   <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_24.jpg?alt=media&token=60bcf30e-7934-41ca-aa78-db1859963605"></q-img>
                 </div>
-                <div class="order-md-first col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
+                <div class="order-md-first col-shrink col-xs-12 col-md-4 self-center q-px-lg q-py-sm">
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Para qué es el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
@@ -93,25 +93,22 @@
               </div>
 
               <div class="full-width q-my-xl">
-                <q-parallax height="300">
-                  <template v-slot:media>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_Facultad_de_Arquitectura.jpg?alt=media&token=1cabbe6e-1d57-43f8-820a-ee36a42a3549">
-                  </template>
+                <q-parallax src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_Facultad_de_Arquitectura.jpg?alt=media&token=1cabbe6e-1d57-43f8-820a-ee36a42a3549">
                 </q-parallax>
 
               </div>
 
 
-              <div class="q-pa-md row items-start q-gutter-md row wrap justify-start q-mx-auto" style="max-width: 65rem;">
-                <div class="order-md-last col-shrink col-xs-12 col-sm-10 col-md-4 self-center q-px-lg q-py-sm">
-                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_25.jpg?alt=media&token=bcaeb805-61b4-4066-a85f-9dcf35f6d62e"></q-img>
-                </div>
-                <div class="order-md-first col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-px-lg q-py-sm">
-                  <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Como es el Campus Digital?</h5>
+              <div class="q-py-md row items-start q-gutter-md row wrap justify-end q-mx-auto">
+                <div class="order-lg-first col-shrink col-xs-12 col-md-4 self-center q-px-lg q-py-sm q-mx-none">
+                  <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Cómo funciona el Campus Digital?</h5>
 
                   <p class="text-h6 text-blue-grey-9 text-weight-light">
                     Accede sin necesidad de registro a un campus digital moderno, sencillo y fácil de navegar que agiliza la comunicación y promueve un modelo de enseñanza-aprendizaje innovador y de calidad.  Es una herramienta que está a la vanguardia de los procesos educativos y la evolución tecnológica.
                   </p>
+                </div>
+                <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-6 self-center q-py-sm">
+                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_25.jpg?alt=media&token=bcaeb805-61b4-4066-a85f-9dcf35f6d62e"></q-img>
                 </div>
               </div>
 
