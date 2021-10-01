@@ -1,5 +1,11 @@
 <template>
   <div style="height: 100vh;">
+
+    <q-img class="escudo-main-hero q-ma-lg xs-hide sm-hide md-show lg-show xl-show absolute-top-left"
+           src="~assets/img/escudo-umnsh-lg-v1.svg"
+           style="max-width: 120px;"
+    />
+
     <div class="full-height hide-scrollbar row wrap justify-center items-center content-center q-mx-auto"
          style="max-width: 65rem; position: relative">
 
@@ -75,13 +81,33 @@
                   </p>
                 </div>
                 <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-6 self-center q-py-sm">
-                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_17.jpg?alt=media&token=226d0863-da15-4cd7-af42-2084be09de00"></q-img>
+                  <q-carousel
+                    animated
+                    v-model="slide"
+                    arrows
+                    navigation
+                    infinite
+                  >
+                    <q-carousel-slide :name="1" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_01.jpg?alt=media&token=d5d1f634-be48-4754-8a46-5a996895d27a" />
+                    <q-carousel-slide :name="2" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_08.jpg?alt=media&token=2fffaf13-277b-4c7d-9101-65c741b05c78" />
+                    <q-carousel-slide :name="3" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_03.jpg?alt=media&token=0886ff07-2ad5-4943-935f-2fa3ae2b8b11" />
+                  </q-carousel>
                 </div>
               </div>
 
               <div class="q-py-md row items-start q-gutter-md row wrap justify-start q-mx-auto">
                 <div class="order-md-last col-shrink col-xs-12 col-md-6 self-center q-ml-none q-py-sm">
-                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_24.jpg?alt=media&token=60bcf30e-7934-41ca-aa78-db1859963605"></q-img>
+                  <q-carousel
+                    animated
+                    v-model="slide"
+                    arrows
+                    navigation
+                    infinite
+                  >
+                    <q-carousel-slide :name="1" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_02.jpg?alt=media&token=27e3ebd1-5506-435d-82d7-9c41d2563e41" />
+                    <q-carousel-slide :name="2" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_04.jpg?alt=media&token=bfd910ae-8d35-4ce1-a8ed-94e73a9e00b0" />
+                    <q-carousel-slide :name="3" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_05.jpg?alt=media&token=08d50459-924f-4081-a4ba-d8b0eb9f33cf" />
+                  </q-carousel>
                 </div>
                 <div class="order-md-first col-shrink col-xs-12 col-md-4 self-center q-px-lg q-py-sm">
                   <h5 class="q-mb-lg q-mt-sm text-blue-7 text-weight-light text-uppercase">¿Para qué es el Campus Digital?</h5>
@@ -93,7 +119,7 @@
               </div>
 
               <div class="full-width q-my-xl">
-                <q-parallax src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_Facultad_de_Arquitectura.jpg?alt=media&token=1cabbe6e-1d57-43f8-820a-ee36a42a3549">
+                <q-parallax src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_04.jpg?alt=media&token=bfd910ae-8d35-4ce1-a8ed-94e73a9e00b0">
                 </q-parallax>
 
               </div>
@@ -108,7 +134,17 @@
                   </p>
                 </div>
                 <div class="order-lg-last col-shrink col-xs-12 col-sm-10 col-md-6 self-center q-py-sm">
-                  <q-img class="ripple" src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fc_25.jpg?alt=media&token=bcaeb805-61b4-4066-a85f-9dcf35f6d62e"></q-img>
+                  <q-carousel
+                    animated
+                    v-model="slide"
+                    arrows
+                    navigation
+                    infinite
+                  >
+                    <q-carousel-slide :name="1" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_06.jpg?alt=media&token=197a5004-054e-4d1e-b04c-2c86b6fbdf77" />
+                    <q-carousel-slide :name="2" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_07.jpg?alt=media&token=bcdf4d40-01e6-4d0d-9108-5af47ec9ed2e" />
+                    <q-carousel-slide :name="3" img-src="https://firebasestorage.googleapis.com/v0/b/campus-b4087.appspot.com/o/about%2Fcampus_digital_09.jpg?alt=media&token=dc2997e8-a855-40bc-ad68-81fe7cacd2c6" />
+                  </q-carousel>
                 </div>
               </div>
 
@@ -158,7 +194,7 @@
 <!--                    <p class="text-h6 text-white text-weight-light">-->
 <!--                      Debitis explicabo ipsum officia!-->
 <!--                    </p>-->
-                    <p class="text-body text-blue-9">
+                    <p class="text-body text-blue-11">
                       Copyright. UMSNH. Todos los derechos reservados.
                     </p>
                   </div>
@@ -200,7 +236,10 @@ export default {
   },
   data() {
     return {
-      showConocerMas: false
+      showConocerMas: false,
+
+      // Sliders static
+      slide: 1,
     }
   },
 }

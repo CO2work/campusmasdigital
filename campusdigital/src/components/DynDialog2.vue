@@ -62,15 +62,15 @@
 
                         <div class="col-shrink col-xs-12 col-sm-10 col-md-5 self-center q-ma-lg">
 
-                          <h2 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">
+                          <h4 class="q-mb-lg text-blue-7 text-weight-normal">
                             {{ maximizedItem.titulo }}
-                          </h2>
-                          <h3 class="text-h4 text-blue-9">
+                          </h4>
+                          <h5 class="text-blue-9 text-weight-light q-ma-none">
                             {{ maximizedItem.subtitulo }}
-                          </h3>
+                          </h5>
                         </div>
 
-                        <div v-if="maximizedItem.descripcion" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                        <div v-if="maximizedItem.descripcion" class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-ma-lg">
                           <p class="text-body2 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion }}
                           </p>
@@ -85,15 +85,15 @@
                           </div>
                         </div>
 
-                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
+                        <div class="col-shrink col-xs-12 col-sm-10 col-md-7 self-center q-ma-lg">
                           <p v-if="maximizedItem.descripcion_extra" class="text-body2 text-blue-grey-9 text-weight-light">
                             {{ maximizedItem.descripcion_extra }}
                           </p>
                         </div>
 
-                        <div class="col-shrink col-xs-12 col-sm-10 self-center q-my-lg full-width">
+                        <div  v-if="maximizedItem.slides && maximizedItem.slides.length"
+                          class="col-shrink col-xs-12 col-sm-10 self-center q-my-lg full-width">
                           <q-carousel
-
                             swipeable
                             animated
                             v-model="slide"
@@ -103,10 +103,7 @@
                             transition-prev="slide-right"
                             transition-next="slide-left"
                           >
-                            <q-carousel-slide :name="1" img-src="https://cdn.quasar.dev/img/mountains.jpg" />
-                            <q-carousel-slide :name="2" img-src="https://cdn.quasar.dev/img/parallax1.jpg" />
-                            <q-carousel-slide :name="3" img-src="https://cdn.quasar.dev/img/parallax2.jpg" />
-                            <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg" />
+                            <q-carousel-slide v-for="(item, idx) in maximizedItem.slides" :key="idx"  :name="idx" :img-src="item" />
 
                             <template v-slot:control>
                               <q-carousel-control
@@ -115,7 +112,7 @@
                                 class="text-white rounded-borders"
                                 style="background: rgba(0, 0, 0, .3); padding: 4px 8px;"
                               >
-                                <q-toggle dense dark color="orange" v-model="autoplay" label="Auto Play" />
+                                <q-toggle dense dark color="white" v-model="autoplay" label="Auto Play" />
                               </q-carousel-control>
 
                               <q-carousel-control
@@ -124,22 +121,29 @@
                                 class="q-gutter-xs"
                               >
                                 <q-btn
-                                  push round dense color="orange" text-color="black" icon="arrow_left"
+                                  push round dense color="white" text-color="black" icon="arrow_left"
                                   @click="$refs.carousel.previous()"
                                 />
                                 <q-btn
-                                  push round dense color="orange" text-color="black" icon="arrow_right"
+                                  push round dense color="white" text-color="black" icon="arrow_right"
                                   @click="$refs.carousel.next()"
                                 />
                               </q-carousel-control>
                             </template>
                           </q-carousel>
                         </div>
-
-                        <div v-if="maximizedItem.enlace" class="col-shrink col-xs-12 col-sm-10 self-center q-ma-lg">
-                          <q-btn type="a" target="_blank" size="md" :href="maximizedItem.enlace" color="light"
-                                 label="Enlace"
-                                 class="text-white bg-primary"/>
+                        <div v-if="maximizedItem.enlace" class="bg-grey-2 col-xs-12 col-sm-10 full-width">
+                          <div class="q-pa-md col-shrink self-center q-ma-lg">
+                            <q-btn v-if="maximizedItem.enlace"
+                                   type="a"
+                                   target="_blank"
+                                   size="md"
+                                   :href="maximizedItem.enlace"
+                                   color="grey-7"
+                                   label="Visitar página"
+                                   outline
+                                   icon-right="las la-external-link-square-alt" />
+                          </div>
                         </div>
                       </div>
 
@@ -164,7 +168,7 @@
 
                 <div class="full-height row wrap justify-start relative-position"
                      style="max-width: 65rem;">
-                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-6 self-center q-ma-lg">
                     <h4 class="q-mb-lg text-blue-7 text-weight-light text-uppercase">{{ obj.titulo }}</h4>
                     <p class="text-h6 text-blue-9">
                       {{ obj.subtitulo }}
@@ -176,7 +180,7 @@
                   </div>
 
 
-                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-3 self-center q-ma-lg">
+                  <div class="col-shrink col-xs-12 col-sm-10 col-md-5 col-xl-5 self-center q-ma-lg">
                     <div class="q-pa-md" v-if="obj.video">
                       <q-video
                         :ratio="16/9"
@@ -189,59 +193,14 @@
               </article>
 
 
-              <div v-if="obj.contenido.length"
+              <div v-if="obj.contenido && obj.contenido.length"
                    v-show="showContentCards"
-                   class="q-pa-md row items-start q-gutter-lg row wrap justify-center q-mx-auto"
+                   class="q-pa-md row items-start q-gutter-lg row wrap justify-center items-stretch q-mx-auto"
                    style="max-width: 65rem;">
-                  <q-card v-for="(item, idx) in getCards()" :key="idx" class="my-card self-stretch q-pb-xl" flat bordered>
 
-                    <q-btn class="absolute-top-right z-top q-ma-sm text-grey-5"
-                           size="sm"
-                           round
-                           dense
-                           fab-mini color="white" icon="las la-plus" @click.stop="maximizeCard(idx, item)" />
-                    <q-img
-                      @click.stop="maximizeCard(idx, item)"
-                      style="cursor: zoom-in"
-                      :src="item.imagen"
-                    />
-                    <q-card-section>
-                      <div @click.stop="maximizeCard(idx, item)" style="cursor: zoom-in"
-                           class="text-h5 q-mt-sm q-mb-xs">{{ item.titulo }}
-                      </div>
-                      <div class="text-uppercase text-small text-orange-9">{{ item.subtitulo }}</div>
-                      <div class="text-caption text-grey q-my-md">
-                        {{ item.descripcion }}
-                      </div>
-                    </q-card-section>
-                    <q-card-actions class="absolute-bottom bg-grey-2 q-pa-md">
-                      <q-btn @click.stop="maximizeCard(idx, item)" size="md" color="light" label="Ver más"
-                             class="text-white text-weight-light bg-primary"/>
-                      <q-btn v-if="item.enlace" type="a" target="_blank" size="md" :href="item.enlace" color="grey-7" label="Abrir enlace"
-                             outline
-                             icon-right="las la-external-link-square-alt"
-                             class=""/>
-
-                      <q-space/>
-
-                      <q-btn
-                        color="grey"
-                        round
-                        flat
-                        dense
-                        :icon="idx ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
-                        @click="idx = !idx"
-                      />
-                    </q-card-actions>
-                    <q-slide-transition>
-                      <div v-show="expanded">
-                        <q-separator/>
-                        <q-card-section class="text-subitle2">
-                          {{ item.descripcion_extra }}
-                        </q-card-section>
-                      </div>
-                    </q-slide-transition>
-                  </q-card>
+                <div v-for="(item, idx) in getCards" :key="idx" >
+                  <Tarjeta @maximizar="maximizeCard(idx, item)" :item="item" :idx="idx"/>
+                </div>
 
               </div>
               <div class="full-width">
@@ -291,10 +250,14 @@
 
 <script>
 import gsap from 'gsap'
+import Tarjeta from "components/Tarjeta"
 import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: 'DynDialog',
+  components: {
+    Tarjeta
+  },
   props: ['show', 'obj'],
   data() {
     return {
@@ -316,6 +279,19 @@ export default {
   },
   computed: {
     ...mapGetters('campus', ['paginasIndexGet']),
+
+    getCards: {
+      get() {
+
+        console.log("contenido", this.obj.contenido)
+        let cards = Object.values(this.obj.contenido)
+        cards.sort((a, b) => {
+          return a.orden - b.orden
+        })
+        console.log("cards", cards)
+        return cards
+      }
+    },
     paginasIndex: {
       get() {
         return this.paginasIndexGet
@@ -348,15 +324,7 @@ export default {
       this.maximizedItem = item
       this.showMaximizedItem = true
     },
-    getCards() {
-      console.log("contenido", this.obj.contenido)
-      let cards = Object.values(this.obj.contenido)
-      cards.sort((a, b) => {
-        return a.orden - b.orden
-      })
-      console.log("cards", cards)
-      return cards
-    },
+
     closeCard() {
       this.showMaximizedItem = false
       this.maximizedItem = undefined
@@ -412,7 +380,7 @@ export default {
   display: block;
   height: 2rem;
   width: 100%;
-  background: blue;
+  background: #28527f;
 }
 
 .dot-grid {
@@ -473,9 +441,5 @@ h3 {
   font: 400 2em/1.5 sans-serif;
 }
 
-.my-card {
-  width: 100%;
-  max-width: 350px;
-}
 
 </style>
